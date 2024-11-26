@@ -7,9 +7,12 @@ GestionarHorario::GestionarHorario()
     : archivoHorarios(sizeof(Horario))
 {}
 
-Horario GestionarHorario::cargarHorario(int idActividad) {
-    int  horaInicio, horaFin;
+Horario GestionarHorario::cargarHorario() {
+    int idActividad, horaInicio, horaFin;
     string diaSemana;
+
+    cout << "Ingrese el ID de la actividad: ";
+    cin >> idActividad;
 
     cout << "Ingrese el dia de la semana (lunes, martes, ...): ";
     cin >> diaSemana;
@@ -21,38 +24,20 @@ Horario GestionarHorario::cargarHorario(int idActividad) {
     cin >> horaFin;
 
     int idHorario = obtenerIdNuevo();
-
-    return Horario(idHorario, idActividad, diaSemana, horaInicio, horaFin, true);
+    Horario nuevoHorario(idHorario, idActividad, diaSemana, horaInicio, horaFin, true);
+    return nuevoHorario;
 }
 
-void GestionarHorario::altaHorarioParaActividad(int idActividad) {
-    Horario nuevoHorario = cargarHorario(idActividad);
+void GestionarHorario::altaHorario() {
+    Horario nuevoHorario = cargarHorario();
 
     if (archivoHorarios.guardar(nuevoHorario)) {
-        std::cout << ">> Horario guardado correctamente.\n";
-    } else {
-        std::cout << "ERROR: No se pudo guardar el horario.\n";
+        cout << "Horario agregado exitosamente.\n";
+    }
+    else {
+        cout << "Error al guardar el horario.\n";
     }
 }
-
-bool HorarioArchivo::tieneHorariosAsignados(int idActividad) const {
-    FILE* p = fopen(_ruta.c_str(), "rb");
-    if (p == nullptr) {
-        return false; 
-    }
-
-    Horario reg;
-    while (fread(&reg, _tamReg, 1, p) == 1) {
-        if (reg.getIdActividad() == idActividad && reg.getEstado()) {
-            fclose(p);
-            return true; 
-        }
-    }
-
-    fclose(p);
-    return false; 
-}
-
 
 void GestionarHorario::bajaHorario() {
     int id;
@@ -100,4 +85,3 @@ void GestionarHorario::buscarHorario() {
 int GestionarHorario::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<HorarioArchivo, Horario>(archivoHorarios);
 }
-

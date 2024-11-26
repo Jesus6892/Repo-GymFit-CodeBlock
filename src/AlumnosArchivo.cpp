@@ -2,7 +2,7 @@
 #include "AlumnosArchivo.h"
 
 ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro) {
-	_ruta = "alumnos.dat";
+	_ruta = "archivos/alumnos.dat";
 	_tamReg = tamanioRegistro;
 }
 
@@ -37,7 +37,6 @@ bool ArchivoAlumnos::listarRegistro() const {
 	fclose(pAlumno);
 	return true;
 }
-
 bool ArchivoAlumnos::guardar(const Alumno& reg) const {
 	FILE* pAlumno;
 	pAlumno = fopen(_ruta.c_str(), "ab");
@@ -52,7 +51,6 @@ bool ArchivoAlumnos::guardar(const Alumno& reg) const {
 
 	return result;
 }
-
 int ArchivoAlumnos::buscar(int id) const {
 	FILE* pAlumno;
 	Alumno reg;
@@ -98,27 +96,6 @@ bool ArchivoAlumnos::modificarRegistro(const Alumno& reg, int pos) const {
 	fclose(pAlumno);
 	return escribio;
 }
-
-int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
-	FILE* pAlumno;
-	Alumno reg;
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
-		// No se pudo abrir el archivo
-		return -1;
-	}
-
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1) {
-		if (reg.getDni() == dni && reg.getEstado()) { // Compara DNI y estado
-			fclose(pAlumno);
-			return reg.getId(); // Devuelve el ID del alumno
-		}
-	}
-
-	fclose(pAlumno);
-	return -1; // No se encontró el alumno o no está activo
-}
-
 Alumno ArchivoAlumnos::leerRegistro(int ubi) const {
 	FILE* pAlumno;
 	Alumno reg;

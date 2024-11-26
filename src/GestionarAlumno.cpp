@@ -31,18 +31,12 @@ bool tienelongitud(const std::string& str, int longitud) {
 }
 
 
-
 Alumno GestionarAlumno::cargarAlumno()
 {
-
-    std::string nombre, apellido, dni, correoElectronico, direccion, telefono;
-    int diaNasc, mesNasc, anioNasc;
-    int diaInsc, mesInsc, anioInsc;
-    bool estado = true; // Un nuevo alumno siempre está activo
-
-    // --- Captura de datos ---
-
-    /*
+    std::string nombre, apellido, correoElectronico, direccion;
+    int dni, diaNasc, mesNasc, anioNasc, diaInsc, mesInsc, anioInsc, idMembresia;
+    long long telefono;
+    bool estado = true;
 
     do {
         std::cout << "Ingrese nombre: ";
@@ -58,12 +52,14 @@ Alumno GestionarAlumno::cargarAlumno()
 
 
     do {
-        std::cout << "Ingrese DNI (8 digitos): ";
+        std::cout << "Ingrese DNI: ";
         std::cin >> dni;
-        if (!soloNumeros(dni) || !tienelongitud(dni, 8)) std::cout << "DNI Invalido. Debe ser 8 digitos numericos" << std::endl;
-    } while (!soloNumeros(dni) || !tienelongitud(dni, 8));
+        std::string dniStr = std::to_string(dni);
+        if (!soloNumeros(dniStr) || !tienelongitud(dniStr, 8)) std::cout << "DNI Invalido. Debe ser 8 digitos numericos" << std::endl;
+    } while (!soloNumeros(std::to_string(dni)) || !tienelongitud(std::to_string(dni), 8));
 
-    std::cout << "Ingrese fecha de nacimiento (dia mes anio): ";
+
+    std::cout << "Ingrese fecha de nacimiento (dia - mes - anio): ";
     std::cin >> diaNasc >> mesNasc >> anioNasc;
 
     std::cout << "Ingrese correo electronico: ";
@@ -74,63 +70,23 @@ Alumno GestionarAlumno::cargarAlumno()
     std::getline(std::cin, direccion);
 
     do {
-        std::cout << "Ingrese telefono (10 digitos): ";
+        std::cout << "Ingrese telefono: ";
         std::cin >> telefono;
-        if (!soloNumeros(telefono) || !tienelongitud(telefono, 10)) std::cout << "Telefono Invalido. Debe ser 10 digitos numericos" << std::endl;
-    } while (!soloNumeros(telefono) || !tienelongitud(telefono, 10));
+        std::string telefonoStr = std::to_string(telefono);
+        if (!soloNumeros(telefonoStr) || !tienelongitud(telefonoStr, 10)) std::cout << "Telefono Invalido. Debe ser 10 digitos numericos" << std::endl;
+    } while (!soloNumeros(std::to_string(telefono)) || !tienelongitud(std::to_string(telefono), 10));
+
+
+    int idAlumno = obtenerIdNuevo();
 
     std::cout << "Ingrese fecha de inscripcion (dia mes anio): ";
     std::cin >> diaInsc >> mesInsc >> anioInsc;
 
-    int idAlumno = obtenerIdNuevo();
 
-    */
+    Alumno nuevoAlumno(nombre, apellido, dni, diaNasc, mesNasc, anioNasc, correoElectronico,
+        idAlumno, diaInsc, mesInsc, anioInsc, estado, direccion, telefono);
 
-
-
-    nombre = "Carlos";
-    apellido = "Sanchez";
-    dni = "33444555";
-    correoElectronico = "c.sanchez@test.com";
-    direccion = "Boulevard de los Suenos Rotos";
-    telefono = "9988776655";
-    diaNasc = 20;
-    mesNasc = 11;
-    anioNasc = 2001;
-    diaInsc = 10;
-    mesInsc = 6;
-    anioInsc = 2024;
-    int idAlumno = obtenerIdNuevo();
-
-
-    std::cout << std::endl; // Un espacio para que se lea mejor
-    std::cout << "--- MODO PRUEBA ---" << std::endl;
-    std::cout << "Se creara el siguiente alumno de prueba:" << std::endl;
-    std::cout << "ID: " << idAlumno << " - " << nombre << " " << apellido << std::endl;
-    std::cout << "---------------------" << std::endl;
-    std::cout << "Presione Enter para continuar...";
-
-    // ESTAS DOS LÍNEAS CREAN LA PAUSA
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpia cualquier entrada anterior
-    std::cin.get();
-
-
-    return Alumno(
-        nombre.c_str(),
-        apellido.c_str(),
-        dni.c_str(),
-        diaNasc,
-        mesNasc,
-        anioNasc,
-        correoElectronico.c_str(),
-        direccion.c_str(),
-        telefono.c_str(),
-        idAlumno,
-        diaInsc,
-        mesInsc,
-        anioInsc,
-        estado
-    );
+    return nuevoAlumno;
 }
 
 void GestionarAlumno::altaAlumno() {
@@ -169,37 +125,19 @@ void GestionarAlumno::listarAlumnos() {
     int totalRegistros = archivoAlumnos.contarRegistros();
 
     if (totalRegistros == 0) {
-            std::cout << "\n+------------------------------------------+\n";
-            std::cout << "|       No hay alumnos registrados.        |\n";
-            std::cout << "+------------------------------------------+\n";
+        std::cout << "No hay alumnos registrados.\n";
         return;
     }
 
-    bool seMostroAlguno = false;
+    std::cout << "\n===== LISTA DE ALUMNOS ACTIVOS =====\n";
 
     for (int i = 0; i < totalRegistros; ++i) {
         Alumno alumno = archivoAlumnos.leerRegistro(i);
 
         if (alumno.getEstado()) {
-            if (!seMostroAlguno) {
-                std::cout << "\n===== LISTA DE ALUMNOS ACTIVOS =====\n";
-                seMostroAlguno = true;
-            }
-
             alumno.mostrar();
         }
     }
-
-
-    if (!seMostroAlguno) {
-        std::cout << "\n+------------------------------------------+\n";
-        std::cout << "|                                          |\n";
-        std::cout << "|   AVISO: No se encontraron alumnos       |\n";
-        std::cout << "|          activos en el sistema.          |\n";
-        std::cout << "|                                          |\n";
-        std::cout << "+------------------------------------------+\n";
-    }
-
 }
 
 void GestionarAlumno::buscarAlumno() {

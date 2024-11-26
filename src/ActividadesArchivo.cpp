@@ -3,7 +3,7 @@
 
 ActividadesArchivo::ActividadesArchivo(int tamanioRegistro)
 {
-    _ruta = "actividades.dat";
+    _ruta = "archivos/actividades.dat";
     _tamReg = tamanioRegistro;
 }
 

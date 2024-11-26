@@ -3,29 +3,22 @@
 #include "GestionarProfe.h"
 #include "GestionarActividad.h"
 #include "GestionarHorario.h"
-#include "GestionarPago.h"
-#include "GestionarProceso.h"
+#include "GestionarInscripciones.h"
 
 class Menu {
 public:
     void mostrarMenu();
     void procesarOpcion(int opcion);
 
-
-    void gestionarProceso();
     void gestionarAlumnos();
     void gestionarProfes();
     void gestionarActividades();
-    void gestionarPago();
     void gestionarHorarios();
-
+    void gestionarInscripciones();
 private:
-
-    // Clases de gestión
-    GestionarProceso gestorProceso;
     GestionarAlumno gestorAlumnos;
     GestionarProfesor gestorProfe;
     GestionarActividad gestorActividades;
-    GestionarPago gestorPagos;
     GestionarHorario gestorHorarios;
+    GestionarInscripciones gestorInscripciones;
 };

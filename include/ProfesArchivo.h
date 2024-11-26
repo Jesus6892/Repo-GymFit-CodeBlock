@@ -19,6 +19,5 @@ public:
     Profe leerRegistro(int ubi) const override;
     int contarRegistros() const override;
     bool modificarRegistro(const Profe& reg, int pos) const override;
-    int buscarIdPorDni(const std::string& dni) const;
     ~ProfesArchivo() override {};
 };

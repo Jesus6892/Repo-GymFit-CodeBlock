@@ -3,7 +3,7 @@
 
 
 HorarioArchivo::HorarioArchivo(int tamanioRegistro) {
-    _ruta = "Horario.dat";
+    _ruta = "archivos/Horario.dat";
     _tamReg = tamanioRegistro;
 }
 
@@ -67,13 +67,13 @@ int HorarioArchivo::buscar(int id) const {
     while (fread(&reg, _tamReg, 1, pDiaHora) == 1) {
         if (reg.getIdActividad() == id) {
             fclose(pDiaHora);
-            return pos; // Caso ï¿½xito, retorna la posiciï¿½n del elemento;
+            return pos; // Caso éxito, retorna la posición del elemento;
         }
         pos++;
     }
 
     fclose(pDiaHora);
-    return -1; // No lo encontrï¿½.
+    return -1; // No lo encontró.
 }
 
 int HorarioArchivo::contarRegistros() const {
@@ -90,8 +90,6 @@ int HorarioArchivo::contarRegistros() const {
     fclose(pDiaHora);
     return total / _tamReg;
 }
-
-
 
 bool HorarioArchivo::modificarRegistro(const Horario& reg, int pos) const {
     FILE* pDiaHora;
@@ -121,4 +119,3 @@ Horario HorarioArchivo::leerRegistro(int ubi) const {
     fclose(pDiaHora);
     return reg;
 }
-

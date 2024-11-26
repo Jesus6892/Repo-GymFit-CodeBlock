@@ -2,64 +2,45 @@
 #include <iostream>
 using namespace std;
 
-
 void Menu::mostrarMenu() {
-    cout << "\n========================================\n";
-    cout << "            SISTEMA GYM FIT            \n";
-    cout << "========================================\n";
-    cout << "  1) Proceso de Inscripcion            \n";
-    cout << "  2) Gestionar Pagos                   \n";
-    cout << "  3) Gestionar Alumnos                 \n";
-    cout << "  4) Gestionar Profesores              \n";
-    cout << "  5) Gestionar Actividades             \n";
-    cout << "  6) Gestionar Horarios                \n";
-    cout << "----------------------------------------\n";
-    cout << "  0) Salir                             \n";
-    cout << "========================================\n";
+    cout << "===== MENU PRINCIPAL =====\n";
+    cout << "1. Gestionar Alumnos\n";
+    cout << "2. Gestionar Profesores\n";
+    cout << "3. Gestionar Actividades\n";
+    cout << "4. Gestionar Horarios\n";
+    cout << "5. Gestionar Inscripciones\n"; // Nueva opci�n para inscripciones
+    cout << "0. Salir\n";
     cout << "Seleccione una opcion: ";
 }
 
-
 void Menu::procesarOpcion(int opcion) {
-    cout << "\n----------------------------------------\n";
     switch (opcion) {
-        case 1:
-            gestionarProceso();
-            break;
-        case 2:
-            gestionarPago();  
-            break;
-        case 3:
-            gestionarAlumnos();
-            break;
-        case 4:
-            gestionarProfes(); 
-            break;
-        case 5:
-            gestionarActividades(); // o submenú
-            break;
-        case 6:
-            gestionarHorarios(); 
-            break;
-        case 0:
-            cout << " Saliendo... ¡Hasta luego!\n";
-            break;
-        default:
-            cout << " Opción no válida.\n";
-            system("pause");
+    case 1:
+        gestionarAlumnos();
+        break;
+    case 2:
+        gestionarProfes();
+        break;
+    case 3:
+        gestionarActividades();
+        break;
+    case 4:
+        gestionarHorarios();
+        break;
+    case 5:
+        gestionarInscripciones(); // Llama al m�todo para gestionar inscripciones
+        break;
+    case 0:
+        cout << "Saliendo..." << endl;
+        break;
+    default:
+        cout << "Opcion no valida" << endl;
     }
-    cout << "----------------------------------------\n";
-}
-
-void Menu::gestionarProceso() {
-    GestionarProceso proceso;
-    proceso.iniciarProceso();
 }
 
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
-        system("cls");  
         cout << "\n===== GESTION DE ALUMNOS =====\n";
         cout << "1. Alta de Alumno\n";
         cout << "2. Baja de Alumno\n";
@@ -70,36 +51,28 @@ void Menu::gestionarAlumnos() {
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
         switch (opcion) {
-            case 1:
-                gestorAlumnos.altaAlumno();
-                break;
-            case 2:
-                gestorAlumnos.bajaAlumno();
-                break;
-            case 3:
-                //gestorAlumnos.modificarAlumno();
-                cout << "Módulo 'Modificar Alumno' no implementado.\n";
-                system("pause");
-                break;
-            case 4:
-                gestorAlumnos.buscarAlumno();
-                break;
-            case 5:
-                gestorAlumnos.listarAlumnos();
-                break;
-            case 0:
-                cout << "Volviendo al menú principal...\n";
-                break;
-            default:
-                cout << "Opción no válida, intente nuevamente.\n";
-                system("pause");
-        }
-
-        if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");  
+        case 1:
+            gestorAlumnos.altaAlumno();
+            break;
+        case 2:
+            gestorAlumnos.bajaAlumno();
+            break;
+        case 3:
+            //gestorAlumnos.modificarAlumno();
+            cout << "No implementado\n";
+            break;
+        case 4:
+            gestorAlumnos.buscarAlumno();
+            break;
+        case 5:
+            gestorAlumnos.listarAlumnos();
+            break;
+        case 0:
+            cout << "Volviendo al menu principal...\n";
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente.\n";
         }
     } while (opcion != 0);
 }
@@ -182,44 +155,6 @@ void Menu::gestionarActividades() {
     } while (opcion != 0);
 }
 
-void Menu::gestionarPago() {
-    int opcion;
-    do {
-        system("cls");
-        cout << "\n===== GESTION DE PAGOS =====\n";
-        cout << "1. Registrar Pago\n";
-        cout << "2. Anular Pago\n";
-        cout << "3. Listar Pagos\n";
-        cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
-
-        // Limpiar buffer de entrada para evitar problemas con std::getline o futuras entradas
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-
-        switch (opcion) {
-        case 1:
-            gestorPagos.altaPago();
-            break;
-        case 2:
-            gestorPagos.bajaPago(); // En GestionarPago.h se llama bajaPago para anular
-            break;
-        case 3:
-            gestorPagos.listarPagos();
-            break;
-        case 0:
-            cout << "Volviendo al menu principal...\n";
-            break;
-        default:
-            cout << "Opcion no valida, intente nuevamente.\n";
-        }
-        if (opcion != 0) {
-            system("pause");
-        }
-    } while (opcion != 0);
-}
-
 void Menu::gestionarHorarios() {
     int opcion;
     do {
@@ -235,7 +170,7 @@ void Menu::gestionarHorarios() {
 
         switch (opcion) {
         case 1:
-            //gestorHorarios.altaHorario();
+            gestorHorarios.altaHorario();
             break;
         case 2:
             gestorHorarios.bajaHorario();
@@ -259,5 +194,36 @@ void Menu::gestionarHorarios() {
     } while (opcion != 0);
 }
 
+void Menu::gestionarInscripciones() {
+    int opcion;
+    do {
+        cout << "\n===== GESTION DE INSCRIPCIONES =====\n";
+        cout << "1. Alta de Inscripci�n\n";
+        cout << "2. Baja de Inscripci�n\n";
+        cout << "3. Buscar Inscripci�n\n";
+        cout << "4. Listar Inscripciones\n";
+        cout << "0. Volver al Menu Principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
 
-
+        switch (opcion) {
+        case 1:
+            gestorInscripciones.altaInscripcion();
+            break;
+        case 2:
+            gestorInscripciones.bajaInscripcion();
+            break;
+        case 3:
+            gestorInscripciones.buscarInscripcion();
+            break;
+        case 4:
+            gestorInscripciones.listarInscripciones();
+            break;
+        case 0:
+            cout << "Volviendo al menu principal...\n";
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente.\n";
+        }
+    } while (opcion != 0);
+}

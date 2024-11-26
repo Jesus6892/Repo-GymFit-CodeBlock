@@ -35,10 +35,6 @@ int Horario::getHoraFin() const {
 	return _horaFin;
 }
 
-bool Horario::getEstado() const {
-	return _estado;
-}
-
 // setters
 void Horario::setId(int idHorario) {
 	if (idHorario <= 0) throw std::invalid_argument("El ID del Dia y Horario debe ser un numero positivo");
@@ -78,7 +74,7 @@ Horario::DiaSemana Horario::convertirStringADia(const std::string& diaStr) {
 	else if (lowerStr == "viernes") return viernes;
 	else if (lowerStr == "sabado") return sabado;
 	else if (lowerStr == "domingo") return domingo;
-	else throw std::invalid_argument("DÃ­a invÃ¡lido."); // excepciÃ³n
+	else throw std::invalid_argument("Día inválido."); // excepción
 }
 std::string Horario::convertirDiaAString(const DiaSemana& dia) const {
 	switch (dia) {
@@ -89,7 +85,7 @@ std::string Horario::convertirDiaAString(const DiaSemana& dia) const {
 	case viernes:   return "viernes";
 	case sabado:    return "sabado";
 	case domingo:   return "domingo";
-	default:        return "DÃ­a desconocido";
+	default:        return "Día desconocido";
 	}
 }
 void Horario::convertirAMinusculas(std::string& dia) {
