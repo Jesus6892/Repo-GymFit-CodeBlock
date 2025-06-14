@@ -16,7 +16,7 @@ void Menu::mostrarMenu() {
 void Menu::procesarOpcion(int opcion) {
     switch (opcion) {
     case 1:
-        //gestionarAlumnos();
+        gestionarAlumnos();
         break;
     case 2:
         //gestionarProfes();
@@ -38,7 +38,7 @@ void Menu::procesarOpcion(int opcion) {
     }
 }
 
-/*
+
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
@@ -78,6 +78,8 @@ void Menu::gestionarAlumnos() {
     } while (opcion != 0);
 }
 
+
+/*
 void Menu::gestionarProfes() {
     int opcion;
     do {

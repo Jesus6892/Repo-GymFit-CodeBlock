@@ -1,4 +1,3 @@
-/*
 #pragma once
 
 #include "Alumno.h"
@@ -32,12 +31,16 @@ bool tienelongitud(const std::string& str, int longitud) {
 }
 
 
+
 Alumno GestionarAlumno::cargarAlumno()
 {
-    std::string nombre, apellido, correoElectronico, direccion;
-    int dni, diaNasc, mesNasc, anioNasc, diaInsc, mesInsc, anioInsc, idMembresia;
-    long long telefono;
-    bool estado = true;
+
+    std::string nombre, apellido, dni, correoElectronico, direccion, telefono;
+    int diaNasc, mesNasc, anioNasc;
+    int diaInsc, mesInsc, anioInsc;
+    bool estado = true; // Un nuevo alumno siempre está activo
+
+    // --- Captura de datos ---
 
     do {
         std::cout << "Ingrese nombre: ";
@@ -53,14 +56,12 @@ Alumno GestionarAlumno::cargarAlumno()
 
 
     do {
-        std::cout << "Ingrese DNI: ";
+        std::cout << "Ingrese DNI (8 digitos): ";
         std::cin >> dni;
-        std::string dniStr = std::to_string(dni);
-        if (!soloNumeros(dniStr) || !tienelongitud(dniStr, 8)) std::cout << "DNI Invalido. Debe ser 8 digitos numericos" << std::endl;
-    } while (!soloNumeros(std::to_string(dni)) || !tienelongitud(std::to_string(dni), 8));
+        if (!soloNumeros(dni) || !tienelongitud(dni, 8)) std::cout << "DNI Invalido. Debe ser 8 digitos numericos" << std::endl;
+    } while (!soloNumeros(dni) || !tienelongitud(dni, 8));
 
-
-    std::cout << "Ingrese fecha de nacimiento (dia - mes - anio): ";
+    std::cout << "Ingrese fecha de nacimiento (dia mes anio): ";
     std::cin >> diaNasc >> mesNasc >> anioNasc;
 
     std::cout << "Ingrese correo electronico: ";
@@ -71,23 +72,32 @@ Alumno GestionarAlumno::cargarAlumno()
     std::getline(std::cin, direccion);
 
     do {
-        std::cout << "Ingrese telefono: ";
+        std::cout << "Ingrese telefono (10 digitos): ";
         std::cin >> telefono;
-        std::string telefonoStr = std::to_string(telefono);
-        if (!soloNumeros(telefonoStr) || !tienelongitud(telefonoStr, 10)) std::cout << "Telefono Invalido. Debe ser 10 digitos numericos" << std::endl;
-    } while (!soloNumeros(std::to_string(telefono)) || !tienelongitud(std::to_string(telefono), 10));
-
-
-    int idAlumno = obtenerIdNuevo();
+        if (!soloNumeros(telefono) || !tienelongitud(telefono, 10)) std::cout << "Telefono Invalido. Debe ser 10 digitos numericos" << std::endl;
+    } while (!soloNumeros(telefono) || !tienelongitud(telefono, 10));
 
     std::cout << "Ingrese fecha de inscripcion (dia mes anio): ";
     std::cin >> diaInsc >> mesInsc >> anioInsc;
 
+    int idAlumno = obtenerIdNuevo();
 
-    Alumno nuevoAlumno(nombre, apellido, dni, diaNasc, mesNasc, anioNasc, correoElectronico,
-        idAlumno, diaInsc, mesInsc, anioInsc, estado, direccion, telefono);
-
-    return nuevoAlumno;
+    return Alumno(
+        nombre.c_str(),
+        apellido.c_str(),
+        dni.c_str(),
+        diaNasc,
+        mesNasc,
+        anioNasc,
+        correoElectronico.c_str(),
+        direccion.c_str(),
+        telefono.c_str(),
+        idAlumno,
+        diaInsc,
+        mesInsc,
+        anioInsc,
+        estado
+    );
 }
 
 void GestionarAlumno::altaAlumno() {
@@ -159,4 +169,3 @@ void GestionarAlumno::buscarAlumno() {
 int GestionarAlumno::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<ArchivoAlumnos, Alumno>(archivoAlumnos);
 }
-*/
