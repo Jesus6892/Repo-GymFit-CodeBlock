@@ -432,7 +432,7 @@
 	<string>
 	<stdexcept>
 
-1749504426 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\alumnosarchivo.cpp
+1749932520 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\alumnosarchivo.cpp
 	"AlumnosArchivo.h"
 
 1749492838 c:\users\pc\documents\github\repo-gymfit-codeblock\include\alumnosarchivo.h
@@ -572,11 +572,11 @@
 	"InscripcionesArchivo.h"
 	"Utilidades.h"
 
-1749929497 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1749930783 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 
-1749930767 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\gestionaralumno.cpp
+1749932918 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\gestionaralumno.cpp
 	"Alumno.h"
 	"AlumnosArchivo.h"
 	"GestionarAlumno.h"

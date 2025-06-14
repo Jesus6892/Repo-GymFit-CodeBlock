@@ -2,7 +2,7 @@
 #include "AlumnosArchivo.h"
 
 ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro) {
-	_ruta = "archivos/alumnos.dat";
+	_ruta = "alumnos.dat";
 	_tamReg = tamanioRegistro;
 }
 
@@ -37,6 +37,7 @@ bool ArchivoAlumnos::listarRegistro() const {
 	fclose(pAlumno);
 	return true;
 }
+
 bool ArchivoAlumnos::guardar(const Alumno& reg) const {
 	FILE* pAlumno;
 	pAlumno = fopen(_ruta.c_str(), "ab");
@@ -51,6 +52,7 @@ bool ArchivoAlumnos::guardar(const Alumno& reg) const {
 
 	return result;
 }
+
 int ArchivoAlumnos::buscar(int id) const {
 	FILE* pAlumno;
 	Alumno reg;
