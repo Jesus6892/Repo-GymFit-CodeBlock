@@ -169,19 +169,37 @@ void GestionarAlumno::listarAlumnos() {
     int totalRegistros = archivoAlumnos.contarRegistros();
 
     if (totalRegistros == 0) {
-        std::cout << "No hay alumnos registrados.\n";
+            std::cout << "\n+------------------------------------------+\n";
+            std::cout << "|       No hay alumnos registrados.        |\n";
+            std::cout << "+------------------------------------------+\n";
         return;
     }
 
-    std::cout << "\n===== LISTA DE ALUMNOS ACTIVOS =====\n";
+    bool seMostroAlguno = false;
 
     for (int i = 0; i < totalRegistros; ++i) {
         Alumno alumno = archivoAlumnos.leerRegistro(i);
 
         if (alumno.getEstado()) {
+            if (!seMostroAlguno) {
+                std::cout << "\n===== LISTA DE ALUMNOS ACTIVOS =====\n";
+                seMostroAlguno = true;
+            }
+
             alumno.mostrar();
         }
     }
+
+
+    if (!seMostroAlguno) {
+        std::cout << "\n+------------------------------------------+\n";
+        std::cout << "|                                          |\n";
+        std::cout << "|   AVISO: No se encontraron alumnos       |\n";
+        std::cout << "|          activos en el sistema.          |\n";
+        std::cout << "|                                          |\n";
+        std::cout << "+------------------------------------------+\n";
+    }
+
 }
 
 void GestionarAlumno::buscarAlumno() {
