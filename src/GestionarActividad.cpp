@@ -87,6 +87,7 @@ void GestionarActividad::buscarActividad() {
     }
 }
 
+
 int GestionarActividad::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<ActividadesArchivo, Actividad>(archivoActividades);
 }

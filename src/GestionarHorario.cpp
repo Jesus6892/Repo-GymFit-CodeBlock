@@ -1,3 +1,4 @@
+/*
 #include "GestionarHorario.h"
 #include "Horario.h"
 #include <iostream>
@@ -85,3 +86,4 @@ void GestionarHorario::buscarHorario() {
 int GestionarHorario::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<HorarioArchivo, Horario>(archivoHorarios);
 }
+*/

@@ -55,25 +55,25 @@ bool ProfesArchivo::guardar(const Profe& reg) const {
 }
 
 int ProfesArchivo::buscar(int id) const {
-	FILE* pProfes;
-	Profe reg;
-	int pos = 0;
-	pProfes = fopen(_ruta.c_str(), "rb");
-	if (pProfes == nullptr) {
-		return -2;
-	}
-	while (fread(&reg, _tamReg, 1, pProfes) == 1) {
-		if (reg.getId() == id) {
-			fclose(pProfes);
-			return pos;
-		}
-		pos++;
-	}
+    FILE* pProfes;
+    Profe reg;
+    int pos = 0;
+    pProfes = fopen(_ruta.c_str(), "rb");
+    if (pProfes == nullptr) {
+        return -2;
+    }
 
-	fclose(pProfes);
-	return -1;
+    while (fread(&reg, _tamReg, 1, pProfes) == 1) {
+        if (reg.getIdProfe() == id) {
+            fclose(pProfes);
+            return pos;
+        }
+        pos++;
+    }
+
+    fclose(pProfes);
+    return -1;
 }
-
 int ProfesArchivo::contarRegistros() const {
 	FILE* pProfes;
 	Profe reg;

@@ -1,3 +1,4 @@
+/*
 #include "GestionarProfe.h"
 #include <iostream>
 #include "Utilidades.h"
@@ -123,3 +124,4 @@ void GestionarProfesor::buscarProfesor() {
 int GestionarProfesor::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<ProfesArchivo, Profe>(archivoProfesores);
 }
+*/

@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 #include "Alumno.h"
@@ -158,3 +159,4 @@ void GestionarAlumno::buscarAlumno() {
 int GestionarAlumno::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<ArchivoAlumnos, Alumno>(archivoAlumnos);
 }
+*/

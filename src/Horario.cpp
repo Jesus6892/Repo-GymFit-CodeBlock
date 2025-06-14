@@ -74,7 +74,7 @@ Horario::DiaSemana Horario::convertirStringADia(const std::string& diaStr) {
 	else if (lowerStr == "viernes") return viernes;
 	else if (lowerStr == "sabado") return sabado;
 	else if (lowerStr == "domingo") return domingo;
-	else throw std::invalid_argument("DÌa inv·lido."); // excepciÛn
+	else throw std::invalid_argument("D√≠a inv√°lido."); // excepci√≥n
 }
 std::string Horario::convertirDiaAString(const DiaSemana& dia) const {
 	switch (dia) {
@@ -85,7 +85,7 @@ std::string Horario::convertirDiaAString(const DiaSemana& dia) const {
 	case viernes:   return "viernes";
 	case sabado:    return "sabado";
 	case domingo:   return "domingo";
-	default:        return "DÌa desconocido";
+	default:        return "D√≠a desconocido";
 	}
 }
 void Horario::convertirAMinusculas(std::string& dia) {

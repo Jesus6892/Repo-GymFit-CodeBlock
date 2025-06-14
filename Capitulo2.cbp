@@ -43,13 +43,10 @@
 		<Unit filename="include/GestionarActividad.h" />
 		<Unit filename="include/GestionarAlumno.h" />
 		<Unit filename="include/GestionarHorario.h" />
-		<Unit filename="include/GestionarInscripciones.h" />
 		<Unit filename="include/GestionarProfe.h" />
 		<Unit filename="include/Horario.h" />
 		<Unit filename="include/HorarioArchivo.h" />
 		<Unit filename="include/IArchivable.h" />
-		<Unit filename="include/Inscripciones.h" />
-		<Unit filename="include/InscripcionesArchivo.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/Profe.h" />
@@ -64,12 +61,9 @@
 		<Unit filename="src/GestionarActividad.cpp" />
 		<Unit filename="src/GestionarAlumno.cpp" />
 		<Unit filename="src/GestionarHorario.cpp" />
-		<Unit filename="src/GestionarInscripciones.cpp" />
 		<Unit filename="src/GestionarProfe.cpp" />
 		<Unit filename="src/Horario.cpp" />
 		<Unit filename="src/HorarioArchivo.cpp" />
-		<Unit filename="src/Inscripciones.cpp" />
-		<Unit filename="src/InscripcionesArchivo.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/Profe.cpp" />

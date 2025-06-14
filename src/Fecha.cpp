@@ -88,7 +88,7 @@ bool Fecha::esAnioBisiesto(int anio)
 
 // conversion
 std::string Fecha::toString() {
-                                 //donde,     cu·ntos digitos,             quÈ ingresa
+                                 //donde,     cu√°ntos digitos,             qu√© ingresa
     return std::to_string(_dia).insert(0, 2 - std::to_string(_dia).length(), '0') + "/" +
         std::to_string(_mes).insert(0, 2 - std::to_string(_mes).length(), '0') + "/" +
         std::to_string(_anio);

@@ -16,19 +16,19 @@ void Menu::mostrarMenu() {
 void Menu::procesarOpcion(int opcion) {
     switch (opcion) {
     case 1:
-        gestionarAlumnos();
+        //gestionarAlumnos();
         break;
     case 2:
-        gestionarProfes();
+        //gestionarProfes();
         break;
     case 3:
-        gestionarActividades();
+        //gestionarActividades();
         break;
     case 4:
-        gestionarHorarios();
+        //gestionarHorarios();
         break;
     case 5:
-        gestionarInscripciones(); // Llama al método para gestionar inscripciones
+        //gestionarInscripciones(); // Llama al método para gestionar inscripciones
         break;
     case 0:
         cout << "Saliendo..." << endl;
@@ -38,6 +38,7 @@ void Menu::procesarOpcion(int opcion) {
     }
 }
 
+/*
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
@@ -227,3 +228,4 @@ void Menu::gestionarInscripciones() {
         }
     } while (opcion != 0);
 }
+*/
