@@ -1,4 +1,3 @@
-/*
 #include "GestionarProfe.h"
 #include <iostream>
 #include "Utilidades.h"
@@ -6,12 +5,12 @@
 using namespace std;
 
 GestionarProfesor::GestionarProfesor()
-    : archivoProfesores(sizeof(Profe)) // Inicializa el archivo con el tamaño de Profesor
+    : archivoProfesores(sizeof(Profe)) // Inicializa el archivo con el tamaï¿½o de Profesor
 {}
 
 Profe GestionarProfesor::cargarProfesor() {
     string nombre, apellido, correoElectronico, observaciones, direccion;
-    long long dni, CUIT, telefono;
+    string dni, CUIT, telefono;
     int diaNasc, mesNasc, anioNasc, diaAlta, mesAlta, anioAlta, idProfe;
     float horasTrabajadas, salarioHora;
     bool estado = true;
@@ -59,10 +58,22 @@ Profe GestionarProfesor::cargarProfesor() {
     cout << "Ingrese el telefono del profesor: ";
     cin >> telefono;
 
-    Profe nuevoProfesor(nombre, apellido, dni, diaNasc, mesNasc, anioNasc,
-        correoElectronico, diaAlta, mesAlta, anioAlta,
-        horasTrabajadas, CUIT, observaciones, idProfe,
-        salarioHora, direccion, telefono,estado);
+        Profe nuevoProfesor(
+        nombre.c_str(),
+        apellido.c_str(),
+        dni.c_str(),               
+        diaNasc, mesNasc, anioNasc,
+        correoElectronico.c_str(),
+        direccion.c_str(),         
+        telefono.c_str(),          
+        CUIT.c_str(),               
+        diaAlta, mesAlta, anioAlta,
+        horasTrabajadas,
+        observaciones,
+        idProfe,
+        salarioHora,
+        estado
+    );
     return nuevoProfesor;
 }
 
@@ -114,7 +125,7 @@ void GestionarProfesor::buscarProfesor() {
     int pos = archivoProfesores.buscar(id);
     if (pos >= 0) {
         Profe profesor = archivoProfesores.leerRegistro(pos);
-        profesor.mostrar(); // Asume que Profesor tiene un método mostrar() para imprimir sus datos
+        profesor.mostrar(); // Asume que Profesor tiene un mï¿½todo mostrar() para imprimir sus datos
     }
     else {
         cout << "Profesor no encontrado.\n";
@@ -124,4 +135,4 @@ void GestionarProfesor::buscarProfesor() {
 int GestionarProfesor::obtenerIdNuevo() {
     return Utilidades::obtenerIdNuevo<ProfesArchivo, Profe>(archivoProfesores);
 }
-*/
+

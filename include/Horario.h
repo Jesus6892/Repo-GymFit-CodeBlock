@@ -30,6 +30,7 @@ public:
     std::string getDiaSemana() const;
     int getHoraInicio() const;
     int getHoraFin() const;
+    bool getEstado() const;
 
     // setters
     void setId(int idHorario);

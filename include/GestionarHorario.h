@@ -1,17 +1,18 @@
 #pragma once
-#include "Horario.h" // Asegúrate de que el nombre del archivo y la clase sean correctos
-#include "HorarioArchivo.h" // Clase de archivo que maneja la persistencia de DiaHorario
+#include "Horario.h" 
+#include "HorarioArchivo.h" 
 #include "Utilidades.h"
 
 class GestionarHorario
 {
 public:
     GestionarHorario();
-    Horario cargarHorario();
-    void altaHorario();
+    //Horario cargarHorario();
     void bajaHorario();
     void listarHorarios();
     void buscarHorario();
+    Horario cargarHorario(int idActividad);
+    void altaHorarioParaActividad(int idActividad);
 
 private:
     HorarioArchivo archivoHorarios;

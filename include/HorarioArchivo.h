@@ -20,6 +20,7 @@ public:
 	bool guardar(const Horario& reg) const override;
 	int buscar(int id) const override;
 	int contarRegistros() const override;
+	bool tieneHorariosAsignados(int idActividad) const;
 	bool modificarRegistro(const Horario& reg, int pos) const override;
 	~HorarioArchivo() override {};
 };

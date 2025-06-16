@@ -2,7 +2,7 @@
 #include "ProfesArchivo.h"
 
 ProfesArchivo::ProfesArchivo(int tamanioRegistro) {
-	_ruta = "archivos/profes.dat";
+	_ruta = "profes.dat";
 	_tamReg = tamanioRegistro;
 }
 
@@ -20,6 +20,25 @@ bool ProfesArchivo::comprobarArchivo() const {
 		fclose(pProfes);
 	}
 	return lecturaExitosa;
+}
+
+int ProfesArchivo::buscarIdPorDni(const std::string& dni) const {
+    FILE* p;
+    p = fopen(_ruta.c_str(), "rb");
+    if (p == nullptr) {
+        return -1;
+    }
+
+    Profe reg;
+    while (fread(&reg, sizeof(Profe), 1, p) == 1) {
+       if (reg.getDni() == dni && reg.getEstado()) {
+            fclose(p);
+            return reg.getId(); 
+        }
+    }
+
+    fclose(p);
+    return -1;
 }
 
 bool ProfesArchivo::listarRegistro() const {
@@ -64,7 +83,7 @@ int ProfesArchivo::buscar(int id) const {
     }
 
     while (fread(&reg, _tamReg, 1, pProfes) == 1) {
-        if (reg.getIdProfe() == id) {
+        if (reg.getId() == id) {
             fclose(pProfes);
             return pos;
         }

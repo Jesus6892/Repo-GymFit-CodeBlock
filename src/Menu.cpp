@@ -22,7 +22,7 @@ void Menu::procesarOpcion(int opcion) {
         //gestionarProfes();
         break;
     case 3:
-        //gestionarActividades();
+        gestionarActividades();
         break;
     case 4:
         //gestionarHorarios();
@@ -78,8 +78,8 @@ void Menu::gestionarAlumnos() {
     } while (opcion != 0);
 }
 
-
 /*
+
 void Menu::gestionarProfes() {
     int opcion;
     do {
@@ -119,6 +119,8 @@ void Menu::gestionarProfes() {
     } while (opcion != 0);
 }
 
+*/
+
 void Menu::gestionarActividades() {
     int opcion;
     do {
@@ -157,6 +159,8 @@ void Menu::gestionarActividades() {
         }
     } while (opcion != 0);
 }
+
+/*
 
 void Menu::gestionarHorarios() {
     int opcion;

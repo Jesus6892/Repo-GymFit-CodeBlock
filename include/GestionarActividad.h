@@ -7,12 +7,14 @@ class GestionarActividad
 {
 public:
     GestionarActividad();
-    //Todo-Jesus: Revisar lo de alta y carga
+
+    
     Actividad cargarActividad();
     void altaActividad();
     void bajaActividad();
     void listarActividades();
     void buscarActividad();
+    void listarActividadesSinHorarios();
 
 private:
     ActividadesArchivo archivoActividades;

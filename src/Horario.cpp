@@ -35,6 +35,10 @@ int Horario::getHoraFin() const {
 	return _horaFin;
 }
 
+bool Horario::getEstado() const {
+	return _estado;
+}
+
 // setters
 void Horario::setId(int idHorario) {
 	if (idHorario <= 0) throw std::invalid_argument("El ID del Dia y Horario debe ser un numero positivo");

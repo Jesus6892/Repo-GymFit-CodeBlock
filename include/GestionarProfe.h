@@ -17,3 +17,5 @@ private:
     ProfesArchivo archivoProfesores;
     int obtenerIdNuevo();
 };
+
+
