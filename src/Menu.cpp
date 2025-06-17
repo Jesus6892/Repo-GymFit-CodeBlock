@@ -8,7 +8,7 @@ void Menu::mostrarMenu() {
     cout << "2. Gestionar Profesores\n";
     cout << "3. Gestionar Actividades\n";
     cout << "4. Gestionar Horarios\n";
-    cout << "5. Gestionar Inscripciones\n"; // Nueva opción para inscripciones
+    cout << "5. Gestionar Inscripciones\n"; // Nueva opciï¿½n para inscripciones
     cout << "0. Salir\n";
     cout << "Seleccione una opcion: ";
 }
@@ -28,7 +28,7 @@ void Menu::procesarOpcion(int opcion) {
         //gestionarHorarios();
         break;
     case 5:
-        //gestionarInscripciones(); // Llama al método para gestionar inscripciones
+        //gestionarInscripciones(); // Ahora es gestionar pagos
         break;
     case 0:
         cout << "Saliendo..." << endl;
@@ -201,37 +201,6 @@ void Menu::gestionarHorarios() {
     } while (opcion != 0);
 }
 
-void Menu::gestionarInscripciones() {
-    int opcion;
-    do {
-        cout << "\n===== GESTION DE INSCRIPCIONES =====\n";
-        cout << "1. Alta de Inscripción\n";
-        cout << "2. Baja de Inscripción\n";
-        cout << "3. Buscar Inscripción\n";
-        cout << "4. Listar Inscripciones\n";
-        cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
 
-        switch (opcion) {
-        case 1:
-            gestorInscripciones.altaInscripcion();
-            break;
-        case 2:
-            gestorInscripciones.bajaInscripcion();
-            break;
-        case 3:
-            gestorInscripciones.buscarInscripcion();
-            break;
-        case 4:
-            gestorInscripciones.listarInscripciones();
-            break;
-        case 0:
-            cout << "Volviendo al menu principal...\n";
-            break;
-        default:
-            cout << "Opcion no valida, intente nuevamente.\n";
-        }
-    } while (opcion != 0);
-}
+
 */

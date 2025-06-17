@@ -3,7 +3,6 @@
 #include "GestionarProfe.h"
 #include "GestionarActividad.h"
 #include "GestionarHorario.h"
-#include "GestionarInscripciones.h"
 
 class Menu {
 public:
@@ -29,6 +28,5 @@ private:
 
     /*
     GestionarHorario gestorHorarios;
-    GestionarInscripciones gestorInscripciones;
     */
 };
