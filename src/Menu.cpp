@@ -7,11 +7,12 @@ void Menu::mostrarMenu() {
     cout << "\n========================================\n";
     cout << "            SISTEMA GYM FIT            \n";
     cout << "========================================\n";
-    cout << "  1) Gestionar Pagos                   \n";
-    cout << "  2) Gestionar Alumnos                 \n";
-    cout << "  3) Gestionar Profesores              \n";
-    cout << "  4) Gestionar Actividades             \n";
-    cout << "  5) Gestionar Horarios                \n";
+    cout << "  1) Proceso de Inscripcion            \n";
+    cout << "  2) Gestionar Pagos                   \n";
+    cout << "  3) Gestionar Alumnos                 \n";
+    cout << "  4) Gestionar Profesores              \n";
+    cout << "  5) Gestionar Actividades             \n";
+    cout << "  6) Gestionar Horarios                \n";
     cout << "----------------------------------------\n";
     cout << "  0) Salir                             \n";
     cout << "========================================\n";
@@ -23,77 +24,82 @@ void Menu::procesarOpcion(int opcion) {
     cout << "\n----------------------------------------\n";
     switch (opcion) {
         case 1:
-            gestionarPago();
+            gestionarProceso();
             break;
         case 2:
-            gestionarAlumnos();
+            gestorPagos.altaPago();  // o listar/baja según submenú
             break;
         case 3:
-            gestionarProfes();
+            gestionarAlumnos();
             break;
         case 4:
-            gestionarActividades();
+            // gestorProfe...
             break;
         case 5:
-            //gestionarHorarios();
-            cout << " Modulo 'Horarios' no implementado en el menu.\n";
-            system("pause");
+            gestorActividades.altaActividad(); // o submenú
+            break;
+        case 6:
+            // gestorHorarios...
             break;
         case 0:
             cout << " Saliendo... ¡Hasta luego!\n";
             break;
         default:
-            cout << " Opcion no válida, intente nuevamente.\n";
+            cout << " Opción no válida.\n";
             system("pause");
-            break;
     }
     cout << "----------------------------------------\n";
 }
 
+void Menu::gestionarProceso() {
+    GestionarProceso proceso;
+    proceso.iniciarProceso();
+}
 
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
-        system("cls"); // Limpia la consola (en Windows)
+        system("cls");  
         cout << "\n===== GESTION DE ALUMNOS =====\n";
-        // cout << "1. Alta de Alumno\n"; // Opción eliminada
-        cout << "1. Baja de Alumno\n";      // Anteriormente 2
-        cout << "2. Modificar Alumno\n";  // Anteriormente 3
-        cout << "3. Buscar Alumno\n";     // Anteriormente 4
-        cout << "4. Listar Alumnos\n";    // Anteriormente 5
+        cout << "1. Alta de Alumno\n";
+        cout << "2. Baja de Alumno\n";
+        cout << "3. Modificar Alumno\n";
+        cout << "4. Buscar Alumno\n";
+        cout << "5. Listar Alumnos\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-        // Limpiar buffer de entrada para evitar problemas con std::getline o futuras entradas
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (opcion) {
-        case 1: 
-            gestorAlumnos.bajaAlumno();
-            break;
-        case 2: 
-            //gestorAlumnos.modificarAlumno();
-            cout << "Modulo 'Modificar Alumno' no implementado.\n";
-            system("pause");
-            break;
-        case 3:
-            gestorAlumnos.buscarAlumno();
-            break;
-        case 4: 
-            gestorAlumnos.listarAlumnos();
-            break;
-        case 0:
-            cout << "Volviendo al menu principal...\n";
-            break;
-        default:
-            cout << "Opcion no valida, intente nuevamente.\n";
-            system("pause");
+            case 1:
+                gestorAlumnos.altaAlumno();
+                break;
+            case 2:
+                gestorAlumnos.bajaAlumno();
+                break;
+            case 3:
+                //gestorAlumnos.modificarAlumno();
+                cout << "Módulo 'Modificar Alumno' no implementado.\n";
+                system("pause");
+                break;
+            case 4:
+                gestorAlumnos.buscarAlumno();
+                break;
+            case 5:
+                gestorAlumnos.listarAlumnos();
+                break;
+            case 0:
+                cout << "Volviendo al menú principal...\n";
+                break;
+            default:
+                cout << "Opción no válida, intente nuevamente.\n";
+                system("pause");
         }
-        if (opcion != 0 && !(opcion >= 1 && opcion <=4) ) { // Pausa si no es una opción válida o volver
-             // No se necesita pausa aquí si las funciones internas ya la manejan o si es opción 0
-        } else if (opcion != 0) {
-            system("pause"); // Pausa para las opciones válidas antes de limpiar la pantalla
+
+        if (opcion != 0 && opcion >= 1 && opcion <= 5) {
+            system("pause");  
         }
     } while (opcion != 0);
 }

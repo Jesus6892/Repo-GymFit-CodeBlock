@@ -558,12 +558,13 @@
 	"IArchivable.h"
 	"Inscripciones.h"
 
-1750168537 c:\users\pc\documents\github\repo-gymfit-codeblock\include\menu.h
+1750178370 c:\users\pc\documents\github\repo-gymfit-codeblock\include\menu.h
 	"GestionarAlumno.h"
 	"GestionarProfe.h"
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"GestionarPago.h"
+	"GestionarProceso.h"
 
 1749492838 c:\users\pc\documents\github\repo-gymfit-codeblock\include\gestionaralumno.h
 	"Alumno.h"
@@ -574,7 +575,7 @@
 	"InscripcionesArchivo.h"
 	"Utilidades.h"
 
-1750168356 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1750178340 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 
@@ -834,4 +835,13 @@
 1750168195 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\pagoarchivo.cpp
 	"PagoArchivo.h"
 	<iostream>
+
+1750178417 c:\users\pc\documents\github\repo-gymfit-codeblock\include\gestionarproceso.h
+	<iostream>
+	<limits>
+	<string>
+	"AlumnosArchivo.h"
+	"GestionarAlumno.h"
+	"GestionarPago.h"
+	"GestionarHorario.h"
 
