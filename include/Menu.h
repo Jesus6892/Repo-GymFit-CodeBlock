@@ -12,19 +12,18 @@ public:
 
 
     void gestionarAlumnos();
-    //void gestionarProfes();
+    void gestionarProfes();
     void gestionarActividades();
     void gestionarPago(); // <--- NUEVA LÍNEA
 
 
     /*
     void gestionarHorarios();
-    void gestionarInscripciones();
     */
 private:
 
     GestionarAlumno gestorAlumnos;
-    //GestionarProfesor gestorProfe;
+    GestionarProfesor gestorProfe;
     GestionarActividad gestorActividades;
     GestionarPago gestorPagos; // <--- NUEVA LÍNEA
 

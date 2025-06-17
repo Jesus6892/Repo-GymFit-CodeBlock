@@ -667,7 +667,7 @@
 	"IArchivable.h"
 	"Horario.h"
 
-1750122661 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
+1750124139 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
 	"GestionarAlumno.h"
 	"GestionarProfe.h"
 	"GestionarActividad.h"
@@ -754,7 +754,7 @@
 	"HorarioArchivo.h"
 	<iostream>
 
-1750122592 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1750123330 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 
