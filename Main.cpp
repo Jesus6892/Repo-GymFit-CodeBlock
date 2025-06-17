@@ -1,6 +1,4 @@
 #include <iostream>
-#include "Inscripciones.h"
-#include "InscripcionesArchivo.h"
 #include "Fecha.h"
 #include "Actividad.h"
 #include "ActividadesArchivo.h"

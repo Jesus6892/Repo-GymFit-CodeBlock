@@ -2,40 +2,54 @@
 #include <iostream>
 using namespace std;
 
+
 void Menu::mostrarMenu() {
-    cout << "===== MENU PRINCIPAL =====\n";
-    cout << "1. Gestionar Alumnos\n";
-    cout << "2. Gestionar Profesores\n";
-    cout << "3. Gestionar Actividades\n";
-    cout << "4. Gestionar Horarios\n";
-    cout << "5. Gestionar Inscripciones\n"; // Nueva opci�n para inscripciones
-    cout << "0. Salir\n";
+    cout << "\n========================================\n";
+    cout << "            SISTEMA GYM FIT            \n";
+    cout << "========================================\n";
+    cout << "  1) Gestionar Pagos                   \n";
+    cout << "  2) Gestionar Alumnos                 \n";
+    cout << "  3) Gestionar Profesores              \n";
+    cout << "  4) Gestionar Actividades             \n";
+    cout << "  5) Gestionar Horarios                \n";
+    cout << "----------------------------------------\n";
+    cout << "  0) Salir                             \n";
+    cout << "========================================\n";
     cout << "Seleccione una opcion: ";
 }
 
+
 void Menu::procesarOpcion(int opcion) {
+    cout << "\n----------------------------------------\n";
     switch (opcion) {
-    case 1:
-        gestionarAlumnos();
-        break;
-    case 2:
-        //gestionarProfes();
-        break;
-    case 3:
-        gestionarActividades();
-        break;
-    case 4:
-        //gestionarHorarios();
-        break;
-    case 5:
-        //gestionarInscripciones(); // Ahora es gestionar pagos
-        break;
-    case 0:
-        cout << "Saliendo..." << endl;
-        break;
-    default:
-        cout << "Opcion no valida" << endl;
+        case 1:
+            gestionarPago();
+            break;
+        case 2:
+            gestionarAlumnos();
+            break;
+        case 3:
+            //gestionarProfes();
+            cout << " Módulo Profesores no implementado en el menú.\n";
+            system("pause");
+            break;
+        case 4:
+            gestionarActividades();
+            break;
+        case 5:
+            //gestionarHorarios();
+            cout << " Módulo Horarios no implementado en el menú.\n";
+            system("pause");
+            break;
+        case 0:
+            cout << " Saliendo... ¡Hasta luego!\n";
+            break;
+        default:
+            cout << " Opción no válida, intente nuevamente.\n";
+            system("pause");
+            break;
     }
+    cout << "----------------------------------------\n";
 }
 
 
@@ -156,6 +170,44 @@ void Menu::gestionarActividades() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+        }
+    } while (opcion != 0);
+}
+
+void Menu::gestionarPago() {
+    int opcion;
+    do {
+        system("cls");
+        cout << "\n===== GESTION DE PAGOS =====\n";
+        cout << "1. Registrar Pago\n";
+        cout << "2. Anular Pago\n";
+        cout << "3. Listar Pagos\n";
+        cout << "0. Volver al Menu Principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        // Limpiar buffer de entrada para evitar problemas con std::getline o futuras entradas
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+        switch (opcion) {
+        case 1:
+            gestorPagos.altaPago();
+            break;
+        case 2:
+            gestorPagos.bajaPago(); // En GestionarPago.h se llama bajaPago para anular
+            break;
+        case 3:
+            gestorPagos.listarPagos();
+            break;
+        case 0:
+            cout << "Volviendo al menu principal...\n";
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente.\n";
+        }
+        if (opcion != 0) {
+            system("pause");
         }
     } while (opcion != 0);
 }

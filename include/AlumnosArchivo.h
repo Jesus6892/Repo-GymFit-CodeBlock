@@ -20,5 +20,6 @@ public:
 	int buscar(int id) const override;
 	int contarRegistros() const override;
 	bool modificarRegistro(const Alumno& reg, int pos) const override;
+	int buscarPorDni(const std::string& dni) const; // <--- NUEVA LÍNEA
 	~ArchivoAlumnos() override {};
 };
