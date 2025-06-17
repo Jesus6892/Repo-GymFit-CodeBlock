@@ -44,6 +44,7 @@
 		<Unit filename="include/GestionarAlumno.h" />
 		<Unit filename="include/GestionarHorario.h" />
 		<Unit filename="include/GestionarPago.h" />
+		<Unit filename="include/GestionarProceso.h" />
 		<Unit filename="include/GestionarProfe.h" />
 		<Unit filename="include/Horario.h" />
 		<Unit filename="include/HorarioArchivo.h" />
@@ -65,6 +66,7 @@
 		<Unit filename="src/GestionarAlumno.cpp" />
 		<Unit filename="src/GestionarHorario.cpp" />
 		<Unit filename="src/GestionarPago.cpp" />
+		<Unit filename="src/GestionarProceso.cpp" />
 		<Unit filename="src/GestionarProfe.cpp" />
 		<Unit filename="src/Horario.cpp" />
 		<Unit filename="src/HorarioArchivo.cpp" />
