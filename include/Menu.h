@@ -3,7 +3,7 @@
 #include "GestionarProfe.h"
 #include "GestionarActividad.h"
 #include "GestionarHorario.h"
-#include "GestionarPago.h" 
+#include "GestionarPago.h"
 
 class Menu {
 public:
@@ -14,7 +14,7 @@ public:
     void gestionarAlumnos();
     void gestionarProfes();
     void gestionarActividades();
-    void gestionarPago(); // <--- NUEVA LÍNEA
+    void gestionarPago();
 
 
     /*
@@ -25,7 +25,7 @@ private:
     GestionarAlumno gestorAlumnos;
     GestionarProfesor gestorProfe;
     GestionarActividad gestorActividades;
-    GestionarPago gestorPagos; // <--- NUEVA LÍNEA
+    GestionarPago gestorPagos;
 
 
     /*
