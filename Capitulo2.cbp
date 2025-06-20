@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProyectoGymFit" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Capitulo2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Capitulo2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Main.cpp" />
+		<Unit filename="include/Actividad.h" />
+		<Unit filename="include/ActividadesArchivo.h" />
+		<Unit filename="include/Alumno.h" />
+		<Unit filename="include/AlumnosArchivo.h" />
+		<Unit filename="include/Empleado.h" />
+		<Unit filename="include/Fecha.h" />
+		<Unit filename="include/GestionarActividad.h" />
+		<Unit filename="include/GestionarAlumno.h" />
+		<Unit filename="include/GestionarHorario.h" />
+		<Unit filename="include/GestionarPago.h" />
+		<Unit filename="include/GestionarProceso.h" />
+		<Unit filename="include/GestionarProfe.h" />
+		<Unit filename="include/Horario.h" />
+		<Unit filename="include/HorarioArchivo.h" />
+		<Unit filename="include/IArchivable.h" />
+		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Pago.h" />
+		<Unit filename="include/PagoArchivo.h" />
+		<Unit filename="include/Persona.h" />
+		<Unit filename="include/Profe.h" />
+		<Unit filename="include/ProfesArchivo.h" />
+		<Unit filename="include/Utilidades.h" />
+		<Unit filename="src/Actividad.cpp" />
+		<Unit filename="src/ActividadesArchivo.cpp" />
+		<Unit filename="src/Alumno.cpp" />
+		<Unit filename="src/AlumnosArchivo.cpp" />
+		<Unit filename="src/Empleado.cpp" />
+		<Unit filename="src/Fecha.cpp" />
+		<Unit filename="src/GestionarActividad.cpp" />
+		<Unit filename="src/GestionarAlumno.cpp" />
+		<Unit filename="src/GestionarHorario.cpp" />
+		<Unit filename="src/GestionarPago.cpp" />
+		<Unit filename="src/GestionarProceso.cpp" />
+		<Unit filename="src/GestionarProfe.cpp" />
+		<Unit filename="src/Horario.cpp" />
+		<Unit filename="src/HorarioArchivo.cpp" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Pago.cpp" />
+		<Unit filename="src/PagoArchivo.cpp" />
+		<Unit filename="src/Persona.cpp" />
+		<Unit filename="src/Profe.cpp" />
+		<Unit filename="src/ProfesArchivo.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
