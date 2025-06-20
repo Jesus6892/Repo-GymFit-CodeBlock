@@ -42,7 +42,6 @@ Alumno GestionarAlumno::cargarAlumno()
 
     // --- Captura de datos ---
 
-    /*
 
     do {
         std::cout << "Ingrese nombre: ";
@@ -83,36 +82,6 @@ Alumno GestionarAlumno::cargarAlumno()
     std::cin >> diaInsc >> mesInsc >> anioInsc;
 
     int idAlumno = obtenerIdNuevo();
-
-    */
-
-
-
-    nombre = "Carlos";
-    apellido = "Sanchez";
-    dni = "33444555";
-    correoElectronico = "c.sanchez@test.com";
-    direccion = "Boulevard de los Suenos Rotos";
-    telefono = "9988776655";
-    diaNasc = 20;
-    mesNasc = 11;
-    anioNasc = 2001;
-    diaInsc = 10;
-    mesInsc = 6;
-    anioInsc = 2024;
-    int idAlumno = obtenerIdNuevo();
-
-
-    std::cout << std::endl; // Un espacio para que se lea mejor
-    std::cout << "--- MODO PRUEBA ---" << std::endl;
-    std::cout << "Se creara el siguiente alumno de prueba:" << std::endl;
-    std::cout << "ID: " << idAlumno << " - " << nombre << " " << apellido << std::endl;
-    std::cout << "---------------------" << std::endl;
-    std::cout << "Presione Enter para continuar...";
-
-    // ESTAS DOS LÍNEAS CREAN LA PAUSA
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpia cualquier entrada anterior
-    std::cin.get();
 
 
     return Alumno(

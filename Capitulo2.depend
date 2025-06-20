@@ -670,12 +670,13 @@
 	"IArchivable.h"
 	"Horario.h"
 
-1750124139 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
+1750440549 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
 	"GestionarAlumno.h"
 	"GestionarProfe.h"
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"GestionarPago.h"
+	"GestionarProceso.h"
 
 1750030320 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionaralumno.h
 	"Alumno.h"
@@ -757,7 +758,7 @@
 	"HorarioArchivo.h"
 	<iostream>
 
-1750123330 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1750440549 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 
@@ -846,5 +847,17 @@
 	"GestionarHorario.h"
 
 1750184548 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
+	"GestionarProceso.h"
+
+1750440549 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarproceso.h
+	<iostream>
+	<limits>
+	<string>
+	"AlumnosArchivo.h"
+	"GestionarAlumno.h"
+	"GestionarPago.h"
+	"GestionarHorario.h"
+
+1750440549 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 
