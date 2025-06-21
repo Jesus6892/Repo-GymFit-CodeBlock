@@ -1,60 +1,86 @@
 #include "PagoArchivo.h"
 #include <iostream>
 
-PagoArchivo::PagoArchivo(int tamRegistro)
-    : _tamRegistro(tamRegistro) {}
+PagoArchivo::PagoArchivo(int tamRegistro){
+    _ruta = "pagos.dat";
+	_tamReg = tamanioRegistro;
+}
 
-bool PagoArchivo::guardar(const Pago& registro) {
-    std::ofstream file(_nombreArchivo, std::ios::binary | std::ios::app);
-    if (!file) {
-        std::cout << "ERROR: No se pudo abrir el archivo de pagos para guardar.\n";
-        return false;
-    }
-    file.write(reinterpret_cast<const char*>(&registro), _tamRegistro);
-    file.close();
-    return true;
+bool PagoArchivo::guardar(const Pago& reg) {
+    FILE* pPagos;
+	pPagos = fopen(_ruta.c_str(), "ab");
+	bool result;
+
+	if (pPagos == nullptr) {
+		return false;
+	}
+
+	result = fwrite(&reg, _tamReg, 1, pPagos) == 1;
+	fclose(pPagos);
+
+	return result;
 }
 
 Pago PagoArchivo::leerRegistro(int posicion) {
-    Pago registro;
-    std::ifstream file(_nombreArchivo, std::ios::binary);
-    if (!file) {
-        std::cout << "ERROR: No se pudo abrir el archivo de pagos para leer.\n";
-        return registro;
-    }
-    file.seekg(posicion * _tamRegistro);
-    file.read(reinterpret_cast<char*>(&registro), _tamRegistro);
-    file.close();
-    return registro;
+    FILE* pPagos;
+	Pago reg;
+	pPagos = fopen(_ruta.c_str(), "rb");
+	if (pPagos == nullptr) {
+		return reg;
+	}
+
+	int cantBytes = ubi * _tamReg;
+	fseek(pPagos, cantBytes, SEEK_SET);
+	fread(&reg, sizeof(Pago), 1, pPagos);
+	fclose(pPagos);
+	return reg;
 }
 
 int PagoArchivo::contarRegistros() {
-    std::ifstream file(_nombreArchivo, std::ios::binary);
-    if (!file) return 0;
-    file.seekg(0, std::ios::end);
-    int total = static_cast<int>(file.tellg() / _tamRegistro);
-    file.close();
-    return total;
+    FILE* pPagos;
+	Pago reg;
+	pPagos = fopen(_ruta.c_str(), "rb");
+	if (pPagos == nullptr) {
+		return 0;
+	}
+
+	fseek(pPagos, 0, SEEK_END);
+	int total = ftell(pPagos);
+
+	fclose(pPagos);
+	return total / _tamReg;
 }
 
-bool PagoArchivo::modificarRegistro(const Pago& registro, int posicion) {
-    std::fstream file(_nombreArchivo, std::ios::binary | std::ios::in | std::ios::out);
-    if (!file) {
-        std::cout << "ERROR: No se pudo abrir el archivo de pagos para modificar.\n";
-        return false;
-    }
-    file.seekp(posicion * _tamRegistro);
-    file.write(reinterpret_cast<const char*>(&registro), _tamRegistro);
-    file.close();
-    return true;
+bool PagoArchivo::modificarRegistro(const Pago& reg, int posicion) {
+    FILE* pPagos;
+	pPagos = fopen(_ruta.c_str(), "rb+");
+	if (pPagos == nullptr) {
+		return false;
+	}
+
+	fseek(pPagos, pos * _tamReg, SEEK_SET);
+	bool escribio = fwrite(&reg, _tamReg, 1, pPagos);
+	fclose(pPagos);
+	return escribio;
 }
 
 int PagoArchivo::buscar(int idPago) {
-    int total = contarRegistros();
-    for (int i = 0; i < total; ++i) {
-        Pago p = leerRegistro(i);
-        if (p.getId() == idPago) return i;
-    }
-    return -1;
+    FILE* pPagos;
+	Pago reg;
+	int pos = 0;
+	pPagos = fopen(_ruta.c_str(), "rb");
+	if (pPagos == nullptr) {
+		return -2;
+	}
+	while (fread(&reg, _tamReg, 1, pPagos) == 1) {
+		if (reg.getId() == id && reg.getEstado()) {
+			fclose(pPagos);
+			return pos;
+		}
+		pos++;
+	};
+
+	fclose(pPagos);
+	return -1;
 }
 
