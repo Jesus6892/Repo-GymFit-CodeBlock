@@ -6,9 +6,11 @@ using namespace std;
 
 GestionarProfesor::GestionarProfesor()
     : archivoProfesores(sizeof(Profe)) // Inicializa el archivo con el tama�o de Profesor
-{}
+{
+}
 
-Profe GestionarProfesor::cargarProfesor() {
+Profe GestionarProfesor::cargarProfesor()
+{
     string nombre, apellido, correoElectronico, observaciones, direccion;
     string dni, CUIT, telefono;
     int diaNasc, mesNasc, anioNasc, diaAlta, mesAlta, anioAlta, idProfe;
@@ -24,7 +26,6 @@ Profe GestionarProfesor::cargarProfesor() {
 
     cout << "Ingrese el DNI del profesor: ";
     cin >> dni;
-
 
     cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
     cin >> diaNasc >> mesNasc >> anioNasc;
@@ -58,81 +59,88 @@ Profe GestionarProfesor::cargarProfesor() {
     cout << "Ingrese el telefono del profesor: ";
     cin >> telefono;
 
-        Profe nuevoProfesor(
-        nombre.c_str(),
-        apellido.c_str(),
-        dni.c_str(),               
+    Profe nuevoProfesor(
+        nombre,
+        apellido,
+        dni,
         diaNasc, mesNasc, anioNasc,
-        correoElectronico.c_str(),
-        direccion.c_str(),         
-        telefono.c_str(),          
-        CUIT.c_str(),               
+        correoElectronico, direccion, telefono,
+        CUIT,
         diaAlta, mesAlta, anioAlta,
-        horasTrabajadas,
         observaciones,
         idProfe,
-        salarioHora,
-        estado
-    );
+        estado);
     return nuevoProfesor;
 }
 
-
-void GestionarProfesor::altaProfesor() {
+void GestionarProfesor::altaProfesor()
+{
     Profe nuevoProfesor = cargarProfesor();
 
-    if (archivoProfesores.guardar(nuevoProfesor)) {
+    if (archivoProfesores.guardar(nuevoProfesor))
+    {
         cout << "Profesor agregado exitosamente.\n";
     }
-    else {
+    else
+    {
         cout << "Error al guardar el profesor.\n";
     }
 }
 
-void GestionarProfesor::bajaProfesor() {
+void GestionarProfesor::bajaProfesor()
+{
     int id;
     cout << "Ingrese el ID del profesor a dar de baja: ";
     cin >> id;
 
     int pos = archivoProfesores.buscar(id);
-    if (pos >= 0) {
+    if (pos >= 0)
+    {
         Profe profesor = archivoProfesores.leerRegistro(pos);
         profesor.setEstado(false);
 
-        if (archivoProfesores.modificarRegistro(profesor, pos)) {
+        if (archivoProfesores.modificarRegistro(profesor, pos))
+        {
             cout << "Profesor dado de baja exitosamente.\n";
         }
-        else {
+        else
+        {
             cout << "Error al dar de baja el profesor.\n";
         }
     }
-    else {
+    else
+    {
         cout << "Profesor no encontrado.\n";
     }
 }
 
-void GestionarProfesor::listarProfesores() {
-    if (!archivoProfesores.listarRegistro()) {
+void GestionarProfesor::listarProfesores()
+{
+    if (!archivoProfesores.listarRegistro())
+    {
         cout << "No hay profesores registrados o no se pudo leer el archivo.\n";
     }
 }
 
-void GestionarProfesor::buscarProfesor() {
+void GestionarProfesor::buscarProfesor()
+{
     int id;
     cout << "Ingrese el ID del profesor a buscar: ";
     cin >> id;
 
     int pos = archivoProfesores.buscar(id);
-    if (pos >= 0) {
+    if (pos >= 0)
+    {
         Profe profesor = archivoProfesores.leerRegistro(pos);
         profesor.mostrar(); // Asume que Profesor tiene un m�todo mostrar() para imprimir sus datos
     }
-    else {
+    else
+    {
         cout << "Profesor no encontrado.\n";
     }
 }
 
-int GestionarProfesor::obtenerIdNuevo() {
+int GestionarProfesor::obtenerIdNuevo()
+{
     return Utilidades::obtenerIdNuevo<ProfesArchivo, Profe>(archivoProfesores);
 }
-
