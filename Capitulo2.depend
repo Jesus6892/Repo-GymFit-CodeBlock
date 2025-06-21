@@ -972,7 +972,7 @@
 1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pago.h
 	<string>
 
-1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pagoarchivo.h
+1750518753 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pagoarchivo.h
 	<fstream>
 	"Pago.h"
 
@@ -1014,7 +1014,7 @@
 	"Profe.h"
 	<iostream>
 
-1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
+1750517341 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
 	"Alumno.h"
 	"AlumnosArchivo.h"
 	"GestionarAlumno.h"
