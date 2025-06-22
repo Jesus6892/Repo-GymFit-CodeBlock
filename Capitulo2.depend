@@ -862,3 +862,222 @@
 1750449452 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\main.cpp
+	<iostream>
+	"Fecha.h"
+	"Actividad.h"
+	"ActividadesArchivo.h"
+	"Empleado.h"
+	"IArchivable.h"
+	"Alumno.h"
+	"AlumnosArchivo.h"
+	"Profe.h"
+	"ProfesArchivo.h"
+	"Horario.h"
+	"HorarioArchivo.h"
+	"Menu.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\fecha.h
+	<iostream>
+	<string>
+	<stdexcept>
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\actividad.h
+	<cstring>
+	<string>
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\actividadesarchivo.h
+	<cstdio>
+	<cstring>
+	"IArchivable.h"
+	"Actividad.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\iarchivable.h
+
+1750448238 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\empleado.h
+	"Persona.h"
+	"Fecha.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1750444987 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\persona.h
+	<cstring>
+	<string>
+	<iostream>
+	"Fecha.h"
+
+1750445420 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\alumno.h
+	<cstring>
+	"Persona.h"
+	"Fecha.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\alumnosarchivo.h
+	<cstdio>
+	<cstring>
+	"IArchivable.h"
+	"Alumno.h"
+
+1750448370 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\profe.h
+	<string>
+	<iostream>
+	<stdexcept>
+	"Empleado.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\profesarchivo.h
+	<string>
+	"IArchivable.h"
+	"Profe.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horario.h
+	<string>
+	<algorithm>
+	<cctype>
+	<stdexcept>
+	<iostream>
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horarioarchivo.h
+	<cstdio>
+	<cstring>
+	"IArchivable.h"
+	"Horario.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\menu.h
+	"GestionarAlumno.h"
+	"GestionarProfe.h"
+	"GestionarActividad.h"
+	"GestionarHorario.h"
+	"GestionarPago.h"
+	"GestionarProceso.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionaralumno.h
+	"Alumno.h"
+	"AlumnosArchivo.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarprofe.h
+	"Profe.h"
+	"ProfesArchivo.h"
+	"Utilidades.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\utilidades.h
+	<algorithm>
+	<iostream>
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionaractividad.h
+	"Actividad.h"
+	"ActividadesArchivo.h"
+	"Utilidades.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarhorario.h
+	"Horario.h"
+	"HorarioArchivo.h"
+	"Utilidades.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarpago.h
+	<iostream>
+	<limits>
+	<string>
+	"Pago.h"
+	"PagoArchivo.h"
+	"GestionarAlumno.h"
+	"GestionarActividad.h"
+	"Utilidades.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pago.h
+	<string>
+
+1750613634 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pagoarchivo.h
+	<fstream>
+	"Pago.h"
+
+1750185297 c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
+	<iostream>
+	<limits>
+	<string>
+	"AlumnosArchivo.h"
+	"GestionarAlumno.h"
+	"GestionarPago.h"
+	"GestionarHorario.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividad.cpp
+	<cstring>
+	<iostream>
+	"Actividad.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividadesarchivo.cpp
+	"ActividadesArchivo.h"
+
+1750445517 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\alumno.cpp
+	"Alumno.h"
+	<iostream>
+	<stdexcept>
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\alumnosarchivo.cpp
+	"AlumnosArchivo.h"
+
+1750448210 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\empleado.cpp
+	"Empleado.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\fecha.cpp
+	"Fecha.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaractividad.cpp
+	"GestionarActividad.h"
+	"GestionarHorario.h"
+	"ProfesArchivo.h"
+	"Profe.h"
+	<iostream>
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarhorario.cpp
+	"GestionarHorario.h"
+	"Horario.h"
+	<iostream>
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarpago.cpp
+	"GestionarPago.h"
+	"AlumnosArchivo.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarproceso.cpp
+	"GestionarProceso.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horario.cpp
+	"Horario.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioarchivo.cpp
+	"HorarioArchivo.h"
+	<iostream>
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
+	"Menu.h"
+	<iostream>
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pago.cpp
+	"Pago.h"
+	<iostream>
+
+1750445018 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\persona.cpp
+	"Persona.h"
+
+1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\profesarchivo.cpp
+	"ProfesArchivo.h"
+
+1750613652 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
+	"Alumno.h"
+	"AlumnosArchivo.h"
+	"GestionarAlumno.h"
+	<iostream>
+	"Utilidades.h"
+
+1750613652 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarprofe.cpp
+	"GestionarProfe.h"
+	<iostream>
+	"Utilidades.h"
+	"Profe.h"
+
+1750613834 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\profe.cpp
+	"Profe.h"
+
+1750614044 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pagoarchivo.cpp
+	"PagoArchivo.h"
+	<iostream>
+

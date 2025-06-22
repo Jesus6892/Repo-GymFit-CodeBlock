@@ -3,7 +3,7 @@
 
 PagoArchivo::PagoArchivo(int tamRegistro){
     _ruta = "pagos.dat";
-	_tamReg = tamanioRegistro;
+	_tamReg = tamRegistro;
 }
 
 bool PagoArchivo::guardar(const Pago& reg) {
@@ -29,7 +29,7 @@ Pago PagoArchivo::leerRegistro(int posicion) {
 		return reg;
 	}
 
-	int cantBytes = ubi * _tamReg;
+	int cantBytes = posicion * _tamReg;
 	fseek(pPagos, cantBytes, SEEK_SET);
 	fread(&reg, sizeof(Pago), 1, pPagos);
 	fclose(pPagos);
@@ -58,7 +58,7 @@ bool PagoArchivo::modificarRegistro(const Pago& reg, int posicion) {
 		return false;
 	}
 
-	fseek(pPagos, pos * _tamReg, SEEK_SET);
+	fseek(pPagos, posicion * _tamReg, SEEK_SET);
 	bool escribio = fwrite(&reg, _tamReg, 1, pPagos);
 	fclose(pPagos);
 	return escribio;
@@ -73,7 +73,7 @@ int PagoArchivo::buscar(int idPago) {
 		return -2;
 	}
 	while (fread(&reg, _tamReg, 1, pPagos) == 1) {
-		if (reg.getId() == id && reg.getEstado()) {
+		if (reg.getId() == idPago && reg.getEstado()) {
 			fclose(pPagos);
 			return pos;
 		}

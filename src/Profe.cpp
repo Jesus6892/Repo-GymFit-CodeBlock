@@ -19,13 +19,6 @@ Profe::Profe(const string nombre, const string apellido, const string dni,
       _estado(estado)
 {}
 
-// Setters
-void Profe::setSalarioHora(float salarioHora) {
-    if (salarioHora < 0)
-        throw std::invalid_argument("El Salario por Hora debe ser un número positivo");
-    _salarioHora = salarioHora;
-}
-
 void Profe::setId(int idProfe) {
     if (idProfe < 0)
         throw std::invalid_argument("El ID del Profesor debe ser un número positivo");
