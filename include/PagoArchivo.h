@@ -5,8 +5,8 @@
 
 class PagoArchivo {
 private:
-    std::string _nombreArchivo = "pagos.dat";
-    int _tamRegistro;
+    std::string _ruta = "pagos.dat";
+    int _tamReg;
 
 public:
     PagoArchivo(int tamRegistro);
