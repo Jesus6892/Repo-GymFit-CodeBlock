@@ -1,36 +1,42 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "AlumnosArchivo.h"
 
-ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro) {
+ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro)
+{
 	_ruta = "alumnos.dat";
 	_tamReg = tamanioRegistro;
 }
 
-bool ArchivoAlumnos::comprobarArchivo() const {
-	FILE* pAlumno;
+bool ArchivoAlumnos::comprobarArchivo() const
+{
+	FILE *pAlumno;
 	bool lecturaExitosa = true;
 
-
 	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		lecturaExitosa = false;
 		// devuelve -2 si no puede abrir el archivo
 	}
-	else {
+	else
+	{
 		fclose(pAlumno);
 	}
 	return lecturaExitosa;
 }
-bool ArchivoAlumnos::listarRegistro() const {
+bool ArchivoAlumnos::listarRegistro() const
+{
 	Alumno reg;
-	FILE* pAlumno;
+	FILE *pAlumno;
 
 	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return false;
 	}
 
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1) {
+	while (fread(&reg, _tamReg, 1, pAlumno) == 1)
+	{
 		reg.mostrar();
 	};
 
@@ -38,12 +44,14 @@ bool ArchivoAlumnos::listarRegistro() const {
 	return true;
 }
 
-bool ArchivoAlumnos::guardar(const Alumno& reg) const {
-	FILE* pAlumno;
+bool ArchivoAlumnos::guardar(const Alumno &reg) const
+{
+	FILE *pAlumno;
 	pAlumno = fopen(_ruta.c_str(), "ab");
 	bool result;
 
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return false;
 	}
 
@@ -53,16 +61,20 @@ bool ArchivoAlumnos::guardar(const Alumno& reg) const {
 	return result;
 }
 
-int ArchivoAlumnos::buscar(int id) const {
-	FILE* pAlumno;
+int ArchivoAlumnos::buscar(int id) const
+{
+	FILE *pAlumno;
 	Alumno reg;
 	int pos = 0;
 	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return -2;
 	}
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1) {
-		if (reg.getId() == id && reg.getEstado()) {
+	while (fread(&reg, _tamReg, 1, pAlumno) == 1)
+	{
+		if (reg.getId() == id && reg.getEstado())
+		{
 			fclose(pAlumno);
 			return pos;
 		}
@@ -72,11 +84,13 @@ int ArchivoAlumnos::buscar(int id) const {
 	fclose(pAlumno);
 	return -1;
 }
-int ArchivoAlumnos::contarRegistros() const {
-	FILE* pAlumno;
+int ArchivoAlumnos::contarRegistros() const
+{
+	FILE *pAlumno;
 	Alumno reg;
 	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return 0;
 	}
 
@@ -86,10 +100,12 @@ int ArchivoAlumnos::contarRegistros() const {
 	fclose(pAlumno);
 	return total / _tamReg;
 }
-bool ArchivoAlumnos::modificarRegistro(const Alumno& reg, int pos) const {
-	FILE* pAlumno;
+bool ArchivoAlumnos::modificarRegistro(const Alumno &reg, int pos) const
+{
+	FILE *pAlumno;
 	pAlumno = fopen(_ruta.c_str(), "rb+");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return false;
 	}
 
@@ -99,31 +115,44 @@ bool ArchivoAlumnos::modificarRegistro(const Alumno& reg, int pos) const {
 	return escribio;
 }
 
-int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
-	FILE* pAlumno;
-	Alumno reg;
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
-		// No se pudo abrir el archivo
-		return -1;
-	}
-
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1) {
-		if (reg.getDni() == dni && reg.getEstado()) { // Compara DNI y estado
-			fclose(pAlumno);
-			return reg.getId(); // Devuelve el ID del alumno
-		}
-	}
-
-	fclose(pAlumno);
-	return -1; // No se encontró el alumno o no está activo
+//Esto limpia los caracteres para poder traer el DNI correctamente
+static std::string sanitizeDni(const std::string &s)
+{
+	std::string out;
+	for (char c : s)
+		if (std::isdigit((unsigned char)c))
+			out += c;
+	return out;
 }
 
-Alumno ArchivoAlumnos::leerRegistro(int ubi) const {
-	FILE* pAlumno;
+int ArchivoAlumnos::buscarPorDni(const std::string &dni) const
+{
+	std::string target = sanitizeDni(dni);
+	FILE *f = fopen(_ruta.c_str(), "rb");
+	if (!f)
+		return -1;
+	Alumno reg;
+	while (fread(&reg, _tamReg, 1, f) == 1)
+	{
+		if (!reg.getEstado())
+			continue;
+		if (sanitizeDni(reg.getDni()) == target)
+		{
+			fclose(f);
+			return reg.getId();
+		}
+	}
+	fclose(f);
+	return -1;
+}
+
+Alumno ArchivoAlumnos::leerRegistro(int ubi) const
+{
+	FILE *pAlumno;
 	Alumno reg;
 	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr) {
+	if (pAlumno == nullptr)
+	{
 		return reg;
 	}
 
@@ -133,4 +162,3 @@ Alumno ArchivoAlumnos::leerRegistro(int ubi) const {
 	fclose(pAlumno);
 	return reg;
 }
-

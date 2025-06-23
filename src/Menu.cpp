@@ -27,19 +27,19 @@ void Menu::procesarOpcion(int opcion) {
             gestionarProceso();
             break;
         case 2:
-            gestionarPago();  
+            gestionarPago();
             break;
         case 3:
             gestionarAlumnos();
             break;
         case 4:
-            gestionarProfes(); 
+            gestionarProfes();
             break;
         case 5:
             gestionarActividades(); // o submenú
             break;
         case 6:
-            gestionarHorarios(); 
+            gestionarHorarios();
             break;
         case 0:
             cout << " Saliendo... ¡Hasta luego!\n";
@@ -59,7 +59,7 @@ void Menu::gestionarProceso() {
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
-        system("cls");  
+        system("cls");
         cout << "\n===== GESTION DE ALUMNOS =====\n";
         cout << "1. Alta de Alumno\n";
         cout << "2. Baja de Alumno\n";
@@ -99,7 +99,7 @@ void Menu::gestionarAlumnos() {
         }
 
         if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");  
+            system("pause");
         }
     } while (opcion != 0);
 }
@@ -235,7 +235,7 @@ void Menu::gestionarHorarios() {
 
         switch (opcion) {
         case 1:
-            //gestorHorarios.altaHorario();
+            gestorHorarios.cargarHorario();
             break;
         case 2:
             gestorHorarios.bajaHorario();

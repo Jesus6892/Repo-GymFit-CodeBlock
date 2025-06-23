@@ -37,21 +37,24 @@ void GestionarProceso::iniciarProceso() {
         idAlumno = archivoAlumnos.buscarPorDni(dni);
     }
 
-    // 2) Registrar pago para la inscripcion
+    // 2) Registrar pago para la inscripción
     cout << "\n--- Registro de Pago ---\n";
-    Pago pago = gestorPagos.cargarPago();
+    Pago pago = gestorPagos.cargarPago(idAlumno);
     if (pago.getId() < 0) {
         cout << "Proceso cancelado en paso de pago.\n";
         system("pause");
         return;
     }
-    // Asociacion del alumno al pago
-    pago = Pago(pago.getId(), idAlumno,
-                pago.getIdActividad(),
-                pago.getFechaPago(),
-                pago.getMonto(), true);
-    gestorPagos.altaPago();
 
-    cout << "\nProceso de inscripcion completado con exito!\n";
+    // 3) Guardar pago sin volver a pedir DNI
+    if (gestorPagos.guardarPago(pago))
+        cout << "Pago registrado con éxito.\n";
+    else {
+        cout << "ERROR: No se pudo guardar el pago.\n";
+        system("pause");
+        return;
+    }
+
+    cout << "\nProceso de inscripción completado con éxito!\n";
     system("pause");
 }
