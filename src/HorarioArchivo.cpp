@@ -1,124 +1,28 @@
+// HorarioArchivo.cpp
+#define _CRT_SECURE_NO_WARNINGS
 #include "HorarioArchivo.h"
-#include <iostream>
 
+HorarioArchivo::HorarioArchivo(int tamanioRegistro)
+  : ArchivoBinario("Horario.dat", tamanioRegistro) {}
 
-HorarioArchivo::HorarioArchivo(int tamanioRegistro) {
-    _ruta = "Horario.dat";
-    _tamReg = tamanioRegistro;
-}
-
-bool HorarioArchivo::comprobarArchivo() const {
-    FILE* pDiaHora;
-    bool lecturaExitosa = true;
-
-
-    pDiaHora = fopen(_ruta.c_str(), "rb");
-    if (pDiaHora == nullptr) {
-        lecturaExitosa = false;
-        // devuelve -2 si no puede abrir el archivo
-    }
-    else {
-        fclose(pDiaHora);
-    }
-    return lecturaExitosa;
-}
+HorarioArchivo::HorarioArchivo()
+  : HorarioArchivo(sizeof(Horario)) {}
 
 bool HorarioArchivo::listarRegistro() const {
-    Horario reg;
-    FILE* pDiaHora;
-
-    pDiaHora = fopen(_ruta.c_str(), "rb");
-    if (pDiaHora == nullptr) {
-        return false;
-    }
-
-    while (fread(&reg, _tamReg, 1, pDiaHora) == 1) {
+    int total = contarRegistros();
+    for (int i = 0; i < total; ++i) {
+        Horario reg = leerRegistro(i);
         reg.mostrarHorario();
     }
-
-    fclose(pDiaHora);
-    return true;
+    return total > 0;
 }
 
-bool HorarioArchivo::guardar(const Horario& reg) const {
-    FILE* pDiaHora;
-    pDiaHora = fopen(_ruta.c_str(), "ab");
-    bool result;
-
-    if (pDiaHora == nullptr) {
-        return false;
+bool HorarioArchivo::tieneHorariosAsignados(int idActividad) const {
+    int total = contarRegistros();
+    for (int i = 0; i < total; ++i) {
+        Horario reg = leerRegistro(i);
+        if (reg.getIdActividad() == idActividad)
+            return true;
     }
-
-    result = fwrite(&reg, _tamReg, 1, pDiaHora) == 1;
-    fclose(pDiaHora);
-    return result;
+    return false;
 }
-
-int HorarioArchivo::buscar(int id) const {
-    FILE* pDiaHora;
-    Horario reg;
-    int pos = 0;
-
-    pDiaHora = fopen(_ruta.c_str(), "rb");
-    if (pDiaHora == nullptr) {
-        return -2; // No pudo leer el archivo.
-    }
-
-    while (fread(&reg, _tamReg, 1, pDiaHora) == 1) {
-        if (reg.getIdActividad() == id) {
-            fclose(pDiaHora);
-            return pos; // Caso �xito, retorna la posici�n del elemento;
-        }
-        pos++;
-    }
-
-    fclose(pDiaHora);
-    return -1; // No lo encontr�.
-}
-
-int HorarioArchivo::contarRegistros() const {
-    FILE* pDiaHora;
-    pDiaHora = fopen(_ruta.c_str(), "rb");
-
-    if (pDiaHora == nullptr) {
-        return 0;
-    }
-
-    fseek(pDiaHora, 0, SEEK_END);
-    int total = ftell(pDiaHora);
-
-    fclose(pDiaHora);
-    return total / _tamReg;
-}
-
-
-
-bool HorarioArchivo::modificarRegistro(const Horario& reg, int pos) const {
-    FILE* pDiaHora;
-    pDiaHora = fopen(_ruta.c_str(), "rb+");
-
-    if (pDiaHora == nullptr) {
-        return false;
-    }
-
-    fseek(pDiaHora, pos * _tamReg, SEEK_SET);
-    bool escribio = fwrite(&reg, _tamReg, 1, pDiaHora) == 1;
-    fclose(pDiaHora);
-    return escribio;
-}
-
-Horario HorarioArchivo::leerRegistro(int ubi) const {
-    FILE* pDiaHora;
-    Horario reg;
-
-    pDiaHora = fopen(_ruta.c_str(), "rb");
-    if (pDiaHora == nullptr) {
-        return reg;
-    }
-
-    fseek(pDiaHora, ubi * _tamReg, SEEK_SET);
-    fread(&reg, _tamReg, 1, pDiaHora);
-    fclose(pDiaHora);
-    return reg;
-}
-

@@ -42,6 +42,7 @@ public:
 
     // interfaz
     void mostrarHorario() const;
+    void mostrar() const { mostrarHorario(); }
 
     // destructor
     ~Horario();

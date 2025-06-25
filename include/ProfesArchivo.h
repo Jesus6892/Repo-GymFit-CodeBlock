@@ -1,24 +1,17 @@
 #pragma once
-#include <string>
-#include "IArchivable.h"
+#include "ArchivoBinario.h"
 #include "Profe.h"
+#include <string>
 
-class ProfesArchivo : public IArchivable<Profe> {
-private:
-    std::string _ruta;
-    int _tamReg;
-
+class ProfesArchivo : public ArchivoBinario<Profe> {
 public:
-    // Constructor
-    ProfesArchivo(int tamanioRegistro);
+    // Constructor con tamaño de registro
+    ProfesArchivo(int tamRegistro);
+    // Constructor por defecto usando sizeof(Profe)
+    ProfesArchivo();
 
-    bool comprobarArchivo() const override;
-    bool listarRegistro() const override;
-    bool guardar(const Profe& reg) const override;
-    int buscar(int id) const override;
-    Profe leerRegistro(int ubi) const override;
-    int contarRegistros() const override;
-    bool modificarRegistro(const Profe& reg, int pos) const override;
+    // Búsqueda de ID por DNI
     int buscarIdPorDni(const std::string& dni) const;
-    ~ProfesArchivo() override {};
+
+    ~ProfesArchivo() override = default;
 };

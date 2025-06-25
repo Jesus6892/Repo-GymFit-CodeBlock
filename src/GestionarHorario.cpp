@@ -1,144 +1,103 @@
+// GestionarHorario.cpp
 #include "GestionarHorario.h"
-#include "Horario.h"
 #include <iostream>
-using namespace std;
+#include <cctype>
 
 GestionarHorario::GestionarHorario()
     : archivoHorarios(sizeof(Horario))
-{
-}
+{}
 
+// 1) Cargar datos de un horario (opcionalmente pidiendo idActividad)
 Horario GestionarHorario::cargarHorario(int idActividad)
 {
-    if (idActividad < 0)
-    {
+    if (idActividad < 0) {
         char resp;
-        cout << "Desea asignar una actividad a este horario? (S/N): ";
-        cin >> resp;
-        if (toupper(resp) == 'S')
-        {
-            cout << "Ingrese ID de la actividad: ";
-            cin >> idActividad;
-        }
-        else
-        {
-            idActividad = 0; 
+        std::cout << "Desea asignar una actividad a este horario? (S/N): ";
+        std::cin >> resp;
+        if (std::toupper(resp) == 'S') {
+            std::cout << "Ingrese ID de la actividad: ";
+            std::cin >> idActividad;
+        } else {
+            idActividad = 0;
         }
     }
 
-    // 1) Día de la semana
-    string diaSemana;
-    cout << "Ingrese dia de la semana (lunes, martes...): ";
-    cin >> diaSemana;
+    std::string diaSemana;
+    std::cout << "Ingrese dia de la semana (lunes, martes...): ";
+    std::cin >> diaSemana;
 
-    // 2) Hora inicio y fin
     int horaInicio, horaFin;
-    cout << "Ingrese hora inicio (24h, sin minutos): ";
-    cin >> horaInicio;
-    cout << "Ingrese hora fin   (24h, sin minutos): ";
-    cin >> horaFin;
+    std::cout << "Ingrese hora inicio (24h, sin minutos): ";
+    std::cin >> horaInicio;
+    std::cout << "Ingrese hora fin   (24h, sin minutos): ";
+    std::cin >> horaFin;
 
-    // 3) Genero nuevo ID
     int idHorario = obtenerIdNuevo();
 
-    // 4) Construyo y devuelvo
-    return Horario(idHorario,
-                   idActividad,
-                   diaSemana,
-                   horaInicio,
-                   horaFin,
-                   true);
+    return Horario(
+        idHorario,
+        idActividad,
+        diaSemana,
+        horaInicio,
+        horaFin,
+        true
+    );
 }
 
+// 2) Alta de horario
 void GestionarHorario::altaHorarioParaActividad(int idActividad)
 {
-    Horario nuevoHorario = cargarHorario(idActividad);
-
-    if (archivoHorarios.guardar(nuevoHorario))
-    {
+    Horario nuevo = cargarHorario(idActividad);
+    if (archivoHorarios.guardar(nuevo))
         std::cout << ">> Horario guardado correctamente.\n";
-    }
     else
-    {
         std::cout << "ERROR: No se pudo guardar el horario.\n";
-    }
 }
 
-bool HorarioArchivo::tieneHorariosAsignados(int idActividad) const
-{
-    FILE *p = fopen(_ruta.c_str(), "rb");
-    if (p == nullptr)
-    {
-        return false;
-    }
-
-    Horario reg;
-    while (fread(&reg, _tamReg, 1, p) == 1)
-    {
-        if (reg.getIdActividad() == idActividad && reg.getEstado())
-        {
-            fclose(p);
-            return true;
-        }
-    }
-
-    fclose(p);
-    return false;
-}
-
+// 3) Baja lógica de horario
 void GestionarHorario::bajaHorario()
 {
     int id;
-    cout << "Ingrese el ID del horario a dar de baja: ";
-    cin >> id;
+    std::cout << "Ingrese el ID del horario a dar de baja: ";
+    std::cin >> id;
 
     int pos = archivoHorarios.buscar(id);
-    if (pos >= 0)
-    {
-        Horario horario = archivoHorarios.leerRegistro(pos);
-        horario.setEstado(false);
-
-        if (archivoHorarios.modificarRegistro(horario, pos))
-        {
-            cout << "Horario dado de baja exitosamente.\n";
-        }
+    if (pos >= 0) {
+        Horario h = archivoHorarios.leerRegistro(pos);
+        h.setEstado(false);
+        if (archivoHorarios.modificarRegistro(h, pos))
+            std::cout << "Horario dado de baja exitosamente.\n";
         else
-        {
-            cout << "Error al dar de baja el horario.\n";
-        }
-    }
-    else
-    {
-        cout << "Horario no encontrado.\n";
+            std::cout << "Error al dar de baja el horario.\n";
+    } else {
+        std::cout << "Horario no encontrado.\n";
     }
 }
 
+// 4) Listar todos los horarios
 void GestionarHorario::listarHorarios()
 {
     if (!archivoHorarios.listarRegistro())
-    {
-        cout << "No hay horarios registrados o no se pudo leer el archivo.\n";
-    }
+        std::cout << "No hay horarios registrados o no se pudo leer el archivo.\n";
 }
 
+// 5) Buscar un horario por ID
 void GestionarHorario::buscarHorario()
 {
     int id;
-    cout << "Ingrese el ID del horario a buscar: ";
-    cin >> id;
+    std::cout << "Ingrese el ID del horario a buscar: ";
+    std::cin >> id;
 
     int pos = archivoHorarios.buscar(id);
-    if (pos >= 0)
-    {
-        Horario horario = archivoHorarios.leerRegistro(pos);
-        horario.mostrarHorario();
-    }
-    else
-    {
-        cout << "Horario no encontrado.\n";
+    if (pos >= 0) {
+        Horario h = archivoHorarios.leerRegistro(pos);
+        h.mostrarHorario();
+    } else {
+        std::cout << "Horario no encontrado.\n";
     }
 }
 
+// 6) Obtener nuevo ID
 int GestionarHorario::obtenerIdNuevo()
 {
     return Utilidades::obtenerIdNuevo<HorarioArchivo, Horario>(archivoHorarios);

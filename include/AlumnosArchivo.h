@@ -3,23 +3,16 @@
 #include <cstring>
 #include "IArchivable.h"
 #include "Alumno.h"
+#include "ArchivoBinario.h"
 
-
-class ArchivoAlumnos : public IArchivable<Alumno>
-{
-private:
-	//char _ruta[50];
-	std::string _ruta;
-	int _tamReg;
+class ArchivoAlumnos : public ArchivoBinario<Alumno> {
 public:
-	ArchivoAlumnos(int tamanioRegistro);
-	Alumno leerRegistro(int pos) const override;
-	bool comprobarArchivo() const override;
-	bool listarRegistro() const override;
-	bool guardar(const Alumno& reg) const override;
-	int buscar(int id) const override;
-	int contarRegistros() const override;
-	bool modificarRegistro(const Alumno& reg, int pos) const override;
-	int buscarPorDni(const std::string& dni) const;
-	~ArchivoAlumnos() override {};
+    ArchivoAlumnos();
+    ArchivoAlumnos(int tamanioRegistro);
+
+    // Búsqueda adicional por DNI
+    int buscarPorDni(const std::string& dni) const;
+
+private:
+    static std::string sanitizeDni(const std::string& s);
 };

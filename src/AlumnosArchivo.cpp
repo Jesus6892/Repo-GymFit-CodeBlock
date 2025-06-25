@@ -1,164 +1,35 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "AlumnosArchivo.h"
+#include <cctype>
 
 ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro)
+    : ArchivoBinario("alumnos.dat", tamanioRegistro)
 {
-	_ruta = "alumnos.dat";
-	_tamReg = tamanioRegistro;
 }
 
-bool ArchivoAlumnos::comprobarArchivo() const
+ArchivoAlumnos::ArchivoAlumnos()
+    : ArchivoBinario("alumnos.dat", sizeof(Alumno))
 {
-	FILE *pAlumno;
-	bool lecturaExitosa = true;
-
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr)
-	{
-		lecturaExitosa = false;
-		// devuelve -2 si no puede abrir el archivo
-	}
-	else
-	{
-		fclose(pAlumno);
-	}
-	return lecturaExitosa;
-}
-bool ArchivoAlumnos::listarRegistro() const
-{
-	Alumno reg;
-	FILE *pAlumno;
-
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr)
-	{
-		return false;
-	}
-
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1)
-	{
-		reg.mostrar();
-	};
-
-	fclose(pAlumno);
-	return true;
 }
 
-bool ArchivoAlumnos::guardar(const Alumno &reg) const
-{
-	FILE *pAlumno;
-	pAlumno = fopen(_ruta.c_str(), "ab");
-	bool result;
-
-	if (pAlumno == nullptr)
-	{
-		return false;
-	}
-
-	result = fwrite(&reg, _tamReg, 1, pAlumno) == 1;
-	fclose(pAlumno);
-
-	return result;
+std::string ArchivoAlumnos::sanitizeDni(const std::string& s) {
+    std::string out;
+    for (char c : s) {
+        if (std::isdigit(static_cast<unsigned char>(c)))
+            out += c;
+    }
+    return out;
 }
 
-int ArchivoAlumnos::buscar(int id) const
-{
-	FILE *pAlumno;
-	Alumno reg;
-	int pos = 0;
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr)
-	{
-		return -2;
-	}
-	while (fread(&reg, _tamReg, 1, pAlumno) == 1)
-	{
-		if (reg.getId() == id && reg.getEstado())
-		{
-			fclose(pAlumno);
-			return pos;
-		}
-		pos++;
-	};
-
-	fclose(pAlumno);
-	return -1;
-}
-int ArchivoAlumnos::contarRegistros() const
-{
-	FILE *pAlumno;
-	Alumno reg;
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr)
-	{
-		return 0;
-	}
-
-	fseek(pAlumno, 0, SEEK_END);
-	int total = ftell(pAlumno);
-
-	fclose(pAlumno);
-	return total / _tamReg;
-}
-bool ArchivoAlumnos::modificarRegistro(const Alumno &reg, int pos) const
-{
-	FILE *pAlumno;
-	pAlumno = fopen(_ruta.c_str(), "rb+");
-	if (pAlumno == nullptr)
-	{
-		return false;
-	}
-
-	fseek(pAlumno, pos * _tamReg, SEEK_SET);
-	bool escribio = fwrite(&reg, _tamReg, 1, pAlumno);
-	fclose(pAlumno);
-	return escribio;
-}
-
-//Esto limpia los caracteres para poder traer el DNI correctamente
-static std::string sanitizeDni(const std::string &s)
-{
-	std::string out;
-	for (char c : s)
-		if (std::isdigit((unsigned char)c))
-			out += c;
-	return out;
-}
-
-int ArchivoAlumnos::buscarPorDni(const std::string &dni) const
-{
-	std::string target = sanitizeDni(dni);
-	FILE *f = fopen(_ruta.c_str(), "rb");
-	if (!f)
-		return -1;
-	Alumno reg;
-	while (fread(&reg, _tamReg, 1, f) == 1)
-	{
-		if (!reg.getEstado())
-			continue;
-		if (sanitizeDni(reg.getDni()) == target)
-		{
-			fclose(f);
-			return reg.getId();
-		}
-	}
-	fclose(f);
-	return -1;
-}
-
-Alumno ArchivoAlumnos::leerRegistro(int ubi) const
-{
-	FILE *pAlumno;
-	Alumno reg;
-	pAlumno = fopen(_ruta.c_str(), "rb");
-	if (pAlumno == nullptr)
-	{
-		return reg;
-	}
-
-	int cantBytes = ubi * _tamReg;
-	fseek(pAlumno, cantBytes, SEEK_SET);
-	fread(&reg, sizeof(Alumno), 1, pAlumno);
-	fclose(pAlumno);
-	return reg;
+int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
+    std::string target = sanitizeDni(dni);
+    int total = contarRegistros();
+    for (int pos = 0; pos < total; ++pos) {
+        Alumno reg = leerRegistro(pos);
+        if (!reg.getEstado()) continue;
+        if (sanitizeDni(reg.getDni()) == target) {
+            return reg.getId();
+        }
+    }
+    return -1;
 }
