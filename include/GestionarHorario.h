@@ -1,6 +1,7 @@
 #pragma once
-#include "Horario.h" 
-#include "HorarioArchivo.h" 
+#include "Horario.h"
+#include "HorarioPorClase.h"
+#include "HorarioPorClaseArchivo.h"
 #include "Utilidades.h"
 
 class GestionarHorario
@@ -11,10 +12,10 @@ public:
     void bajaHorario();
     void listarHorarios();
     void buscarHorario();
-    Horario cargarHorario(int idActividad = -1);
+    HorarioPorClase cargarHorario(int idActividad = -1);
     void altaHorarioParaActividad(int idActividad);
 
 private:
-    HorarioArchivo archivoHorarios;
+    HorarioPorClaseArchivo archivoHorarioPorClase;
     int obtenerIdNuevo();
 };

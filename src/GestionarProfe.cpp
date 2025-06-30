@@ -70,8 +70,7 @@ Profe GestionarProfesor::cargarProfesor()
         CUIT,
         diaAlta, mesAlta, anioAlta,
         observaciones,
-        idProfe,
-        estado
+        idProfe
     );
 }
 

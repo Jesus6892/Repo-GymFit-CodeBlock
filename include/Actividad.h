@@ -8,19 +8,17 @@ class Actividad
     private:
         static const std::string defaultValue;
         int _idActividad;
-        int _idProfe;
+        char _nombreActividad[150];
+        char _descripcion[150];
         int _cantMax;
         float _costo;
         bool _estado;
-        char _descripcion[150];
-        char _nombreActividad[150];
     public:
         Actividad();
-        Actividad(int idActividad, std::string nombreActividad, int idProfe, int cantMax,float costo,std::string descripcion, bool estado);
+        Actividad(int idActividad, std::string nombreActividad, int cantMax,float costo,std::string descripcion);
 
 	// getters
 	int getId() const;
-	int getIdProfe() const;
 	std::string getNombreActividad() const;
 	int getCantMax() const;
     float getCosto() const;

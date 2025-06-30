@@ -98,8 +98,7 @@ Alumno GestionarAlumno::cargarAlumno()
         direccion,
         telefono,
         idAlumno,
-        diaInsc, mesInsc, anioInsc,
-        estado
+        diaInsc, mesInsc, anioInsc
     );
 }
 
@@ -123,7 +122,7 @@ void GestionarAlumno::bajaAlumno()
     if (pos >= 0)
     {
         Alumno a = archivoAlumnos.leerRegistro(pos);
-        a.setEstadoAlta(false);
+        a.setEstado(false);
         if (archivoAlumnos.modificarRegistro(a, pos))
             std::cout << "Alumno dado de baja exitosamente.\n";
         else

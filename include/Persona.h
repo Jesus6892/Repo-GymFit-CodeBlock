@@ -8,21 +8,27 @@ using namespace std;
 class Persona
 {
 private:
-    char _nombre[20];
-    char _apellido[20];
+    char _nombre[50];
+    char _apellido[50];
     char _dni[8];
     Fecha _fechaNacimiento;
     char _correoElectronico[50];
     char _telefono[10];
-    char _domicilio[20];
+    char _domicilio[50];
     bool _estado;
 
 public:
     // Constructores
     Persona();
-    Persona(const string nombre, const string apellido, const string dni,
-            int dia, int mes, int anio,
-            const string correoElectronico, const string domicilio, const string telefono);
+    Persona(const string& nombre,
+        const string& apellido,
+        const string& dni,
+        int dia,
+        int mes,
+        int anio,
+        const string& correoElectronico,
+        const string& domicilio,
+        const string& telefono);
 
     // Getters
     std::string getNombre() const;

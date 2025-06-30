@@ -1105,7 +1105,7 @@
 	"ArchivoBinario.h"
 	<cstdio>
 
-1750185297 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\main.cpp
+1751319955 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\main.cpp
 	<iostream>
 	"Fecha.h"
 	"Actividad.h"
@@ -1117,7 +1117,7 @@
 	"Profe.h"
 	"ProfesArchivo.h"
 	"Horario.h"
-	"HorarioArchivo.h"
+	"HorarioPorClaseArchivo.h"
 	"Menu.h"
 
 1750185297 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\fecha.h
@@ -1125,7 +1125,7 @@
 	<string>
 	<stdexcept>
 
-1750185297 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\actividad.h
+1751310910 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\actividad.h
 	<cstring>
 	<string>
 
@@ -1140,20 +1140,20 @@
 
 1750185297 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\iarchivable.h
 
-1750448238 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\empleado.h
+1751309384 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\empleado.h
 	"Persona.h"
 	"Fecha.h"
 	<cstring>
 	<string>
 	<iostream>
 
-1750444987 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\persona.h
+1751300158 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\persona.h
 	<cstring>
 	<string>
 	<iostream>
 	"Fecha.h"
 
-1750445420 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\alumno.h
+1751309336 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\alumno.h
 	<cstring>
 	"Persona.h"
 	"Fecha.h"
@@ -1165,7 +1165,7 @@
 	"Alumno.h"
 	"ArchivoBinario.h"
 
-1750448370 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\profe.h
+1751309115 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\profe.h
 	<string>
 	<iostream>
 	<stdexcept>
@@ -1176,16 +1176,14 @@
 	"Profe.h"
 	<string>
 
-1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horario.h
+1751319160 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horario.h
 	<string>
 	<algorithm>
 	<cctype>
 	<stdexcept>
 	<iostream>
 
-1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horarioarchivo.h
-	"ArchivoBinario.h"
-	"Horario.h"
+1751317575 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horarioarchivo.h
 
 1750185297 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\menu.h
 	"GestionarAlumno.h"
@@ -1213,9 +1211,10 @@
 	"ActividadesArchivo.h"
 	"Utilidades.h"
 
-1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarhorario.h
+1751326527 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarhorario.h
 	"Horario.h"
-	"HorarioArchivo.h"
+	"HorarioPorClase.h"
+	"HorarioPorClaseArchivo.h"
 	"Utilidades.h"
 
 1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarpago.h
@@ -1235,7 +1234,7 @@
 	"ArchivoBinario.h"
 	"Pago.h"
 
-1750185297 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
+1751320314 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
 	<iostream>
 	<limits>
 	<string>
@@ -1244,30 +1243,30 @@
 	"GestionarPago.h"
 	"GestionarHorario.h"
 
-1750185297 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividad.cpp
+1751310831 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividad.cpp
 	<cstring>
 	<iostream>
 	"Actividad.h"
 
-1750445517 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\alumno.cpp
+1751300340 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\alumno.cpp
 	"Alumno.h"
 	<iostream>
 	<stdexcept>
 
-1750448210 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\empleado.cpp
+1751309015 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\empleado.cpp
 	"Empleado.h"
 
 1750185297 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\fecha.cpp
 	"Fecha.h"
 
-1750185297 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horario.cpp
+1751319079 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horario.cpp
 	"Horario.h"
 
 1750185297 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pago.cpp
 	"Pago.h"
 	<iostream>
 
-1750445018 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\persona.cpp
+1751300143 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\persona.cpp
 	"Persona.h"
 
 1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividadesarchivo.cpp
@@ -1277,7 +1276,7 @@
 	"AlumnosArchivo.h"
 	<cctype>
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaractividad.cpp
+1751324590 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
@@ -1285,7 +1284,7 @@
 	<iomanip>
 	<iostream>
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
+1751309483 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
 	"GestionarAlumno.h"
 	"AlumnosArchivo.h"
 	<iostream>
@@ -1300,7 +1299,7 @@
 1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\validaciones.h
 	<string>
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarhorario.cpp
+1751324548 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarhorario.cpp
 	"GestionarHorario.h"
 	<iostream>
 	<cctype>
@@ -1314,7 +1313,7 @@
 1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarprofe.cpp
+1751309565 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarprofe.cpp
 	"GestionarProfe.h"
 	<iostream>
 	<iomanip>
@@ -1324,8 +1323,7 @@
 	"Utilidades.h"
 	"Profe.h"
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioarchivo.cpp
-	"HorarioArchivo.h"
+1751315731 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioarchivo.cpp
 
 1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
 	"Menu.h"
@@ -1334,7 +1332,7 @@
 1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pagoarchivo.cpp
 	"PagoArchivo.h"
 
-1750614109 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\profe.cpp
+1751309545 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\profe.cpp
 	"Profe.h"
 
 1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\profesarchivo.cpp
@@ -1345,4 +1343,29 @@
 	<cctype>
 	<regex>
 	<ctime>
+
+1751310380 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\clase.cpp
+	"Clase.h"
+
+1751310365 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\clase.h
+
+1751310979 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horariosporclase.cpp
+	"HorariosPorClase.h"
+
+1751317782 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horariosporclase.h
+	"Horario.h"
+
+1751323347 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horarioporclasearchivo.h
+	"ArchivoBinario.h"
+	"HorarioPorClase.h"
+
+1751325225 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\horarioporclase.h
+	"Horario.h"
+
+1751324597 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioporclasearchivo.cpp
+	"HorarioPorClaseArchivo.h"
+
+1751325340 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioporclase.cpp
+	"HorarioPorClase.h"
+	<iostream>
 

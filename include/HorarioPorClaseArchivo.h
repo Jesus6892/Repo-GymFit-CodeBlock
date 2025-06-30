@@ -1,12 +1,12 @@
 #pragma once
 
 #include "ArchivoBinario.h"
-#include "Horario.h"
+#include "HorarioPorClase.h"
 
-class HorarioArchivo : public ArchivoBinario<Horario> {
+class HorarioPorClaseArchivo : public ArchivoBinario<HorarioPorClase> {
 public:
-    HorarioArchivo(int tamanioRegistro);
-    HorarioArchivo();
+    HorarioPorClaseArchivo(int tamanioRegistro);
+    HorarioPorClaseArchivo();
 
     // override listar para usar mostrarHorario()
     bool listarRegistro() const override;
@@ -14,5 +14,5 @@ public:
     // override tieneHorariosAsignados sin tocar _ruta ni _tamReg
     bool tieneHorariosAsignados(int idActividad) const;
 
-    ~HorarioArchivo() override = default;
+    ~HorarioPorClaseArchivo() override = default;
 };

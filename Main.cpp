@@ -9,7 +9,7 @@
 #include "Profe.h"
 #include "ProfesArchivo.h"
 #include "Horario.h"
-#include "HorarioArchivo.h"
+#include "HorarioPorClaseArchivo.h"
 #include "Menu.h"
 
 

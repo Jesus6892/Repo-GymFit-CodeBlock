@@ -10,7 +10,6 @@ class Profe : public Empleado
 {
 private:
     int _idProfe;
-    bool _estado;
 
 public:
     Profe();
@@ -20,16 +19,13 @@ public:
           const string CUIT,
           int diaAlta, int mesAlta, int anioAlta,
           const std::string& observaciones,
-          int idProfe,
-          bool estado);
+          int idProfe);
 
     // setters
     void setId(int idProfe);
-    void setEstado(bool estado);
 
     // getters
     int getId() const;
-    bool getEstado() const;
 
     // interfaz
     void mostrar() const;

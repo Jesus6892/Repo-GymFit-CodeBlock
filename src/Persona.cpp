@@ -11,7 +11,16 @@ Persona::Persona() {
     _estado = true;
 }
 
-Persona::Persona(const string nombre, const string apellido, const string dni, int dia, int mes, int anio, const string correo, const string domicilio, const string telefono) {
+Persona::Persona(const string& nombre,
+                 const string& apellido,
+                 const string& dni,
+                 int dia,
+                 int mes,
+                 int anio,
+                 const string& correo,
+                 const string& domicilio,
+                 const string& telefono)
+{
     strcpy(_nombre, nombre.c_str());
     strcpy(_apellido, apellido.c_str());
     strcpy(_dni, dni.c_str());

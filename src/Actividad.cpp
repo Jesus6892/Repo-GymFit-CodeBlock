@@ -8,29 +8,26 @@ const std::string Actividad::defaultValue = "no hay datos";
 Actividad::Actividad()
 {
     _idActividad = -1;
-    _idProfe = -1;
+    _nombreActividad[sizeof(_nombreActividad) - 1] = '\0';
+    _descripcion[sizeof(_descripcion) - 1] = '\0';
     _cantMax = -1;
     _costo = 0.0f;
-    _estado = false;
-    _nombreActividad[sizeof(_nombreActividad) - 1] = '\0';
-    _descripcion[sizeof(_descripcion) - 1] = '\0';
+    _estado = true;
 }
-Actividad::Actividad(int idActividad, std::string nombreActividad, int idProfe, int cantMax,float costo, std::string descripcion, bool estado) // Removed idLugarDeDesarrollo
+Actividad::Actividad(int idActividad, std::string nombreActividad, int cantMax,float costo, std::string descripcion)
 {
     _idActividad = idActividad;
-    _idProfe = idProfe;
-    _cantMax = cantMax;
-    _costo = costo;
-    _estado = estado;
-     strncpy(_nombreActividad, nombreActividad.c_str(), sizeof(_nombreActividad) - 1);
+    strncpy(_nombreActividad, nombreActividad.c_str(), sizeof(_nombreActividad) - 1);
     _nombreActividad[sizeof(_nombreActividad) - 1] = '\0';
-      strncpy(_descripcion, descripcion.c_str(), sizeof(_descripcion) - 1);
+    strncpy(_descripcion, descripcion.c_str(), sizeof(_descripcion) - 1);
     _descripcion[sizeof(_descripcion) - 1] = '\0';
+    _costo = costo;
+    _cantMax = cantMax;
+    _estado = true;
 }
 
 // getters
 int Actividad::getId() const { return _idActividad; }
-int Actividad::getIdProfe() const { return _idProfe; }
 int Actividad::getCantMax() const { return _cantMax; }
 bool Actividad::getEstado() const { return _estado; }
 float Actividad::getCosto() const {return _costo; }
@@ -47,10 +44,7 @@ void Actividad::setCosto(float costo) {
 	if (costo < 0) throw std::invalid_argument("El costo no puede ser negativo");
 	_costo = costo;
 }
-void Actividad::setIdProfe(int idProfe) {
-	if (idProfe < 0) throw std::invalid_argument("El ID del Profesor debe ser un numero positivo");
-	_idProfe = idProfe;
-}
+
 void Actividad::setCantMax(int cantMax) {
     if (cantMax <= 0) throw std::invalid_argument("La Cantidad Maxima debe ser un nmero positivo");
     _cantMax = cantMax;
@@ -82,7 +76,6 @@ void Actividad::mostrar() const {
 
 	std::cout << "Clase: " << getId() << std::endl;
 	std::cout << "Nombre: " << getNombreActividad() << std::endl;
-    std::cout << "Profe: " << getIdProfe() << std::endl;
     std::cout << "Costo: $" << getCosto() << std::endl; // --> AÑADIDO
 	std::cout << "Cant Maxima alumnos: " << getCantMax() << std::endl;
 	std::cout << "Descripcion: " << getDescripcion() << std::endl;

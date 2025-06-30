@@ -60,7 +60,7 @@ Actividad GestionarActividad::cargarActividad()
 
     int idActividad = obtenerIdNuevo();
     // idProfe = 0 significa "sin asignar"
-    Actividad nuevaActividad(idActividad, nombreActividad, idProfe, cantMax, costo, descripcion, true);
+    Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
 }
 
@@ -70,7 +70,7 @@ void GestionarActividad::listarActividadesSinHorarios()
     int totalActividades = archivoActividades.contarRegistros();
     bool seMostroAlguna = false;
 
-    HorarioArchivo archivoHorarios(sizeof(Horario));
+    HorarioPorClaseArchivo archivoHorarios(sizeof(Horario));
 
     for (int i = 0; i < totalActividades; i++)
     {
