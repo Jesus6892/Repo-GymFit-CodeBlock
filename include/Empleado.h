@@ -16,7 +16,6 @@ public:
     Empleado(const string& nombre,
              const string& apellido,
              const string& dni,
-             int diaNasc,int mesNasc,int anioNasc,
              const string& correoElectronico,
              const string& direccion,
              const string& telefono,

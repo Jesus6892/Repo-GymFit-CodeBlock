@@ -12,6 +12,7 @@ public:
 
     // Búsqueda adicional por DNI
     int buscarPorDni(const std::string& dni) const;
+    int buscarPosPorDni(const std::string& dni) const;
 
 private:
     static std::string sanitizeDni(const std::string& s);

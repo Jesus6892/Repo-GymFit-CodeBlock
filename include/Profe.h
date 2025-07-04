@@ -14,7 +14,6 @@ private:
 public:
     Profe();
     Profe(const string nombre, const string apellido, const string dni,
-          int diaNasc, int mesNasc, int anioNasc,
           const string correoElectronico, const string direccion, const string telefono,
           const string CUIT,
           int diaAlta, int mesAlta, int anioAlta,

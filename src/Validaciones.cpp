@@ -20,6 +20,27 @@ bool Validaciones::esSoloLetras(const std::string& s) {
     return !s.empty();
 }
 
+std::string Validaciones::normalizarDNI(const std::string& dni) {
+    std::string normalizado = dni;
+    normalizado.erase(
+        std::remove_if(normalizado.begin(), normalizado.end(), 
+            [](unsigned char c) { return !std::isdigit(c); }
+        ), 
+        normalizado.end()
+    );
+    
+    return normalizado;
+}
+
+bool Validaciones::esFormatoDniValido(const std::string& dni) {
+    if (dni.length() >= 7 && dni.length() <= 8) {
+        return true;
+    }
+    return false;
+}
+
+
+
 bool Validaciones::esSoloNumeros(const std::string& s) {
     for (char c : s)
         if (!std::isdigit(c))

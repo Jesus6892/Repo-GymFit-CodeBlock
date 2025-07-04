@@ -3,29 +3,33 @@
 
 class Clase {
 private:
-    int _idClase;
+    int _id;
     int _idHorario;
+    int _idActividad;
     int _idProfe;
     bool _estado;
 
 public:
     Clase();
-    Clase(const int idClase,
+    Clase(const int id,
           const int idHorario,
+          const int idActividad,
           const int idProfe,
           const bool estado);
 
     void setEstado(const bool estado);
     bool getEstado() const;
 
-    // Getters opcionales si los necesitás
-    int getIdClase() const;
+    // Getters
+    int getId() const;
     int getIdHorario() const;
+    int getIdActividad() const;
     int getIdProfe() const;
 
-    // Setters opcionales si necesitás modificarlos
-    void setIdClase(int idClase);
+    // Setters
+    void setId(int id);
     void setIdHorario(int idHorario);
+    void setIdActividad(int idActividad);
     void setIdProfe(int idProfe);
 };
 

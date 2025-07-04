@@ -6,6 +6,7 @@
 #include <cctype>
 #include "Utilidades.h"
 #include "Profe.h"
+#include "Validaciones.h"
 using namespace std;
 
 GestionarProfesor::GestionarProfesor()
@@ -13,15 +14,39 @@ GestionarProfesor::GestionarProfesor()
 {
 }
 
+// Metodos Auxiliares
+std::string GestionarProfesor::solicitarDniProfesor()
+{
+    string dniIngresado, dniNormalizado;
+    while (true)
+    {
+        cout << "Ingrese el DNI del profesor: ";
+        getline(cin, dniIngresado);
+
+        dniNormalizado = Validaciones::normalizarDNI(dniIngresado);
+
+        if (!Validaciones::esFormatoDniValido(dniNormalizado))
+        {
+            cout << "Error: El DNI debe contener 7 u 8 dÃ­gitos. Intente de nuevo.\n";
+            continue;
+        }
+        if (archivoProfesores.buscarIdPorDni(dniNormalizado) != -1)
+        {
+            cout << "Error: Ya existe un profesor con ese DNI. Intente de nuevo.\n";
+            continue;
+        }
+        return dniNormalizado;
+    }
+}
+
+// MÃ©todos Principales
 Profe GestionarProfesor::cargarProfesor()
 {
-    // Limpia el buffer tras la lectura de la opcion del menu
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     string nombre, apellido, correoElectronico, observaciones, direccion;
-    string dni, CUIT, telefono;
-    int diaNasc, mesNasc, anioNasc, idProfe;
-    bool estado = true;
+    string telefono, CUIT;
+    int idProfe;
 
     cout << "Ingrese el nombre del profesor: ";
     getline(cin, nombre);
@@ -29,20 +54,13 @@ Profe GestionarProfesor::cargarProfesor()
     cout << "Ingrese el apellido del profesor: ";
     getline(cin, apellido);
 
-    cout << "Ingrese el DNI del profesor: ";
-    cin >> dni;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-    cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
-    cin >> diaNasc >> mesNasc >> anioNasc;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    string dni = solicitarDniProfesor();
 
     cout << "Ingrese el correo electronico del profesor: ";
     getline(cin, correoElectronico);
 
     cout << "Ingrese el CUIT del profesor: ";
-    cin >> CUIT;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, CUIT);
 
     cout << "Ingrese cualquier observacion sobre el profesor: ";
     getline(cin, observaciones);
@@ -51,27 +69,24 @@ Profe GestionarProfesor::cargarProfesor()
     getline(cin, direccion);
 
     cout << "Ingrese el telefono del profesor: ";
-    cin >> telefono;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, telefono);
 
     idProfe = obtenerIdNuevo();
 
-    // Fecha de alta automática
-    time_t now = time(nullptr);
-    tm* local = localtime(&now);
-    int diaAlta  = local->tm_mday;
-    int mesAlta  = local->tm_mon + 1;
+    // Fecha de alta automÃ¡tica
+    auto now = time(nullptr);
+    auto *local = localtime(&now);
+    int diaAlta = local->tm_mday;
+    int mesAlta = local->tm_mon + 1;
     int anioAlta = local->tm_year + 1900;
 
     return Profe(
         nombre, apellido, dni,
-        diaNasc, mesNasc, anioNasc,
         correoElectronico, direccion, telefono,
         CUIT,
         diaAlta, mesAlta, anioAlta,
         observaciones,
-        idProfe
-    );
+        idProfe);
 }
 
 void GestionarProfesor::altaProfesor()
@@ -91,21 +106,26 @@ void GestionarProfesor::listarProfesores()
     cout << "-------------------------------------------------------\n";
 
     int total = archivoProfesores.contarRegistros();
-    for (int i = 0; i < total; ++i) {
+    for (int i = 0; i < total; ++i)
+    {
         Profe p = archivoProfesores.leerRegistro(i);
-        // Mostrar sólo profesores activos
-        if (!p.getEstado()) continue;
+        // Mostrar sÃ³lo profesores activos
+        if (!p.getEstado())
+            continue;
 
-        // Sanitizar DNI: sólo dígitos, truncar a 9 caracteres
+        // Sanitizar DNI: sÃ³lo dÃ­gitos, truncar a 9 caracteres
         string rawDni = p.getDni();
         rawDni.erase(remove_if(rawDni.begin(), rawDni.end(),
-                     [](char c){ return !isdigit((unsigned char)c); }), rawDni.end());
-        if (rawDni.length() > 9) rawDni = rawDni.substr(0, 9);
+                               [](char c)
+                               { return !isdigit((unsigned char)c); }),
+                     rawDni.end());
+        if (rawDni.length() > 9)
+            rawDni = rawDni.substr(0, 9);
 
-        cout << setw(2)  << p.getId()     << " | "
+        cout << setw(2) << p.getId() << " | "
              << setw(12) << p.getNombre() << " | "
              << setw(12) << p.getApellido() << " | "
-             << setw(9)  << rawDni        << " | "
+             << setw(9) << rawDni << " | "
              << "Activo"
              << "\n";
     }
@@ -119,7 +139,8 @@ void GestionarProfesor::bajaProfesor()
     cin >> id;
 
     int pos = archivoProfesores.buscar(id);
-    if (pos >= 0) {
+    if (pos >= 0)
+    {
         Profe profesor = archivoProfesores.leerRegistro(pos);
         profesor.setEstado(false);
         if (archivoProfesores.modificarRegistro(profesor, pos))

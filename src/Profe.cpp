@@ -5,13 +5,12 @@ Profe::Profe() : Empleado(), _id(-1) {}
 
 // Constructor parametrizado
 Profe::Profe(const string nombre, const string apellido, const string dni,
-             int diaNasc, int mesNasc, int anioNasc,
              const string correoElectronico, const string direccion, const string telefono,
              const string CUIT,
              int diaAlta, int mesAlta, int anioAlta,
              const std::string& observaciones,
              int id)
-    : Empleado(nombre, apellido, dni, diaNasc, mesNasc, anioNasc,
+    : Empleado(nombre, apellido, dni,
                correoElectronico, direccion, telefono,
                CUIT, diaAlta, mesAlta, anioAlta),
       _id(id)

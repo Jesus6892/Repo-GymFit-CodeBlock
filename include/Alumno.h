@@ -1,13 +1,11 @@
 #pragma once
 #include <cstring>
 #include "Persona.h"
-#include "Fecha.h"
 
 class Alumno : public Persona
 {
 private:
-    int _idAlumno;
-    Fecha _fechaInscripcion;
+    int _id;
 
 public:
     // Constructores
@@ -15,20 +13,16 @@ public:
     Alumno(const string& nombre,
            const string& apellido,
            const string& dni,
-           int diaNasc,int mesNasc,int anioNasc,
            const string& correoElectronico,
            const string& direccion,
            const string& telefono,
-           int idAlumno,
-           int diaInsc,int mesInsc,int anioInsc);
+           int id);
 
-    // Setters
-    void setIdAlumno(int idAlumno);
-    void setFechaInscripcion(int dia, int mes, int anio);
+    // Setter
+    void setId(int id);
 
     // Getters
     int getId() const;
-    Fecha getFechaInscripcion() const;
 
     // Interfaz
     void mostrar() const;

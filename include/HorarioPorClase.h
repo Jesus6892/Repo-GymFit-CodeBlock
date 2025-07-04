@@ -6,7 +6,7 @@
 class HorarioPorClase
 {
 private:
-    int _idHorarioPorClase;
+    int _id;
     int _idClase;
     Horario _horario;
     bool _estado;
@@ -15,11 +15,11 @@ public:
     // Constructor por defecto
     HorarioPorClase();
 
-    // Constructor con parámetros
-    HorarioPorClase(int idHorarioPorClase, int idClase, std::string& diaSemana, int horaInicio, int horaFin, bool estado = true);
+    // Constructor con parmetros
+    HorarioPorClase(int id, int idClase, std::string& diaSemana, int horaInicio, int horaFin, bool estado = true);
 
     // Setters
-    void setId(int idHorarioPorClase);
+    void setId(int id);
     void setHorario(Horario horario);
     void setIdClase(int idClase);
     void setEstado(bool est);

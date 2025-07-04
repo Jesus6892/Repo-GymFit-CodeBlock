@@ -26,7 +26,6 @@ class Actividad
 	bool getEstado() const;
 
 	void setId(int idActividad);
-	void setIdProfe(int idProfe);
 	void setCantMax(int cantMax);
     void setCosto(float costo);
 	void setEstado(bool estado);

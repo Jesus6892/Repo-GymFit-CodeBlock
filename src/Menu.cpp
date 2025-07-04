@@ -80,9 +80,7 @@ void Menu::gestionarAlumnos() {
                 gestorAlumnos.bajaAlumno();
                 break;
             case 3:
-                //gestorAlumnos.modificarAlumno();
-                cout << "Módulo 'Modificar Alumno' no implementado.\n";
-                system("pause");
+                gestorAlumnos.modificarAlumno();
                 break;
             case 4:
                 gestorAlumnos.buscarAlumno();

@@ -15,6 +15,7 @@ public:
 
 private:
     ProfesArchivo archivoProfesores;
+    std::string solicitarDniProfesor();
     int obtenerIdNuevo();
 };
 

@@ -2,19 +2,22 @@
 
 // Constructor por defecto
 Clase::Clase() {
-    _idClase = 0;
+    _id = 0;
     _idHorario = 0;
+    _idActividad = 0;
     _idProfe = 0;
     _estado = true;
 }
 
-// Constructor con parámetros
-Clase::Clase(const int idClase,
+// Constructor con parmetros
+Clase::Clase(const int id,
              const int idHorario,
+             const int idActividad,
              const int idProfe,
              const bool estado) {
-    _idClase = idClase;
+    _id = id;
     _idHorario = idHorario;
+    _idActividad = idActividad;
     _idProfe = idProfe;
     _estado = estado;
 }
@@ -24,12 +27,16 @@ void Clase::setEstado(const bool estado) {
     _estado = estado;
 }
 
-void Clase::setIdClase(int idClase) {
-    _idClase = idClase;
+void Clase::setId(int id) {
+    _id = id;
 }
 
 void Clase::setIdHorario(int idHorario) {
     _idHorario = idHorario;
+}
+
+void Clase::setIdActividad(int idActividad) {
+    _idActividad = idActividad;
 }
 
 void Clase::setIdProfe(int idProfe) {
@@ -41,12 +48,16 @@ bool Clase::getEstado() const {
     return _estado;
 }
 
-int Clase::getIdClase() const {
-    return _idClase;
+int Clase::getId() const {
+    return _id;
 }
 
 int Clase::getIdHorario() const {
     return _idHorario;
+}
+
+int Clase::getIdActividad() const {
+    return _idActividad;
 }
 
 int Clase::getIdProfe() const {

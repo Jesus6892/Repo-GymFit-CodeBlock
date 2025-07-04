@@ -21,6 +21,8 @@ class Validaciones
         static bool esTelefonoValido(const std::string& tel);     // 10 dígitos numéricos
         static bool esEmailValido(const std::string& email);      // formato básico xx@yy.zz
         static bool esFechaNacimientoValida(int d, int m, int a);
+        static std::string normalizarDNI(const std::string& dni);
+        static bool esFormatoDniValido(const std::string& dni);
     protected:
 
     private:

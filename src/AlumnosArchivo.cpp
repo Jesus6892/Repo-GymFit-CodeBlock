@@ -22,13 +22,21 @@ std::string ArchivoAlumnos::sanitizeDni(const std::string& s) {
 }
 
 int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
+    int pos = buscarPosPorDni(dni);
+    if (pos >= 0) {
+        return leerRegistro(pos).getId();
+    }
+    return -1;
+}
+
+int ArchivoAlumnos::buscarPosPorDni(const std::string& dni) const {
     std::string target = sanitizeDni(dni);
     int total = contarRegistros();
     for (int pos = 0; pos < total; ++pos) {
         Alumno reg = leerRegistro(pos);
         if (!reg.getEstado()) continue;
         if (sanitizeDni(reg.getDni()) == target) {
-            return reg.getId();
+            return pos; // Devuelve la posición 
         }
     }
     return -1;
