@@ -9,7 +9,7 @@ using namespace std;
 class Profe : public Empleado
 {
 private:
-    int _idProfe;
+    int _id;
 
 public:
     Profe();
@@ -19,12 +19,12 @@ public:
           const string CUIT,
           int diaAlta, int mesAlta, int anioAlta,
           const std::string& observaciones,
-          int idProfe);
+          int id);
 
-    // setters
-    void setId(int idProfe);
+    // setter
+    void setId(int id);
 
-    // getters
+    // getter
     int getId() const;
 
     // interfaz

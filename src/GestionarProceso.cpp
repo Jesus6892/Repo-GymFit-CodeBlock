@@ -37,6 +37,12 @@ void GestionarProceso::iniciarProceso() {
         idAlumno = archivoAlumnos.buscarPorDni(dni);
     }
 
+    // 3) Preguntar a que actividad desea anotarse (Traerse registros de 'Actividad')
+
+
+    // 4)
+
+
     // 2) Registrar pago para la inscripción
     cout << "\n--- Registro de Pago ---\n";
     Pago pago = gestorPagos.cargarPago(idAlumno);

@@ -7,21 +7,9 @@ GestionarHorario::GestionarHorario()
     : archivoHorarioPorClase(sizeof(HorarioPorClase))
 {}
 
-// 1) Cargar datos de un horario (opcionalmente pidiendo idActividad)
+
 HorarioPorClase GestionarHorario::cargarHorario(int idActividad)
 {
-    if (idActividad < 0) {
-        char resp;
-        std::cout << "Desea asignar una actividad a este horario? (S/N): ";
-        std::cin >> resp;
-        if (std::toupper(resp) == 'S') {
-            std::cout << "Ingrese ID de la actividad: ";
-            std::cin >> idActividad;
-        } else {
-            idActividad = 0;
-        }
-    }
-
     std::string diaSemana;
     std::cout << "Ingrese dia de la semana (lunes, martes...): ";
     std::cin >> diaSemana;

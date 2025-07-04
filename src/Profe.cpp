@@ -1,30 +1,32 @@
 #include "Profe.h"
 
 // Constructor por defecto
-Profe::Profe() : Empleado(), _idProfe(-1) {}
+Profe::Profe() : Empleado(), _id(-1) {}
 
 // Constructor parametrizado
 Profe::Profe(const string nombre, const string apellido, const string dni,
-          int diaNasc, int mesNasc, int anioNasc,
-          const string correoElectronico, const string direccion, const string telefono,
-          const string CUIT,
-          int diaAlta, int mesAlta, int anioAlta,
-          const std::string& observaciones,
-          int idProfe)
+             int diaNasc, int mesNasc, int anioNasc,
+             const string correoElectronico, const string direccion, const string telefono,
+             const string CUIT,
+             int diaAlta, int mesAlta, int anioAlta,
+             const std::string& observaciones,
+             int id)
     : Empleado(nombre, apellido, dni, diaNasc, mesNasc, anioNasc,
                correoElectronico, direccion, telefono,
                CUIT, diaAlta, mesAlta, anioAlta),
-      _idProfe(idProfe)
+      _id(id)
 {}
 
-void Profe::setId(int idProfe) {
-    if (idProfe < 0) throw std::invalid_argument("El ID del Profesor debe ser un número positivo");
-    else _idProfe = idProfe;
+// Setter
+void Profe::setId(int id) {
+    if (id < 0)
+        throw std::invalid_argument("El ID del Profesor debe ser un número positivo");
+    _id = id;
 }
 
-// Getters
+// Getter
 int Profe::getId() const {
-    return _idProfe;
+    return _id;
 }
 
 // Mostrar
