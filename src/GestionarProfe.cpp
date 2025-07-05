@@ -27,7 +27,7 @@ std::string GestionarProfesor::solicitarDniProfesor()
 
         if (!Validaciones::esFormatoDniValido(dniNormalizado))
         {
-            cout << "Error: El DNI debe contener 7 u 8 dígitos. Intente de nuevo.\n";
+            cout << "Error: El DNI debe contener 7 u 8 digitos. Intente de nuevo.\n";
             continue;
         }
         if (archivoProfesores.buscarIdPorDni(dniNormalizado) != -1)
@@ -48,16 +48,34 @@ Profe GestionarProfesor::cargarProfesor()
     string telefono, CUIT;
     int idProfe;
 
-    cout << "Ingrese el nombre del profesor: ";
-    getline(cin, nombre);
+    do {
+        cout << "Ingrese el nombre del profesor: ";
+        getline(cin, nombre);
+        if (!Validaciones::esSoloLetras(nombre)) {
+            cout << "Nombre invalido. Solo letras y espacios.\n";
+        }
+    } while(!Validaciones::esSoloLetras(nombre));
 
-    cout << "Ingrese el apellido del profesor: ";
-    getline(cin, apellido);
+
+    do {
+        cout << "Ingrese el apellido del profesor: ";
+        getline(cin, apellido);
+        if (!Validaciones::esSoloLetras(apellido)) {
+            cout << "Apellido invalido. Solo letras y espacios.\n";
+        }
+    } while(!Validaciones::esSoloLetras(apellido));
+
 
     string dni = solicitarDniProfesor();
 
     cout << "Ingrese el correo electronico del profesor: ";
     getline(cin, correoElectronico);
+    while(!Validaciones::esEmailValido(correoElectronico)) {
+        cout << "Email invalido. Formato: usuario@dominio.ext\n";
+        cout << "Ingrese nuevamente: ";
+        getline(cin, correoElectronico);
+    }
+
 
     cout << "Ingrese el CUIT del profesor: ";
     getline(cin, CUIT);
@@ -68,8 +86,14 @@ Profe GestionarProfesor::cargarProfesor()
     cout << "Ingrese la direccion del profesor: ";
     getline(cin, direccion);
 
-    cout << "Ingrese el telefono del profesor: ";
-    getline(cin, telefono);
+    do {
+        cout << "Ingrese el telefono del profesor: ";
+        getline(cin, telefono);
+        if (!Validaciones::esTelefonoValido(telefono)) {
+            cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
+        }
+    } while(!Validaciones::esTelefonoValido(telefono));
+
 
     idProfe = obtenerIdNuevo();
 
@@ -101,19 +125,29 @@ void GestionarProfesor::altaProfesor()
 
 void GestionarProfesor::listarProfesores()
 {
-    cout << "=== GESTION DE PROFESORES ===\n\n";
-    cout << "ID | Nombre       | Apellido     | DNI       | Estado\n";
-    cout << "-------------------------------------------------------\n";
-
     int total = archivoProfesores.contarRegistros();
+    if (total == 0) {
+        cout
+            << "\n+-----------------------------------------------+\n"
+            << "|   No hay profesores registrados.              |\n"
+            << "+-----------------------------------------------+\n\n";
+        return;
+    }
+
+    bool huboActivos = false;
     for (int i = 0; i < total; ++i)
     {
         Profe p = archivoProfesores.leerRegistro(i);
-        // Mostrar sólo profesores activos
         if (!p.getEstado())
             continue;
 
-        // Sanitizar DNI: sólo dígitos, truncar a 9 caracteres
+        if (!huboActivos) {
+            cout << "=== GESTION DE PROFESORES ===\n\n";
+            cout << "ID | Nombre       | Apellido     | DNI       | Estado\n";
+            cout << "-------------------------------------------------------\n";
+            huboActivos = true;
+        }
+
         string rawDni = p.getDni();
         rawDni.erase(remove_if(rawDni.begin(), rawDni.end(),
                                [](char c)
@@ -129,16 +163,24 @@ void GestionarProfesor::listarProfesores()
              << "Activo"
              << "\n";
     }
-    cout << "\n";
+
+    if (!huboActivos) {
+        cout
+            << "\n+-----------------------------------------------+\n"
+            << "| AVISO: No se encontraron profesores activos. |\n"
+            << "+-----------------------------------------------+\n\n";
+    } else {
+        cout << "\n";
+    }
 }
 
 void GestionarProfesor::bajaProfesor()
 {
-    int id;
-    cout << "Ingrese el ID del profesor a dar de baja: ";
-    cin >> id;
+    std::string dni;
+    cout << "Ingrese el DNI del profesor a dar de baja: ";
+    cin >> dni;
 
-    int pos = archivoProfesores.buscar(id);
+    int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos >= 0)
     {
         Profe profesor = archivoProfesores.leerRegistro(pos);
@@ -154,15 +196,106 @@ void GestionarProfesor::bajaProfesor()
 
 void GestionarProfesor::buscarProfesor()
 {
-    int id;
-    cout << "Ingrese el ID del profesor a buscar: ";
-    cin >> id;
+    std::string dni;
+    cout << "Ingrese el DNI del profesor a buscar: ";
+    cin >> dni;
 
-    int pos = archivoProfesores.buscar(id);
+    int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos >= 0)
         archivoProfesores.leerRegistro(pos).mostrar();
     else
         cout << "Profesor no encontrado.\n";
+}
+
+void GestionarProfesor::modificarProfesor()
+{
+    std::string dni;
+    cout << "Ingrese el DNI del profesor a modificar: ";
+    cin >> dni;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    int pos = archivoProfesores.buscarPosPorDni(dni);
+    if (pos < 0)
+    {
+        cout << "No se encontro un profesor con ese DNI." << endl;
+        return;
+    }
+
+    Profe profe = archivoProfesores.leerRegistro(pos);
+    cout << "Datos actuales del profesor:" << endl;
+    profe.mostrar();
+
+    int opcion;
+    std::string nuevoValor;
+
+    cout << "\nQue campo desea modificar?" << endl;
+    cout << "1. Nombre" << endl;
+    cout << "2. Apellido" << endl;
+    cout << "3. Correo Electronico" << endl;
+    cout << "4. Direccion" << endl;
+    cout << "5. Telefono" << endl;
+    cout << "6. CUIT" << endl;
+    cout << "0. Cancelar" << endl;
+    cout << "Seleccione una opcion: ";
+    cin >> opcion;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    switch (opcion)
+    {
+    case 1:
+        cout << "Ingrese el nuevo nombre: ";
+        getline(cin, nuevoValor);
+        profe.setNombre(nuevoValor);
+        break;
+    case 2:
+        cout << "Ingrese el nuevo apellido: ";
+        getline(cin, nuevoValor);
+        profe.setApellido(nuevoValor);
+        break;
+    case 3:
+        cout << "Ingrese el nuevo correo electronico: ";
+        getline(cin, nuevoValor);
+        while (!Validaciones::esEmailValido(nuevoValor)) {
+            cout << "Email invalido. Ingrese nuevamente: ";
+            getline(cin, nuevoValor);
+        }
+        profe.setCorreoElectronico(nuevoValor);
+        break;
+    case 4:
+        cout << "Ingrese la nueva direccion: ";
+        getline(cin, nuevoValor);
+        profe.setDomicilio(nuevoValor);
+        break;
+    case 5:
+        cout << "Ingrese el nuevo telefono: ";
+        getline(cin, nuevoValor);
+         while (!Validaciones::esTelefonoValido(nuevoValor)) {
+            cout << "Telefono invalido. Ingrese nuevamente: ";
+            getline(cin, nuevoValor);
+        }
+        profe.setTelefono(nuevoValor);
+        break;
+    case 6:
+        cout << "Ingrese el nuevo CUIT: ";
+        getline(cin, nuevoValor);
+        profe.setCUIT(nuevoValor);
+        break;
+    case 0:
+        cout << "Modificacion cancelada." << endl;
+        return;
+    default:
+        cout << "Opcion no valida." << endl;
+        return;
+    }
+
+    if (archivoProfesores.modificarRegistro(profe, pos))
+    {
+        cout << "Profesor modificado exitosamente." << endl;
+    }
+    else
+    {
+        cout << "Error al modificar el profesor." << endl;
+    }
 }
 
 int GestionarProfesor::obtenerIdNuevo()

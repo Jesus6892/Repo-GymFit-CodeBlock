@@ -244,10 +244,10 @@ void GestionarAlumno::modificarAlumno()
         alumno.setTelefono(nuevoValor);
         break;
     case 0:
-        std::cout << "Modificación cancelada." << std::endl;
+        std::cout << "Modificacion cancelada." << std::endl;
         return;
     default:
-        std::cout << "Opción no válida." << std::endl;
+        std::cout << "Opcion no valida." << std::endl;
         return;
     }
 

@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "AlumnosArchivo.h"
+#include "Validaciones.h"
 #include <cctype>
 
 ArchivoAlumnos::ArchivoAlumnos(int tamanioRegistro)
@@ -12,15 +13,6 @@ ArchivoAlumnos::ArchivoAlumnos()
 {
 }
 
-std::string ArchivoAlumnos::sanitizeDni(const std::string& s) {
-    std::string out;
-    for (char c : s) {
-        if (std::isdigit(static_cast<unsigned char>(c)))
-            out += c;
-    }
-    return out;
-}
-
 int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
     int pos = buscarPosPorDni(dni);
     if (pos >= 0) {
@@ -30,13 +22,14 @@ int ArchivoAlumnos::buscarPorDni(const std::string& dni) const {
 }
 
 int ArchivoAlumnos::buscarPosPorDni(const std::string& dni) const {
-    std::string target = sanitizeDni(dni);
+    std::string targetDni = Validaciones::normalizarDNI(dni);
     int total = contarRegistros();
     for (int pos = 0; pos < total; ++pos) {
         Alumno reg = leerRegistro(pos);
         if (!reg.getEstado()) continue;
-        if (sanitizeDni(reg.getDni()) == target) {
-            return pos; // Devuelve la posición 
+        std::string regDni = Validaciones::normalizarDNI(reg.getDni());
+        if (regDni == targetDni) {
+            return pos; // Devuelve la posición
         }
     }
     return -1;

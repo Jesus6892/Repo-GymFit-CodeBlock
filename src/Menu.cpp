@@ -42,10 +42,10 @@ void Menu::procesarOpcion(int opcion) {
             gestionarHorarios();
             break;
         case 0:
-            cout << " Saliendo... ¡Hasta luego!\n";
+            cout << " Saliendo... Hasta luego!\n";
             break;
         default:
-            cout << " Opción no válida.\n";
+            cout << " Opcion no valida.\n";
             system("pause");
     }
     cout << "----------------------------------------\n";
@@ -89,10 +89,10 @@ void Menu::gestionarAlumnos() {
                 gestorAlumnos.listarAlumnos();
                 break;
             case 0:
-                cout << "Volviendo al menú principal...\n";
+                cout << "Volviendo al menu principal...\n";
                 break;
             default:
-                cout << "Opción no válida, intente nuevamente.\n";
+                cout << "Opcion no valida, intente nuevamente.\n";
                 system("pause");
         }
 
@@ -123,8 +123,7 @@ void Menu::gestionarProfes() {
             gestorProfe.bajaProfesor();
             break;
         case 3:
-            //gestorProfe.modificarProfesor();
-            cout << "No implementado\n";
+            gestorProfe.modificarProfesor();
             break;
         case 4:
             gestorProfe.buscarProfesor();

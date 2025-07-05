@@ -69,8 +69,8 @@ void Persona::mostrarPersona() const {
     cout << "Nombre: " << _nombre << endl;
     cout << "Apellido: " << _apellido << endl;
     cout << "DNI: " << _dni << endl;
-    cout << "Correo electrónico: " << _correoElectronico << endl;
-    cout << "Teléfono: " << _telefono << endl;
+    cout << "Correo electronico: " << _correoElectronico << endl;
+    cout << "Telefono: " << _telefono << endl;
     cout << "Domicilio: " << _domicilio << endl;
     cout << "Estado: " << (_estado ? "Activo" : "Inactivo") << endl;
 }

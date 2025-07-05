@@ -10,6 +10,7 @@ public:
     Profe cargarProfesor();
     void altaProfesor();
     void bajaProfesor();
+    void modificarProfesor();
     void listarProfesores();
     void buscarProfesor();
 

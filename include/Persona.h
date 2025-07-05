@@ -9,9 +9,9 @@ class Persona
 private:
     char _nombre[50];
     char _apellido[50];
-    char _dni[8];
+    char _dni[9];
     char _correoElectronico[50];
-    char _telefono[10];
+    char _telefono[11];
     char _domicilio[50];
     bool _estado;
 

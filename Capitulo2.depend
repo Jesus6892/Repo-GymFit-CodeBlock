@@ -632,7 +632,7 @@
 	<string>
 	<iostream>
 
-1751664501 c:\users\facu\documents\github\repo-gymfit-codeblock\include\persona.h
+1751742243 c:\users\facu\documents\github\repo-gymfit-codeblock\include\persona.h
 	<cstring>
 	<string>
 	<iostream>
@@ -654,7 +654,7 @@
 	<stdexcept>
 	"Empleado.h"
 
-1750821259 c:\users\facu\documents\github\repo-gymfit-codeblock\include\profesarchivo.h
+1751742003 c:\users\facu\documents\github\repo-gymfit-codeblock\include\profesarchivo.h
 	"ArchivoBinario.h"
 	"Profe.h"
 	<string>
@@ -682,7 +682,7 @@
 	"Alumno.h"
 	"AlumnosArchivo.h"
 
-1751602421 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarprofe.h
+1751742069 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarprofe.h
 	"Profe.h"
 	"ProfesArchivo.h"
 	"Utilidades.h"
@@ -715,8 +715,9 @@
 	<iostream>
 	<stdexcept>
 
-1750821259 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\alumnosarchivo.cpp
+1751742390 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\alumnosarchivo.cpp
 	"AlumnosArchivo.h"
+	"Validaciones.h"
 	<cctype>
 
 1751667001 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\empleado.cpp
@@ -733,7 +734,7 @@
 	<iomanip>
 	<iostream>
 
-1751666654 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionaralumno.cpp
+1751742828 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionaralumno.cpp
 	"GestionarAlumno.h"
 	"AlumnosArchivo.h"
 	<iostream>
@@ -750,7 +751,7 @@
 	<iostream>
 	<cctype>
 
-1751667135 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarprofe.cpp
+1751742794 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarprofe.cpp
 	"GestionarProfe.h"
 	<iostream>
 	<iomanip>
@@ -767,18 +768,19 @@
 1750821259 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\horarioarchivo.cpp
 	"HorarioArchivo.h"
 
-1751667641 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1751742132 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 
-1751664440 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\persona.cpp
+1751742874 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\persona.cpp
 	"Persona.h"
 
 1751667093 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\profe.cpp
 	"Profe.h"
 
-1750821259 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\profesarchivo.cpp
+1751742357 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\profesarchivo.cpp
 	"ProfesArchivo.h"
+	"Validaciones.h"
 
 1751600491 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\actividad.cpp
 	<cstring>
@@ -865,7 +867,7 @@
 	"GestionarPago.h"
 	"GestionarHorario.h"
 
-1751600491 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
+1751742865 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 
 1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\main.cpp

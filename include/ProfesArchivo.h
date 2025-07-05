@@ -5,13 +5,14 @@
 
 class ProfesArchivo : public ArchivoBinario<Profe> {
 public:
-    // Constructor con tamaño de registro
+    // Constructor con tamaï¿½o de registro
     ProfesArchivo(int tamRegistro);
     // Constructor por defecto usando sizeof(Profe)
     ProfesArchivo();
 
-    // Búsqueda de ID por DNI
+    // Bï¿½squeda de ID por DNI
     int buscarIdPorDni(const std::string& dni) const;
+    int buscarPosPorDni(const std::string& dni) const;
 
     ~ProfesArchivo() override = default;
 };
