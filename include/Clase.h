@@ -4,7 +4,6 @@
 class Clase {
 private:
     int _id;
-    int _idHorario;
     int _idActividad;
     int _idProfe;
     bool _estado;
@@ -12,7 +11,6 @@ private:
 public:
     Clase();
     Clase(const int id,
-          const int idHorario,
           const int idActividad,
           const int idProfe,
           const bool estado);
@@ -22,15 +20,16 @@ public:
 
     // Getters
     int getId() const;
-    int getIdHorario() const;
     int getIdActividad() const;
     int getIdProfe() const;
 
     // Setters
     void setId(int id);
-    void setIdHorario(int idHorario);
     void setIdActividad(int idActividad);
     void setIdProfe(int idProfe);
+
+    // Interfaz para compatibilidad
+    void mostrar() const;
 };
 
 #endif // CLASE_H

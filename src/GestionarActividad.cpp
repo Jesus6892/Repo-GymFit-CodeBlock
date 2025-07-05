@@ -14,39 +14,13 @@ GestionarActividad::GestionarActividad()
 
 Actividad GestionarActividad::cargarActividad()
 {
-    int idProfe = 0, cantMax;
-    string nombreActividad, descripcion, dniProfe;
+    int cantMax;
+    string nombreActividad, descripcion;
     float costo;
-    char asignar;
 
     cout << "Ingrese el nombre de la actividad: ";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, nombreActividad);
-
-    cout << "Desea asignar un profesor a esta actividad? (S/N): ";
-    cin >> asignar;
-
-    if (toupper(asignar) == 'S') {
-        ProfesArchivo archivoProfes(sizeof(Profe));
-        // Bucle de validacion del DNI del profesor
-        do {
-            cout << "Ingrese el DNI del profesor (8 digitos) o 0 para cancelar: ";
-            cin >> dniProfe;
-            if (dniProfe == "0") {
-                return Actividad();  // cancelacion completa
-            }
-            idProfe = archivoProfes.buscarIdPorDni(dniProfe);
-            if (idProfe <= 0) {
-                cout << "ERROR: No se encontro un profesor activo con DNI "
-                     << dniProfe << ". Intente de nuevo.\n";
-            }
-        } while (idProfe <= 0);
-
-        cout << ">> Profesor valido encontrado (ID: " << idProfe << ").\n";
-    }
-    else {
-        cout << ">> No se asignara profesor a esta actividad.\n";
-    }
 
     cout << "Ingrese la cantidad maxima de inscriptos: ";
     cin >> cantMax;
@@ -59,7 +33,6 @@ Actividad GestionarActividad::cargarActividad()
     getline(cin, descripcion);
 
     int idActividad = obtenerIdNuevo();
-    // idProfe = 0 significa "sin asignar"
     Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
 }
@@ -126,7 +99,7 @@ void GestionarActividad::altaActividad()
             if (toupper(continuar) == 'S')
             {
                 GestionarHorario gestorHorario;
-                gestorHorario.altaHorarioParaActividad(nuevaActividad.getId());
+                gestorHorario.altaHorarioParaClase(nuevaActividad.getId());
             }
         } while (toupper(continuar) == 'S');
 

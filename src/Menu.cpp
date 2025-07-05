@@ -12,7 +12,8 @@ void Menu::mostrarMenu() {
     cout << "  3) Gestionar Alumnos                 \n";
     cout << "  4) Gestionar Profesores              \n";
     cout << "  5) Gestionar Actividades             \n";
-    cout << "  6) Gestionar Horarios                \n";
+    cout << "  6) Gestionar Clases                  \n";
+    cout << "  7) Gestionar Horarios                \n";
     cout << "----------------------------------------\n";
     cout << "  0) Salir                             \n";
     cout << "========================================\n";
@@ -39,6 +40,9 @@ void Menu::procesarOpcion(int opcion) {
             gestionarActividades(); // o submenú
             break;
         case 6:
+            gestionarClases();
+            break;
+        case 7:
             gestionarHorarios();
             break;
         case 0:
@@ -179,6 +183,39 @@ void Menu::gestionarActividades() {
     } while (opcion != 0);
 }
 
+void Menu::gestionarClases() {
+    int opcion;
+    do {
+        cout << "\n===== GESTION DE CLASES =====\n";
+        cout << "1. Alta de Clase\n";
+        cout << "2. Baja de Clase\n";
+        cout << "3. Listar Clases\n";
+        cout << "0. Volver al Menu Principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            gestorClase.altaClase();
+            break;
+        case 2:
+            gestorClase.bajaClase();
+            break;
+        case 3:
+            gestorClase.listarClases();
+            break;
+        case 0:
+            cout << "Volviendo al menu principal...\n";
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente.\n";
+        }
+         if (opcion != 0) {
+            system("pause");
+        }
+    } while (opcion != 0);
+}
+
 void Menu::gestionarPago() {
     int opcion;
     do {
@@ -232,7 +269,18 @@ void Menu::gestionarHorarios() {
 
         switch (opcion) {
         case 1:
-            gestorHorarios.cargarHorario();
+            {
+                cout << "\n--- Alta de Horario en Clase Existente ---" << endl;
+                gestorClase.listarClases();
+                int idClase;
+                cout << "\nIngrese el ID de la clase para agregar el horario (0 para cancelar): ";
+                cin >> idClase;
+                if (idClase > 0) {
+                    gestorHorarios.altaHorarioParaClase(idClase);
+                } else {
+                    cout << "Operacion cancelada.\n";
+                }
+            }
             break;
         case 2:
             gestorHorarios.bajaHorario();

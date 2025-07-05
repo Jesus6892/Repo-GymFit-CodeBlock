@@ -8,7 +8,7 @@ GestionarHorario::GestionarHorario()
 {}
 
 
-HorarioPorClase GestionarHorario::cargarHorario(int idActividad)
+HorarioPorClase GestionarHorario::cargarHorario(int idClase)
 {
     std::string diaSemana;
     std::cout << "Ingrese dia de la semana (lunes, martes...): ";
@@ -25,7 +25,7 @@ HorarioPorClase GestionarHorario::cargarHorario(int idActividad)
 
     return HorarioPorClase(
         idHorario,
-        idActividad,
+        idClase,
         diaSemana,
         horaInicio,
         horaFin
@@ -33,9 +33,9 @@ HorarioPorClase GestionarHorario::cargarHorario(int idActividad)
 }
 
 // 2) Alta de horario
-void GestionarHorario::altaHorarioParaActividad(int idActividad)
+void GestionarHorario::altaHorarioParaClase(int idClase)
 {
-    HorarioPorClase nuevo = cargarHorario(idActividad);
+    HorarioPorClase nuevo = cargarHorario(idClase);
     if (archivoHorarioPorClase.guardar(nuevo))
         std::cout << ">> Horario guardado correctamente.\n";
     else

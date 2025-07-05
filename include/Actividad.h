@@ -7,7 +7,7 @@ class Actividad
 {
     private:
         static const std::string defaultValue;
-        int _idActividad;
+        int _id;
         char _nombreActividad[150];
         char _descripcion[150];
         int _cantMax;
@@ -15,7 +15,7 @@ class Actividad
         bool _estado;
     public:
         Actividad();
-        Actividad(int idActividad, std::string nombreActividad, int cantMax,float costo,std::string descripcion);
+        Actividad(int id, std::string nombreActividad, int cantMax,float costo,std::string descripcion);
 
 	// getters
 	int getId() const;
@@ -25,7 +25,7 @@ class Actividad
 	std::string getDescripcion() const;
 	bool getEstado() const;
 
-	void setId(int idActividad);
+	void setId(int id);
 	void setCantMax(int cantMax);
     void setCosto(float costo);
 	void setEstado(bool estado);

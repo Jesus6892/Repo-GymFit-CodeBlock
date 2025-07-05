@@ -6,7 +6,7 @@ HorarioPorClaseArchivo::HorarioPorClaseArchivo(int tamanioRegistro)
   : ArchivoBinario("HorarioPorClase.dat", tamanioRegistro) {}
 
 HorarioPorClaseArchivo::HorarioPorClaseArchivo()
-  : HorarioPorClaseArchivo(sizeof(Horario)) {}
+  : HorarioPorClaseArchivo(sizeof(HorarioPorClase)) {}
 
 bool HorarioPorClaseArchivo::listarRegistro() const {
     int total = contarRegistros();

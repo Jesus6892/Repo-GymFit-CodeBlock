@@ -12,8 +12,8 @@ public:
     void bajaHorario();
     void listarHorarios();
     void buscarHorario();
-    HorarioPorClase cargarHorario(int idActividad = -1);
-    void altaHorarioParaActividad(int idActividad);
+    HorarioPorClase cargarHorario(int idClase);
+    void altaHorarioParaClase(int idClase);
 
 private:
     HorarioPorClaseArchivo archivoHorarioPorClase;

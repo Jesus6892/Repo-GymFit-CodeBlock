@@ -2,6 +2,7 @@
 #include "GestionarAlumno.h"
 #include "GestionarProfe.h"
 #include "GestionarActividad.h"
+#include "GestionarClase.h"
 #include "GestionarHorario.h"
 #include "GestionarPago.h"
 #include "GestionarProceso.h"
@@ -16,6 +17,7 @@ public:
     void gestionarAlumnos();
     void gestionarProfes();
     void gestionarActividades();
+    void gestionarClases();
     void gestionarPago();
     void gestionarHorarios();
 
@@ -26,6 +28,7 @@ private:
     GestionarAlumno gestorAlumnos;
     GestionarProfesor gestorProfe;
     GestionarActividad gestorActividades;
+    GestionarClase gestorClase;
     GestionarPago gestorPagos;
     GestionarHorario gestorHorarios;
 };
