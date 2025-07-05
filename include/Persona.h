@@ -12,7 +12,6 @@ private:
     char _dni[9];
     char _correoElectronico[50];
     char _telefono[11];
-    char _domicilio[50];
     bool _estado;
 
 public:
@@ -22,7 +21,6 @@ public:
         const string& apellido,
         const string& dni,
         const string& correoElectronico,
-        const string& domicilio,
         const string& telefono);
 
     // Getters
@@ -31,7 +29,6 @@ public:
     std::string getDni() const;
     std::string getCorreoElectronico() const;
     std::string getTelefono() const;
-    std::string getDomicilio() const;
     bool getEstado() const;
 
     // Setters
@@ -40,7 +37,6 @@ public:
     void setDni(const string dni);
     void setCorreoElectronico(const string correo);
     void setTelefono(const string telefono);
-    void setDomicilio(const string domicilio);
     void setEstado(bool estado);
 
     // Interfaz

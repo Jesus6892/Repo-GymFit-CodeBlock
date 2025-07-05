@@ -6,7 +6,6 @@ Persona::Persona() {
     strcpy(_dni, "00000000");
     strcpy(_correoElectronico, "SIN EMAIL");
     strcpy(_telefono, "0000000000");
-    strcpy(_domicilio, "SIN DOMICILIO");
     _estado = true;
 }
 
@@ -14,7 +13,6 @@ Persona::Persona(const string& nombre,
                  const string& apellido,
                  const string& dni,
                  const string& correo,
-                 const string& domicilio,
                  const string& telefono)
 {
     strcpy(_nombre, nombre.c_str());
@@ -22,7 +20,6 @@ Persona::Persona(const string& nombre,
     strcpy(_dni, dni.c_str());
     strcpy(_correoElectronico, correo.c_str());
     strcpy(_telefono, telefono.c_str());
-    strcpy(_domicilio, domicilio.c_str());
     _estado = true;
 }
 
@@ -32,7 +29,6 @@ std::string Persona::getApellido() const { return _apellido; }
 std::string Persona::getDni() const { return _dni; }
 std::string Persona::getCorreoElectronico() const { return _correoElectronico; }
 std::string Persona::getTelefono() const { return _telefono; }
-std::string Persona::getDomicilio() const { return _domicilio; }
 bool Persona::getEstado() const { return _estado; }
 
 // Setters
@@ -56,10 +52,6 @@ void Persona::setTelefono(const string telefono) {
     strcpy(_telefono, telefono.c_str());
 }
 
-void Persona::setDomicilio(const string domicilio) {
-    strcpy(_domicilio, domicilio.c_str());
-}
-
 void Persona::setEstado(bool estado) {
     _estado = estado;
 }
@@ -71,7 +63,6 @@ void Persona::mostrarPersona() const {
     cout << "DNI: " << _dni << endl;
     cout << "Correo electronico: " << _correoElectronico << endl;
     cout << "Telefono: " << _telefono << endl;
-    cout << "Domicilio: " << _domicilio << endl;
     cout << "Estado: " << (_estado ? "Activo" : "Inactivo") << endl;
 }
 

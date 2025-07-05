@@ -12,7 +12,6 @@ Empleado::Empleado(const string& nombre,
                    const string& apellido,
                    const string& dni,
                    const string& correoElectronico,
-                   const string& direccion,
                    const string& telefono,
                    const string& CUIT,
                    int diaAlta, int mesAlta, int anioAlta)
@@ -20,7 +19,6 @@ Empleado::Empleado(const string& nombre,
               apellido,
               dni,
               correoElectronico,
-              direccion,
               telefono)
 {
     _fechaAlta = Fecha(diaAlta, mesAlta, anioAlta);

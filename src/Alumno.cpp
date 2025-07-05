@@ -13,11 +13,10 @@ Alumno::Alumno(const string& nombre,
                const string& apellido,
                const string& dni,
                const string& correoElectronico,
-               const string& direccion,
                const string& telefono,
                int id)
     : Persona(nombre, apellido, dni,
-              correoElectronico, direccion, telefono),
+              correoElectronico, telefono),
       _id(id)
 {
     if (id <= 0)

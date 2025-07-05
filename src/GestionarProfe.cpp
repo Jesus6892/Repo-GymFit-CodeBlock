@@ -44,7 +44,7 @@ Profe GestionarProfesor::cargarProfesor()
 {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    string nombre, apellido, correoElectronico, observaciones, direccion;
+    string nombre, apellido, correoElectronico, observaciones;
     string telefono, CUIT;
     int idProfe;
 
@@ -83,9 +83,6 @@ Profe GestionarProfesor::cargarProfesor()
     cout << "Ingrese cualquier observacion sobre el profesor: ";
     getline(cin, observaciones);
 
-    cout << "Ingrese la direccion del profesor: ";
-    getline(cin, direccion);
-
     do {
         cout << "Ingrese el telefono del profesor: ";
         getline(cin, telefono);
@@ -106,7 +103,7 @@ Profe GestionarProfesor::cargarProfesor()
 
     return Profe(
         nombre, apellido, dni,
-        correoElectronico, direccion, telefono,
+        correoElectronico, telefono,
         CUIT,
         diaAlta, mesAlta, anioAlta,
         observaciones,
@@ -232,9 +229,8 @@ void GestionarProfesor::modificarProfesor()
     cout << "1. Nombre" << endl;
     cout << "2. Apellido" << endl;
     cout << "3. Correo Electronico" << endl;
-    cout << "4. Direccion" << endl;
-    cout << "5. Telefono" << endl;
-    cout << "6. CUIT" << endl;
+    cout << "4. Telefono" << endl;
+    cout << "5. CUIT" << endl;
     cout << "0. Cancelar" << endl;
     cout << "Seleccione una opcion: ";
     cin >> opcion;
@@ -262,11 +258,6 @@ void GestionarProfesor::modificarProfesor()
         profe.setCorreoElectronico(nuevoValor);
         break;
     case 4:
-        cout << "Ingrese la nueva direccion: ";
-        getline(cin, nuevoValor);
-        profe.setDomicilio(nuevoValor);
-        break;
-    case 5:
         cout << "Ingrese el nuevo telefono: ";
         getline(cin, nuevoValor);
          while (!Validaciones::esTelefonoValido(nuevoValor)) {
@@ -275,7 +266,7 @@ void GestionarProfesor::modificarProfesor()
         }
         profe.setTelefono(nuevoValor);
         break;
-    case 6:
+    case 5:
         cout << "Ingrese el nuevo CUIT: ";
         getline(cin, nuevoValor);
         profe.setCUIT(nuevoValor);

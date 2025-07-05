@@ -14,7 +14,7 @@ GestionarAlumno::GestionarAlumno() : archivoAlumnos(sizeof(Alumno)) {}
 
 Alumno GestionarAlumno::cargarAlumno()
 {
-    std::string nombre, apellido, dni, correoElectronico, direccion, telefono;
+    std::string nombre, apellido, dni, correoElectronico, telefono;
     bool estado = true;
 
     // Nombre
@@ -55,10 +55,6 @@ Alumno GestionarAlumno::cargarAlumno()
 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    // Direccion
-    std::cout << "Ingrese direccion: ";
-    std::getline(std::cin, direccion);
-
     // Telefono
     do
     {
@@ -77,7 +73,6 @@ Alumno GestionarAlumno::cargarAlumno()
         apellido,
         dni,
         correoElectronico,
-        direccion,
         telefono,
         idAlumno
     );
@@ -201,8 +196,7 @@ void GestionarAlumno::modificarAlumno()
     std::cout << "1. Nombre" << std::endl;
     std::cout << "2. Apellido" << std::endl;
     std::cout << "3. Correo Electronico" << std::endl;
-    std::cout << "4. Direccion" << std::endl;
-    std::cout << "5. Telefono" << std::endl;
+    std::cout << "4. Telefono" << std::endl;
     std::cout << "0. Cancelar" << std::endl;
     std::cout << "Seleccione una opción: ";
     std::cin >> opcion;
@@ -230,11 +224,6 @@ void GestionarAlumno::modificarAlumno()
         alumno.setCorreoElectronico(nuevoValor);
         break;
     case 4:
-        std::cout << "Ingrese la nueva direccion: ";
-        std::getline(std::cin, nuevoValor);
-        alumno.setDomicilio(nuevoValor);
-        break;
-    case 5:
         std::cout << "Ingrese el nuevo telefono: ";
         std::getline(std::cin, nuevoValor);
          while (!Validaciones::esTelefonoValido(nuevoValor)) {

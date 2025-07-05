@@ -14,7 +14,6 @@ public:
            const string& apellido,
            const string& dni,
            const string& correoElectronico,
-           const string& direccion,
            const string& telefono,
            int id);
 
