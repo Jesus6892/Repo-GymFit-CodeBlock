@@ -11,9 +11,9 @@ class GestionarClase {
 public:
     GestionarClase();
     void altaClase();
-    void bajaClase();
+    void bajaClase(int idClase);
     void listarClases();
-    // A futuro podríamos añadir modificarClase()
+    //Aañadir modificarClase()
 
 private:
     Clase cargarClase();

@@ -8,7 +8,6 @@ class GestionarHorario
 {
 public:
     GestionarHorario();
-    //Horario cargarHorario();
     void bajaHorario();
     void listarHorarios();
     void buscarHorario();

@@ -1,7 +1,6 @@
 #include "Clase.h"
 #include <iostream>
 
-// Constructor por defecto
 Clase::Clase() {
     _id = 0;
     _idActividad = 0;
@@ -9,7 +8,6 @@ Clase::Clase() {
     _estado = true;
 }
 
-// Constructor con parmetros
 Clase::Clase(const int id,
              const int idActividad,
              const int idProfe,
@@ -20,7 +18,6 @@ Clase::Clase(const int id,
     _estado = estado;
 }
 
-// Setters
 void Clase::setEstado(const bool estado) {
     _estado = estado;
 }
@@ -37,7 +34,6 @@ void Clase::setIdProfe(int idProfe) {
     _idProfe = idProfe;
 }
 
-// Getters
 bool Clase::getEstado() const {
     return _estado;
 }

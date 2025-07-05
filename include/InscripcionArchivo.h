@@ -8,6 +8,9 @@ class InscripcionArchivo : public ArchivoBinario<Inscripcion> {
 public:
     InscripcionArchivo();
     InscripcionArchivo(int tamanioRegistro);
+
+    bool yaEstaInscripto(int idAlumno, int idClase) const;
+
     ~InscripcionArchivo() override = default;
 };
 

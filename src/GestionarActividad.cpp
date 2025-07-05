@@ -6,7 +6,6 @@
 #include <iostream>
 using namespace std;
 
-// Inicializa el archivo con el tamano de Actividad
 GestionarActividad::GestionarActividad()
     : archivoActividades(sizeof(Actividad))
 {

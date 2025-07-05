@@ -18,12 +18,10 @@ public:
     void setEstado(const bool estado);
     bool getEstado() const;
 
-    // Getters
     int getId() const;
     int getIdActividad() const;
     int getIdProfe() const;
 
-    // Setters
     void setId(int id);
     void setIdActividad(int idActividad);
     void setIdProfe(int idProfe);

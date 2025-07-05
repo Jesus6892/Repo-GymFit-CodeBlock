@@ -18,7 +18,6 @@ void GestionarClase::altaClase() {
     cout << "\n--- Alta de Nueva Clase ---" << endl;
     Clase nuevaClase = cargarClase();
 
-    // Si cargarClase devolvió un objeto por defecto (ID 0), el usuario canceló.
     if (nuevaClase.getId() == 0) {
         cout << "Operacion cancelada por el usuario." << endl;
         return;
@@ -44,9 +43,21 @@ void GestionarClase::altaClase() {
     }
 }
 
-void GestionarClase::bajaClase() {
-    cout << "Funcion para dar de baja una clase existente." << endl;
-    // Lógica para buscar clase por ID y cambiar su estado a inactivo.
+void GestionarClase::bajaClase(int idClase) {
+    int pos = _archivoClases.buscar(idClase);
+
+    if (pos >= 0) {
+        Clase clase = _archivoClases.leerRegistro(pos);
+        clase.setEstado(false);
+
+        if (_archivoClases.modificarRegistro(clase, pos)) {
+            cout << "Clase con ID " << idClase << " dada de baja exitosamente.\n";
+        } else {
+            cout << "Error: No se pudo modificar el registro en el archivo.\n";
+        }
+    } else {
+        cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
+    }
 }
 
 void GestionarClase::listarClases() {
@@ -69,14 +80,12 @@ void GestionarClase::listarClases() {
 
         huboActivas = true;
 
-        // Obtener nombre de la actividad
         int posActividad = _archivoActividades.buscar(clase.getIdActividad());
         string nombreActividad = "Desconocida";
         if (posActividad >= 0) {
             nombreActividad = _archivoActividades.leerRegistro(posActividad).getNombreActividad();
         }
 
-        // Obtener nombre del profesor
         int posProfe = _archivoProfes.buscar(clase.getIdProfe());
         string nombreProfe = "Desconocido";
         if (posProfe >= 0) {
@@ -90,7 +99,6 @@ void GestionarClase::listarClases() {
         cout << "  - Profesor:  " << nombreProfe << endl;
         cout << "  - Horarios:" << endl;
 
-        // Listar horarios para esta clase
         int totalHorarios = archivoHorarios.contarRegistros();
         bool huboHorarios = false;
         for (int j = 0; j < totalHorarios; ++j) {
@@ -116,30 +124,28 @@ void GestionarClase::listarClases() {
 }
 
 Clase GestionarClase::cargarClase() {
-    // 1. Seleccionar Actividad
     cout << "\n--- Seleccion de Actividad ---" << endl;
-    GestionarActividad gestorActividades; // Usamos el gestor para listar
+    GestionarActividad gestorActividades;
     gestorActividades.listarActividades();
 
     int idActividad = -1;
     while (true) {
         cout << "Ingrese el ID de la actividad para la clase (0 para cancelar): ";
         cin >> idActividad;
-        if (idActividad == 0) return Clase(); // Devuelve clase vacía para cancelar
+        if (idActividad == 0) return Clase();
 
         int pos = _archivoActividades.buscar(idActividad);
         if (pos >= 0) {
             Actividad act = _archivoActividades.leerRegistro(pos);
             if (act.getEstado()) {
-                break; // Actividad válida y activa
+                break;
             }
         }
         cout << "ID de actividad no valido o inactivo. Intente de nuevo." << endl;
     }
 
-    // 2. Seleccionar Profesor
     cout << "\n--- Seleccion de Profesor ---" << endl;
-    GestionarProfesor gestorProfes; // Usamos el gestor para listar
+    GestionarProfesor gestorProfes;
     gestorProfes.listarProfesores();
 
     int idProfe = -1;
@@ -147,20 +153,19 @@ Clase GestionarClase::cargarClase() {
     while (true) {
         cout << "Ingrese el DNI del profesor para la clase (0 para cancelar): ";
         cin >> dniProfe;
-        if (dniProfe == "0") return Clase(); // Devuelve clase vacía para cancelar
+        if (dniProfe == "0") return Clase();
 
         int pos = _archivoProfes.buscarPosPorDni(dniProfe);
         if (pos >= 0) {
             Profe profe = _archivoProfes.leerRegistro(pos);
             if (profe.getEstado()) {
                 idProfe = profe.getId();
-                break; // Profesor válido y activo
+                break;
             }
         }
         cout << "DNI de profesor no valido o inactivo. Intente de nuevo." << endl;
     }
 
-    // 3. Crear y devolver la clase con los IDs seleccionados
     int nuevoIdClase = obtenerIdNuevo();
     return Clase(nuevoIdClase, idActividad, idProfe, true);
 }

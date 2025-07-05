@@ -670,7 +670,7 @@
 	"ArchivoBinario.h"
 	"Horario.h"
 
-1751744048 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
+1751746866 c:\users\facu\documents\github\repo-gymfit-codeblock\include\menu.h
 	"GestionarAlumno.h"
 	"GestionarProfe.h"
 	"GestionarActividad.h"
@@ -697,7 +697,7 @@
 	"ActividadesArchivo.h"
 	"Utilidades.h"
 
-1751744786 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarhorario.h
+1751745623 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarhorario.h
 	"Horario.h"
 	"HorarioPorClase.h"
 	"HorarioPorClaseArchivo.h"
@@ -727,7 +727,7 @@
 1751600846 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\fecha.cpp
 	"Fecha.h"
 
-1751744820 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionaractividad.cpp
+1751745717 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
@@ -769,9 +769,10 @@
 1750821259 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\horarioarchivo.cpp
 	"HorarioArchivo.h"
 
-1751745062 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1751746898 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
+	<limits>
 
 1751743227 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\persona.cpp
 	"Persona.h"
@@ -859,17 +860,24 @@
 1750184548 source:c:\users\pc\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 
-1751600491 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarproceso.h
+1751746272 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarproceso.h
 	<iostream>
 	<limits>
 	<string>
 	"AlumnosArchivo.h"
-	"GestionarAlumno.h"
-	"GestionarPago.h"
-	"GestionarHorario.h"
+	"ClaseArchivo.h"
+	"InscripcionArchivo.h"
+	"GestionarClase.h"
+	"Utilidades.h"
 
-1751742865 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
+1751746663 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
+	"Inscripcion.h"
+	"Fecha.h"
+	<iostream>
+	<limits>
+	<string>
+	"Validaciones.h"
 
 1750185297 source:c:\users\el jom\desktop\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\main.cpp
 	<iostream>
@@ -1379,11 +1387,11 @@
 	"ArchivoBinario.h"
 	"HorarioPorClase.h"
 
-1751744615 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\clase.cpp
+1751745647 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\clase.cpp
 	"Clase.h"
 	<iostream>
 
-1751744488 c:\users\facu\documents\github\repo-gymfit-codeblock\include\clase.h
+1751745656 c:\users\facu\documents\github\repo-gymfit-codeblock\include\clase.h
 
 1751665590 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\horarioporclase.cpp
 	"HorarioPorClase.h"
@@ -1399,14 +1407,14 @@
 1751665933 c:\users\facu\documents\github\repo-gymfit-codeblock\include\inscripcion.h
 	"Fecha.h"
 
-1751665979 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\inscripcionarchivo.cpp
+1751746204 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\inscripcionarchivo.cpp
 	"InscripcionArchivo.h"
 
-1751665964 c:\users\facu\documents\github\repo-gymfit-codeblock\include\inscripcionarchivo.h
+1751746190 c:\users\facu\documents\github\repo-gymfit-codeblock\include\inscripcionarchivo.h
 	"ArchivoBinario.h"
 	"Inscripcion.h"
 
-1751743979 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarclase.h
+1751746719 c:\users\facu\documents\github\repo-gymfit-codeblock\include\gestionarclase.h
 	"Clase.h"
 	"ClaseArchivo.h"
 	"ActividadesArchivo.h"
@@ -1419,4 +1427,13 @@
 
 1751743968 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\clasearchivo.cpp
 	"ClaseArchivo.h"
+
+1751746755 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarclase.cpp
+	"GestionarClase.h"
+	"GestionarActividad.h"
+	"GestionarProfe.h"
+	"GestionarHorario.h"
+	"HorarioPorClaseArchivo.h"
+	<iostream>
+	<iomanip>
 
