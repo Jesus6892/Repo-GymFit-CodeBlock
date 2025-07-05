@@ -769,7 +769,7 @@
 1750821259 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\horarioarchivo.cpp
 	"HorarioArchivo.h"
 
-1751746898 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
+1751747056 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 	<limits>
@@ -870,7 +870,7 @@
 	"GestionarClase.h"
 	"Utilidades.h"
 
-1751746663 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
+1751747160 source:c:\users\facu\documents\github\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 	"Inscripcion.h"
 	"Fecha.h"
