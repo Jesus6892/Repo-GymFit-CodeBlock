@@ -27,15 +27,27 @@ void GestionarClase::altaClase() {
         cout << "\n>> Clase creada exitosamente (ID: " << nuevaClase.getId() << ")." << endl;
 
         char continuar;
-        do {
-            cout << "\nDesea agregar un horario para esta clase? (S/N): ";
-            cin >> continuar;
 
-            if (toupper(continuar) == 'S') {
-                GestionarHorario gestorHorario;
-                gestorHorario.altaHorarioParaClase(nuevaClase.getId());
-            }
-        } while (toupper(continuar) == 'S');
+        cout << "\nDesea agregar un horario para esta clase? (S/N): ";
+        cin >> continuar;
+
+        if (toupper(continuar) == 'S') {
+            GestionarHorario gestorHorario;
+            gestorHorario.altaHorarioParaClase(nuevaClase.getId());
+
+            do {
+                cout << "\n+----------------------------------------------+\n"
+                     << "| Horario agregado exitosamente a la clase.    |\n"
+                     << "+----------------------------------------------+\n\n";
+                cout << "¿Desea agregar otro horario para esta clase? (S/N): ";
+                cin >> continuar;
+
+                if (toupper(continuar) == 'S') {
+                    gestorHorario.altaHorarioParaClase(nuevaClase.getId());
+                }
+
+            } while (toupper(continuar) == 'S');
+        }
 
         cout << "\nProceso de alta de clase finalizado." << endl;
     } else {
@@ -180,4 +192,4 @@ void GestionarClase::mostrarEncabezadoListado() const {
          << setw(20) << "Profesor"
          << endl;
     cout << "------------------------------------------------------------" << endl;
-} 
+}

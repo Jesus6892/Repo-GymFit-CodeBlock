@@ -90,17 +90,29 @@ void GestionarActividad::altaActividad()
 
         char continuar;
 
-        do
-        {
-            cout << "\nDesea agregar un horario para esta actividad? (S/N): ";
-            cin >> continuar;
+        cout << "\nDesea agregar un horario para esta actividad? (S/N): ";
+        cin >> continuar;
 
-            if (toupper(continuar) == 'S')
+        if (toupper(continuar) == 'S')
+        {
+            GestionarHorario gestorHorario;
+            gestorHorario.altaHorarioParaClase(nuevaActividad.getId());
+
+            do
             {
-                GestionarHorario gestorHorario;
-                gestorHorario.altaHorarioParaClase(nuevaActividad.getId());
-            }
-        } while (toupper(continuar) == 'S');
+                cout << "\n+------------------------------------------------------+\n"
+                     << "| Horario agregado exitosamente a la actividad.       |\n"
+                     << "+------------------------------------------------------+\n\n";
+                cout << "¿Desea agregar otro horario para esta actividad? (S/N): ";
+                cin >> continuar;
+
+                if (toupper(continuar) == 'S')
+                {
+                    gestorHorario.altaHorarioParaClase(nuevaActividad.getId());
+                }
+
+            } while (toupper(continuar) == 'S');
+        }
 
         cout << "\nProceso de alta finalizado.\n";
     }

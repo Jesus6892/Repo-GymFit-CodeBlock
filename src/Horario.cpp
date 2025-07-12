@@ -12,6 +12,7 @@ Horario::Horario(std::string& diaSemana, int horaInicio, int horaFin) {
 	_horaFin = horaFin;
 }
 
+// getters
 std::string Horario::getDiaSemana() const {
 	std::string dia = convertirDiaAString(_diaSemana);
 	return dia;
