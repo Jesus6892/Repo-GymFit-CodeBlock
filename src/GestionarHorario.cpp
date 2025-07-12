@@ -49,8 +49,13 @@ void GestionarHorario::altaHorarioParaClase(int idClase)
 void GestionarHorario::bajaHorario()
 {
     int id;
-    std::cout << "Ingrese el ID del horario a dar de baja: ";
+    std::cout << "Ingrese el ID del horario a dar de baja (0 para cancelar): ";
     std::cin >> id;
+
+    if (id == 0) {
+        std::cout << "Operacion cancelada por el usuario.\n";
+        return;
+    }
 
     int pos = archivoHorarioPorClase.buscar(id);
     if (pos >= 0) {

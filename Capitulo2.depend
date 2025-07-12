@@ -1634,11 +1634,12 @@
 1752343901 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\fecha.cpp
 	"Fecha.h"
 
-1752352396 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
+1752359430 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
 	"Profe.h"
+	"Validaciones.h"
 	<iomanip>
 	<iostream>
 
