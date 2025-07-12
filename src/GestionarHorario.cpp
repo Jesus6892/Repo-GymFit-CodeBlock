@@ -1,103 +1,92 @@
+// GestionarHorario.cpp
 #include "GestionarHorario.h"
-#include "Horario.h"
 #include <iostream>
-using namespace std;
+#include <cctype>
 
 GestionarHorario::GestionarHorario()
-    : archivoHorarios(sizeof(Horario))
+    : archivoHorarioPorClase(sizeof(HorarioPorClase))
 {}
 
-Horario GestionarHorario::cargarHorario(int idActividad) {
-    int  horaInicio, horaFin;
-    string diaSemana;
 
-    cout << "Ingrese el dia de la semana (lunes, martes, ...): ";
-    cin >> diaSemana;
+HorarioPorClase GestionarHorario::cargarHorario(int idClase)
+{
+    std::string diaSemana;
+    std::cout << "Ingrese dia de la semana (lunes, martes...): ";
+    std::cin >> diaSemana;
 
-    cout << "Ingrese la hora de inicio (en formato 24 horas, sin minutos): ";
-    cin >> horaInicio;
-
-    cout << "Ingrese la hora de fin (en formato 24 horas, sin minutos): ";
-    cin >> horaFin;
+    int horaInicio, horaFin;
+    std::cout << "Ingrese hora inicio (24h, sin minutos): ";
+    std::cin >> horaInicio;
+    std::cout << "Ingrese hora fin   (24h, sin minutos): ";
+    std::cin >> horaFin;
 
     int idHorario = obtenerIdNuevo();
 
-    return Horario(idHorario, idActividad, diaSemana, horaInicio, horaFin, true);
+
+    return HorarioPorClase(
+        idHorario,
+        idClase,
+        diaSemana,
+        horaInicio,
+        horaFin
+    );
 }
 
-void GestionarHorario::altaHorarioParaActividad(int idActividad) {
-    Horario nuevoHorario = cargarHorario(idActividad);
-
-    if (archivoHorarios.guardar(nuevoHorario)) {
+// 2) Alta de horario
+void GestionarHorario::altaHorarioParaClase(int idClase)
+{
+    HorarioPorClase nuevo = cargarHorario(idClase);
+    if (archivoHorarioPorClase.guardar(nuevo))
         std::cout << ">> Horario guardado correctamente.\n";
-    } else {
+    else
         std::cout << "ERROR: No se pudo guardar el horario.\n";
-    }
 }
 
-bool HorarioArchivo::tieneHorariosAsignados(int idActividad) const {
-    FILE* p = fopen(_ruta.c_str(), "rb");
-    if (p == nullptr) {
-        return false; 
-    }
-
-    Horario reg;
-    while (fread(&reg, _tamReg, 1, p) == 1) {
-        if (reg.getIdActividad() == idActividad && reg.getEstado()) {
-            fclose(p);
-            return true; 
-        }
-    }
-
-    fclose(p);
-    return false; 
-}
-
-
-void GestionarHorario::bajaHorario() {
+// 3) Baja lógica de horario
+void GestionarHorario::bajaHorario()
+{
     int id;
-    cout << "Ingrese el ID del horario a dar de baja: ";
-    cin >> id;
+    std::cout << "Ingrese el ID del horario a dar de baja: ";
+    std::cin >> id;
 
-    int pos = archivoHorarios.buscar(id);
+    int pos = archivoHorarioPorClase.buscar(id);
     if (pos >= 0) {
-        Horario horario = archivoHorarios.leerRegistro(pos);
-        horario.setEstado(false);
-
-        if (archivoHorarios.modificarRegistro(horario, pos)) {
-            cout << "Horario dado de baja exitosamente.\n";
-        }
-        else {
-            cout << "Error al dar de baja el horario.\n";
-        }
-    }
-    else {
-        cout << "Horario no encontrado.\n";
+        HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
+        h.setEstado(false);
+        if (archivoHorarioPorClase.modificarRegistro(h, pos))
+            std::cout << "Horario dado de baja exitosamente.\n";
+        else
+            std::cout << "Error al dar de baja el horario.\n";
+    } else {
+        std::cout << "Horario no encontrado.\n";
     }
 }
 
-void GestionarHorario::listarHorarios() {
-    if (!archivoHorarios.listarRegistro()) {
-        cout << "No hay horarios registrados o no se pudo leer el archivo.\n";
-    }
+// 4) Listar todos los horarios
+void GestionarHorario::listarHorarios()
+{
+    if (!archivoHorarioPorClase.listarRegistro())
+        std::cout << "No hay horarios registrados o no se pudo leer el archivo.\n";
 }
 
-void GestionarHorario::buscarHorario() {
+// 5) Buscar un horario por ID
+void GestionarHorario::buscarHorario()
+{
     int id;
-    cout << "Ingrese el ID del horario a buscar: ";
-    cin >> id;
+    std::cout << "Ingrese el ID del horario a buscar: ";
+    std::cin >> id;
 
-    int pos = archivoHorarios.buscar(id);
+    int pos = archivoHorarioPorClase.buscar(id);
     if (pos >= 0) {
-        Horario horario = archivoHorarios.leerRegistro(pos);
-        horario.mostrarHorario();
-    }
-    else {
-        cout << "Horario no encontrado.\n";
+        HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
+        h.mostrar();
+    } else {
+        std::cout << "Horario no encontrado.\n";
     }
 }
 
-int GestionarHorario::obtenerIdNuevo() {
-    return Utilidades::obtenerIdNuevo<HorarioArchivo, Horario>(archivoHorarios);
+// 6) Obtener nuevo ID
+int GestionarHorario::obtenerIdNuevo()
+{
+    return Utilidades::obtenerIdNuevo<HorarioPorClaseArchivo, HorarioPorClase>(archivoHorarioPorClase);
 }
-

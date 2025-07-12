@@ -2,10 +2,10 @@
 #include "GestionarHorario.h"
 #include "ProfesArchivo.h"
 #include "Profe.h"
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
-// Inicializa el archivo con el tama�o de Actividad
 GestionarActividad::GestionarActividad()
     : archivoActividades(sizeof(Actividad))
 {
@@ -13,36 +13,13 @@ GestionarActividad::GestionarActividad()
 
 Actividad GestionarActividad::cargarActividad()
 {
-    int idProfe = -1, cantMax;
-    string nombreActividad, descripcion, dniProfe;
+    int cantMax;
+    string nombreActividad, descripcion;
     float costo;
 
     cout << "Ingrese el nombre de la actividad: ";
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, nombreActividad);
-
-    ProfesArchivo archivoProfes(sizeof(Profe));
-
-    // Bucle de validacion del ID del profesor
-    do
-    {
-        cout << "Ingrese el DNI del profesor (8 digitos) o 0 para cancelar: ";
-        cin >> dniProfe;
-
-        if (dniProfe == "0")
-        {
-            return Actividad();
-        }
-
-        idProfe = archivoProfes.buscarIdPorDni(dniProfe);
-        if (idProfe == -1)
-        {
-            cout << "ERROR: No se encontró un profesor activo con el DNI, recuerde crear el profesor con el DNI '"
-                 << dniProfe << "'. Intente de nuevo.\n";
-        }
-    } while (idProfe == -1);
-
-    std::cout << ">> Profesor valido encontrado (ID: " << idProfe << ").\n";
 
     cout << "Ingrese la cantidad maxima de inscriptos: ";
     cin >> cantMax;
@@ -50,21 +27,22 @@ Actividad GestionarActividad::cargarActividad()
     cout << "Ingrese el costo de la actividad: ";
     cin >> costo;
 
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Ingrese la descripcion de la actividad: ";
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin, descripcion);
 
     int idActividad = obtenerIdNuevo();
-    Actividad nuevaActividad(idActividad, nombreActividad, idProfe, cantMax, costo, descripcion, true);
+    Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
 }
+
 
 void GestionarActividad::listarActividadesSinHorarios()
 {
     int totalActividades = archivoActividades.contarRegistros();
     bool seMostroAlguna = false;
 
-    HorarioArchivo archivoHorarios(sizeof(Horario));
+    HorarioPorClaseArchivo archivoHorarios(sizeof(Horario));
 
     for (int i = 0; i < totalActividades; i++)
     {
@@ -78,7 +56,7 @@ void GestionarActividad::listarActividadesSinHorarios()
             {
                 if (!seMostroAlguna)
                 {
-                    std::cout << "\n--- Actividades que necesitan Horarios ---\n";
+                    cout << "\n--- Actividades que necesitan Horarios ---\n";
                     seMostroAlguna = true;
                 }
                 actividad.mostrar();
@@ -88,48 +66,47 @@ void GestionarActividad::listarActividadesSinHorarios()
 
     if (!seMostroAlguna)
     {
-        std::cout << "\n+------------------------------------------+\n";
-        std::cout << "| (i) Todas las actividades ya tienen      |\n";
-        std::cout << "|     al menos un horario asignado.        |\n";
-        std::cout << "+------------------------------------------+\n";
+        cout << "\n+------------------------------------------+\n";
+        cout << "| (i) Todas las actividades ya tienen      |\n";
+        cout << "|     al menos un horario asignado.        |\n";
+        cout << "+------------------------------------------+\n";
     }
 }
 
 void GestionarActividad::altaActividad()
 {
-
-    std::cout << "--- Creando nueva actividad ---\n";
+    cout << "--- Creando nueva actividad ---\n";
     Actividad nuevaActividad = cargarActividad();
 
     if(nuevaActividad.getId() == -1)
     {
-        std::cout << "Operación cancelada por el usuario.\n";
+        cout << "Operacion cancelada por el usuario.\n";
         return;
     }
 
     if (archivoActividades.guardar(nuevaActividad))
     {
-        std::cout << "\n>> Actividad '" << nuevaActividad.getNombreActividad() << "' guardada con exito.\n";
+        cout << "\n>> Actividad '" << nuevaActividad.getNombreActividad() << "' guardada con exito.\n";
 
         char continuar;
 
         do
         {
-            std::cout << "\n¿Desea agregar un horario para esta actividad? (S/N): ";
-            std::cin >> continuar;
+            cout << "\nDesea agregar un horario para esta actividad? (S/N): ";
+            cin >> continuar;
 
             if (toupper(continuar) == 'S')
             {
                 GestionarHorario gestorHorario;
-                gestorHorario.altaHorarioParaActividad(nuevaActividad.getId());
+                gestorHorario.altaHorarioParaClase(nuevaActividad.getId());
             }
         } while (toupper(continuar) == 'S');
 
-        std::cout << "\nProceso de alta finalizado.\n";
+        cout << "\nProceso de alta finalizado.\n";
     }
     else
     {
-        std::cout << "ERROR: No se pudo guardar la actividad principal. Proceso cancelado.\n";
+        cout << "ERROR: No se pudo guardar la actividad principal. Proceso cancelado.\n";
     }
 }
 
@@ -160,11 +137,50 @@ void GestionarActividad::bajaActividad()
     }
 }
 
-void GestionarActividad::listarActividades()
-{
-    if (!archivoActividades.listarRegistro())
-    {
-        cout << "No hay actividades registradas o no se pudo leer el archivo.\n";
+
+void GestionarActividad::listarActividades() {
+    int total = archivoActividades.contarRegistros();
+    if (total == 0) {
+        cout
+            << "\n+-----------------------------------------------+\n"
+            << "|   No hay actividades registradas.             |\n"
+            << "+-----------------------------------------------+\n\n";
+        return;
+    }
+
+    bool huboActivas = false;
+    for (int i = 0; i < total; ++i) {
+        Actividad a = archivoActividades.leerRegistro(i);
+        if (!a.getEstado()) continue;
+
+        if (!huboActivas) {
+            cout
+                << "=== LISTA DE ACTIVIDADES ACTIVAS ===\n\n"
+                << "ID | Nombre       | Descripcion           | Estado\n"
+                << "--------------------------------------------------------\n";
+            huboActivas = true;
+        }
+
+        // Ajustar ancho y truncar si es necesario
+        string nombre = a.getNombreActividad();
+        if (nombre.length() > 12) nombre = nombre.substr(0, 12);
+        string desc = a.getDescripcion();
+        if (desc.length() > 20) desc = desc.substr(0, 20);
+
+        cout << setw(2)  << a.getId()  << " | "
+             << setw(12) << nombre    << " | "
+             << setw(20) << desc      << " | "
+             << setw(6)  << "Activa"
+             << "\n";
+    }
+
+    if (!huboActivas) {
+        cout
+            << "\n+-----------------------------------------------+\n"
+            << "| AVISO: No se encontraron actividades activas.|\n"
+            << "+-----------------------------------------------+\n\n";
+    } else {
+        cout << "\n";
     }
 }
 

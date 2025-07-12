@@ -7,19 +7,24 @@ Empleado::Empleado() : Persona()
     strcpy(_CUIT, "no registrado");
 }
 
-// Constructor con parámetros
-Empleado::Empleado(const string nombre, const string apellido, const string dni,
-                   int diaNasc, int mesNasc, int anioNasc,
-                   const string correoElectronico,
-                   const string direccion,
-                   const string telefono,
-                   const string CUIT,
+//constructor
+Empleado::Empleado(const string& nombre,
+                   const string& apellido,
+                   const string& dni,
+                   const string& correoElectronico,
+                   const string& telefono,
+                   const string& CUIT,
                    int diaAlta, int mesAlta, int anioAlta)
-    : Persona(nombre, apellido, dni, diaNasc, mesNasc, anioNasc, correoElectronico, direccion, telefono),
-      _fechaAlta(diaAlta, mesAlta, anioAlta)
+    : Persona(nombre,
+              apellido,
+              dni,
+              correoElectronico,
+              telefono)
 {
+    _fechaAlta = Fecha(diaAlta, mesAlta, anioAlta);
     setCUIT(CUIT);
 }
+
 
 // Getters
 const string Empleado::getCUIT() const
@@ -35,7 +40,7 @@ Fecha Empleado::getFechaAlta() const
 
 
 // Setters
-void Empleado::setCUIT(const string cuit)
+void Empleado::setCUIT(const std::string& cuit)
 {
     strcpy(_CUIT, cuit.c_str());
 }

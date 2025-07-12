@@ -1,20 +1,20 @@
 #pragma once
-#include "Horario.h" 
-#include "HorarioArchivo.h" 
+#include "Horario.h"
+#include "HorarioPorClase.h"
+#include "HorarioPorClaseArchivo.h"
 #include "Utilidades.h"
 
 class GestionarHorario
 {
 public:
     GestionarHorario();
-    //Horario cargarHorario();
     void bajaHorario();
     void listarHorarios();
     void buscarHorario();
-    Horario cargarHorario(int idActividad);
-    void altaHorarioParaActividad(int idActividad);
+    HorarioPorClase cargarHorario(int idClase);
+    void altaHorarioParaClase(int idClase);
 
 private:
-    HorarioArchivo archivoHorarios;
+    HorarioPorClaseArchivo archivoHorarioPorClase;
     int obtenerIdNuevo();
 };

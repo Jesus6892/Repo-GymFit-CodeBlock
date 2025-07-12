@@ -13,20 +13,20 @@ private:
 
 public:
     Empleado();
-    Empleado(const string nombre, const string apellido, const string dni,
-             int diaNasc, int mesNasc, int anioNasc,
-             const string correoElectronico,
-             const string direccion,
-             const string telefono,
-             const string CUIT,
-             int diaAlta, int mesAlta, int anioAlta);
+    Empleado(const string& nombre,
+             const string& apellido,
+             const string& dni,
+             const string& correoElectronico,
+             const string& telefono,
+             const string& CUIT,
+             int diaAlta,int mesAlta,int anioAlta);
 
     // Getters
     const string getCUIT() const;
     Fecha getFechaAlta() const;
 
     // Setters
-    void setCUIT(const string cuit);
+    void setCUIT(const string& cuit);
     void setFechaAlta(int dia, int mes, int anio);
 
     // Mostrar

@@ -10,11 +10,13 @@ public:
     Profe cargarProfesor();
     void altaProfesor();
     void bajaProfesor();
+    void modificarProfesor();
     void listarProfesores();
     void buscarProfesor();
 
 private:
     ProfesArchivo archivoProfesores;
+    std::string solicitarDniProfesor();
     int obtenerIdNuevo();
 };
 

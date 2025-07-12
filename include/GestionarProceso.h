@@ -5,18 +5,23 @@
 #include <limits>
 #include <string>
 #include "AlumnosArchivo.h"
-#include "GestionarAlumno.h"
-#include "GestionarPago.h"
-#include "GestionarHorario.h"
+#include "ClaseArchivo.h"
+#include "InscripcionArchivo.h"
+#include "GestionarClase.h"
+#include "Utilidades.h"
 
 class GestionarProceso {
-private:
-    ArchivoAlumnos archivoAlumnos;
-    GestionarAlumno gestorAlumnos;
-    GestionarPago gestorPagos;
-    GestionarHorario gestorHorarios;
-
 public:
     GestionarProceso();
-    void iniciarProceso();
+    void iniciar();
+
+private:
+    void mostrarMenu();
+    void realizarInscripcion();
+    void realizarBajaInscripcion();
+
+    ArchivoAlumnos _archivoAlumnos;
+    ClaseArchivo _archivoClases;
+    InscripcionArchivo _archivoInscripciones;
+    GestionarClase _gestorClase;
 };

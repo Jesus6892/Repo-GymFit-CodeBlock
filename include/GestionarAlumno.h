@@ -10,6 +10,7 @@ public:
 	Alumno cargarAlumno();
 	void altaAlumno();
 	void bajaAlumno();
+	void modificarAlumno();
 	void listarAlumnos();
 	void buscarAlumno();
 	bool esIdMembresiaValido(int idMembresia);

@@ -9,27 +9,22 @@ using namespace std;
 class Profe : public Empleado
 {
 private:
-    int _idProfe;
-    bool _estado;
+    int _id;
 
 public:
     Profe();
     Profe(const string nombre, const string apellido, const string dni,
-          int diaNasc, int mesNasc, int anioNasc,
-          const string correoElectronico, const string direccion, const string telefono,
+          const string correoElectronico, const string telefono,
           const string CUIT,
           int diaAlta, int mesAlta, int anioAlta,
           const std::string& observaciones,
-          int idProfe,
-          bool estado);
+          int id);
 
-    // setters
-    void setId(int idProfe);
-    void setEstado(bool estado);
+    // setter
+    void setId(int id);
 
-    // getters
+    // getter
     int getId() const;
-    bool getEstado() const;
 
     // interfaz
     void mostrar() const;

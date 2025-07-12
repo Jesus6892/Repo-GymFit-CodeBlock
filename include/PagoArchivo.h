@@ -1,19 +1,14 @@
 #pragma once
 
-#include <fstream>
+#include "ArchivoBinario.h"
 #include "Pago.h"
 
-class PagoArchivo {
-private:
-    std::string _nombreArchivo = "pagos.dat";
-    int _tamRegistro;
-
+class PagoArchivo : public ArchivoBinario<Pago> {
 public:
+    // Constructor que recibe tamaño de registro
     PagoArchivo(int tamRegistro);
+    // Constructor por defecto usando sizeof(Pago)
+    PagoArchivo();
 
-    bool guardar(const Pago& registro);
-    Pago leerRegistro(int posicion);
-    int contarRegistros();
-    bool modificarRegistro(const Pago& registro, int posicion);
-    int buscar(int idPago);
+    ~PagoArchivo() override = default;
 };

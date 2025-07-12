@@ -2,30 +2,18 @@
 
 //constructores
 Horario::Horario() {
-	_idHorario = -1;
-	_idActividad = -1;
 	_diaSemana = lunes;
-	_horaInicio = -1;
-	_horaFin = -1;
-	_estado = false;
+	_horaInicio = 0;
+	_horaFin = 0;
 }
-Horario::Horario(int idHorario, int idActividad, std::string diaSemana, int horaInicio, int horaFin, bool estado) {
-	_idHorario = idHorario;
-	_idActividad = idActividad;
+Horario::Horario(std::string& diaSemana, int horaInicio, int horaFin) {
 	_diaSemana = convertirStringADia(diaSemana);
 	_horaInicio = horaInicio;
 	_horaFin = horaFin;
-	_estado = estado;
 }
 
-// getters
-int Horario::getId() const { return _idHorario; }
-int Horario::getIdActividad() const {
-	return _idActividad;
-}
 std::string Horario::getDiaSemana() const {
 	std::string dia = convertirDiaAString(_diaSemana);
-
 	return dia;
 }
 int Horario::getHoraInicio() const {
@@ -35,19 +23,7 @@ int Horario::getHoraFin() const {
 	return _horaFin;
 }
 
-bool Horario::getEstado() const {
-	return _estado;
-}
-
 // setters
-void Horario::setId(int idHorario) {
-	if (idHorario <= 0) throw std::invalid_argument("El ID del Dia y Horario debe ser un numero positivo");
-	_idHorario = idHorario;
-}
-void Horario::setIdActividad(int idActividad) {
-	if (idActividad <= 0) throw std::invalid_argument("El ID de la Actividad debe ser un numero positivo");
-	_idActividad = idActividad;
-}
 void Horario::setDiaSemana(const std::string& diaSemana) {
 	if (diaSemana.empty()) throw std::invalid_argument("El dia de la Semana no puede estar vacio");
 	_diaSemana = convertirStringADia(diaSemana);
@@ -59,9 +35,6 @@ void Horario::setHoraInicio(int horaInicio) {
 void Horario::setHoraFin(int horaFin) {
 	if (horaFin < 0 || horaFin > 23) throw std::invalid_argument("La hora de fin debe estar entre las 0 y 23 horas");
 	_horaFin = horaFin;
-}
-void Horario::setEstado(bool estado) {
-	_estado = estado;
 }
 
 // conversores
@@ -98,10 +71,8 @@ void Horario::convertirAMinusculas(std::string& dia) {
 	}
 }
 
-// interfaz
-void Horario::mostrarHorario() const {
-	std::cout << "id registro: " << getId() << std::endl;
-	std::cout << "id Clase: " << getIdActividad() << std::endl;
+// Visual
+void Horario::mostrar() const {
 	std::cout << "Dia : " << getDiaSemana() << std::endl;
 	std::cout << "Hora Comienzo: " << getHoraInicio() << std::endl;
 	std::cout << "Hora Fin: " << getHoraFin() << std::endl;

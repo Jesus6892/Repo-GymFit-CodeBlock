@@ -1,65 +1,96 @@
 #include "Menu.h"
 #include <iostream>
-using namespace std;
+#include <limits> // Necesario para numeric_limits
 
+using namespace std;
 
 void Menu::mostrarMenu() {
     cout << "\n========================================\n";
     cout << "            SISTEMA GYM FIT            \n";
     cout << "========================================\n";
-    cout << "  1) Proceso de Inscripcion            \n";
-    cout << "  2) Gestionar Pagos                   \n";
-    cout << "  3) Gestionar Alumnos                 \n";
-    cout << "  4) Gestionar Profesores              \n";
-    cout << "  5) Gestionar Actividades             \n";
-    cout << "  6) Gestionar Horarios                \n";
+    cout << "  1) Realizar Inscripcion a Clase      \n";
+    cout << "  2) Realizar Baja de Clase            \n";
+    cout << "  3) Gestionar Pagos                   \n";
+    cout << "  4) Administracion y Gestion          \n";
     cout << "----------------------------------------\n";
     cout << "  0) Salir                             \n";
     cout << "========================================\n";
     cout << "Seleccione una opcion: ";
 }
 
-
 void Menu::procesarOpcion(int opcion) {
-    cout << "\n----------------------------------------\n";
     switch (opcion) {
         case 1:
             gestionarProceso();
             break;
         case 2:
-            gestionarPago();  
+            gestionarBajaDeClase();
             break;
         case 3:
-            gestionarAlumnos();
+            gestionarPago();
             break;
         case 4:
-            gestionarProfes(); 
-            break;
-        case 5:
-            gestionarActividades(); // o submenú
-            break;
-        case 6:
-            gestionarHorarios(); 
+            gestionarAdministracion();
             break;
         case 0:
-            cout << " Saliendo... ¡Hasta luego!\n";
+            cout << " Saliendo... Hasta luego!\n";
             break;
         default:
-            cout << " Opción no válida.\n";
+            cout << " Opcion no valida.\n";
             system("pause");
     }
-    cout << "----------------------------------------\n";
+}
+
+void Menu::gestionarAdministracion() {
+    int opcion;
+    do {
+        system("cls");
+        cout << "\n===== ADMINISTRACION Y GESTION =====\n";
+        cout << "1. Gestionar Alumnos\n";
+        cout << "2. Gestionar Profesores\n";
+        cout << "3. Gestionar Actividades\n";
+        cout << "4. Gestionar Clases\n";
+        cout << "5. Gestionar Horarios\n";
+        cout << "0. Volver al Menu Principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: gestionarAlumnos(); break;
+            case 2: gestionarProfes(); break;
+            case 3: gestionarActividades(); break;
+            case 4: gestionarClases(); break;
+            case 5: gestionarHorarios(); break;
+            case 0: cout << "Volviendo al menu principal...\n"; break;
+            default: cout << "Opcion no valida, intente nuevamente.\n"; system("pause");
+        }
+    } while (opcion != 0);
+}
+
+void Menu::gestionarBajaDeClase() {
+    cout << "\n--- Baja de Clase ---\n";
+    gestorClase.listarClases();
+    cout << "------------------------------------------------------------\n";
+    int idClase;
+    cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
+    cin >> idClase;
+    if (idClase > 0) {
+        gestorClase.bajaClase(idClase);
+    } else {
+        cout << "Operacion cancelada.\n";
+    }
+    system("pause");
 }
 
 void Menu::gestionarProceso() {
     GestionarProceso proceso;
-    proceso.iniciarProceso();
+    proceso.iniciar();
 }
 
 void Menu::gestionarAlumnos() {
     int opcion;
     do {
-        system("cls");  
+        system("cls");
         cout << "\n===== GESTION DE ALUMNOS =====\n";
         cout << "1. Alta de Alumno\n";
         cout << "2. Baja de Alumno\n";
@@ -80,9 +111,7 @@ void Menu::gestionarAlumnos() {
                 gestorAlumnos.bajaAlumno();
                 break;
             case 3:
-                //gestorAlumnos.modificarAlumno();
-                cout << "Módulo 'Modificar Alumno' no implementado.\n";
-                system("pause");
+                gestorAlumnos.modificarAlumno();
                 break;
             case 4:
                 gestorAlumnos.buscarAlumno();
@@ -91,15 +120,15 @@ void Menu::gestionarAlumnos() {
                 gestorAlumnos.listarAlumnos();
                 break;
             case 0:
-                cout << "Volviendo al menú principal...\n";
+                cout << "Volviendo al menu principal...\n";
                 break;
             default:
-                cout << "Opción no válida, intente nuevamente.\n";
+                cout << "Opcion no valida, intente nuevamente.\n";
                 system("pause");
         }
 
         if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");  
+            system("pause");
         }
     } while (opcion != 0);
 }
@@ -125,8 +154,7 @@ void Menu::gestionarProfes() {
             gestorProfe.bajaProfesor();
             break;
         case 3:
-            //gestorProfe.modificarProfesor();
-            cout << "No implementado\n";
+            gestorProfe.modificarProfesor();
             break;
         case 4:
             gestorProfe.buscarProfesor();
@@ -164,7 +192,6 @@ void Menu::gestionarActividades() {
             gestorActividades.bajaActividad();
             break;
         case 3:
-            //gestorActividades.modificarActividad();
             cout << "No implementado\n";
             break;
         case 4:
@@ -182,6 +209,51 @@ void Menu::gestionarActividades() {
     } while (opcion != 0);
 }
 
+void Menu::gestionarClases() {
+    int opcion;
+    do {
+        cout << "\n===== GESTION DE CLASES =====\n";
+        cout << "1. Alta de Clase\n";
+        cout << "2. Baja de Clase\n";
+        cout << "3. Listar Clases\n";
+        cout << "0. Volver al Menu Principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            gestorClase.altaClase();
+            break;
+        case 2:
+            {
+                cout << "\n--- Baja de Clase ---\n";
+                gestorClase.listarClases();
+                cout << "------------------------------------------------------------\n";
+                int idClase;
+                cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
+                cin >> idClase;
+                if (idClase > 0) {
+                    gestorClase.bajaClase(idClase);
+                } else {
+                    cout << "Operacion cancelada.\n";
+                }
+            }
+            break;
+        case 3:
+            gestorClase.listarClases();
+            break;
+        case 0:
+            cout << "Volviendo al menu principal...\n";
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente.\n";
+        }
+         if (opcion != 0) {
+            system("pause");
+        }
+    } while (opcion != 0);
+}
+
 void Menu::gestionarPago() {
     int opcion;
     do {
@@ -194,7 +266,6 @@ void Menu::gestionarPago() {
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-        // Limpiar buffer de entrada para evitar problemas con std::getline o futuras entradas
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
@@ -203,7 +274,7 @@ void Menu::gestionarPago() {
             gestorPagos.altaPago();
             break;
         case 2:
-            gestorPagos.bajaPago(); // En GestionarPago.h se llama bajaPago para anular
+            gestorPagos.bajaPago(); 
             break;
         case 3:
             gestorPagos.listarPagos();
@@ -235,13 +306,23 @@ void Menu::gestionarHorarios() {
 
         switch (opcion) {
         case 1:
-            //gestorHorarios.altaHorario();
+            {
+                cout << "\n--- Alta de Horario en Clase Existente ---" << endl;
+                gestorClase.listarClases();
+                int idClase;
+                cout << "\nIngrese el ID de la clase para agregar el horario (0 para cancelar): ";
+                cin >> idClase;
+                if (idClase > 0) {
+                    gestorHorarios.altaHorarioParaClase(idClase);
+                } else {
+                    cout << "Operacion cancelada.\n";
+                }
+            }
             break;
         case 2:
             gestorHorarios.bajaHorario();
             break;
         case 3:
-            //gestorHorarios.modificarHorario();
             cout << "No implementado\n";
             break;
         case 4:

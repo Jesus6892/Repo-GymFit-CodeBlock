@@ -2,14 +2,14 @@
 #include <iostream>
 
 Pago::Pago()
-    : _idPago(-1), _idAlumno(-1), _idActividad(-1),
+    : _id(-1), _idAlumno(-1), _idActividad(-1),
       _fechaPago(""), _monto(0.0f), _estado(false) {}
 
-Pago::Pago(int idPago, int idAlumno, int idActividad, const std::string& fechaPago, float monto, bool estado)
-    : _idPago(idPago), _idAlumno(idAlumno), _idActividad(idActividad),
+Pago::Pago(int id, int idAlumno, int idActividad, const std::string& fechaPago, float monto, bool estado)
+    : _id(id), _idAlumno(idAlumno), _idActividad(idActividad),
       _fechaPago(fechaPago), _monto(monto), _estado(estado) {}
 
-int Pago::getId() const { return _idPago; }
+int Pago::getId() const { return _id; }
 int Pago::getIdAlumno() const { return _idAlumno; }
 int Pago::getIdActividad() const { return _idActividad; }
 std::string Pago::getFechaPago() const { return _fechaPago; }
@@ -21,7 +21,7 @@ void Pago::setEstado(bool estado) {
 }
 
 void Pago::mostrar() const {
-    std::cout << "Pago [ID: " << _idPago
+    std::cout << "Pago [ID: " << _id
               << ", AlumnoID: " << _idAlumno
               << ", ActividadID: " << _idActividad
               << ", Fecha: " << _fechaPago

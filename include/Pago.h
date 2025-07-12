@@ -4,7 +4,7 @@
 
 class Pago {
 private:
-    int _idPago;
+    int _id;
     int _idAlumno;
     int _idActividad;
     std::string _fechaPago;  // formato "YYYY-MM-DD"
@@ -13,7 +13,7 @@ private:
 
 public:
     Pago();
-    Pago(int idPago, int idAlumno, int idActividad, const std::string& fechaPago, float monto, bool estado = true);
+    Pago(int id, int idAlumno, int idActividad, const std::string& fechaPago, float monto, bool estado = true);
 
     // Getters
     int getId() const;

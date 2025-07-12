@@ -15,7 +15,8 @@ private:
 
 public:
     GestionarPago();
-    Pago cargarPago();
+    Pago cargarPago(int idAlumno = -1);
+    bool guardarPago(const Pago& pago);
     void altaPago();
     void bajaPago();
     void listarPagos();

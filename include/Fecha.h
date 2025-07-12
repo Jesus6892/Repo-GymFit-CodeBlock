@@ -9,30 +9,33 @@ private:
     int _mes;
     int _anio;
 
-    bool esDiaValido(int dia, int mes, int anio);
-    bool esMesValido(int mes);
-    bool esAnioValido(int anio);
-    bool esAnioBisiesto(int anio);
+    bool esDiaValido(int dia, int mes, int anio) const;
+    bool esMesValido(int mes) const;
+    bool esAnioValido(int anio) const;
+    bool esAnioBisiesto(int anio) const;
 
-    int getCantidadDiasDelMes(int mes, int anio);
+    int getCantidadDiasDelMes(int mes, int anio) const;
     void setFechaDefault();
     void validarIngreso(int dia, int mes, int anio);
+
 public:
     Fecha();
     Fecha(int dia, int mes, int anio);
-    std::string toString();
+
+    // inspector
+    std::string toString() const;
 
     // getters
-    int getDia();
-    int getMes();
-    int getAnio();
+    int getDia() const;
+    int getMes() const;
+    int getAnio() const;
 
     // modificadores
     void aumentarDia();
     void restarDia();
 
-    //destructor
-    ~Fecha();
+    // destructor trivial
+    ~Fecha() = default;
 
     friend std::ostream& operator<<(std::ostream& os, const Fecha& fecha);
 };
