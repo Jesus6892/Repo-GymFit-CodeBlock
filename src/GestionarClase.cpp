@@ -64,6 +64,22 @@ void GestionarClase::bajaClase(int idClase) {
 
         if (_archivoClases.modificarRegistro(clase, pos)) {
             cout << "Clase con ID " << idClase << " dada de baja exitosamente.\n";
+
+            HorarioPorClaseArchivo archivoHorarios(sizeof(HorarioPorClase));
+            int total = archivoHorarios.contarRegistros();
+            int cont = 0;
+
+            for (int i = 0; i < total; ++i) {
+                HorarioPorClase h = archivoHorarios.leerRegistro(i);
+                if (h.getEstado() && h.getIdClase() == idClase) {
+                    h.setEstado(false);
+                    archivoHorarios.modificarRegistro(h, i);
+                    cont++;
+                }
+            }
+
+            cout << ">> También se dieron de baja " << cont << " horario(s) asociados a esta clase.\n";
+
         } else {
             cout << "Error: No se pudo modificar el registro en el archivo.\n";
         }
