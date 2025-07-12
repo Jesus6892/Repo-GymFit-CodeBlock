@@ -76,7 +76,6 @@ void GestionarHorario::listarHorarios()
         return;
     }
 
-    // Instanciamos archivos
     ClaseArchivo archivoClases(sizeof(Clase));
     ActividadesArchivo archivoActividades(sizeof(Actividad));
 
@@ -93,16 +92,14 @@ void GestionarHorario::listarHorarios()
         Horario horario = h.getHorario();
         int idClase = h.getIdClase();
 
-        // Leemos la clase
         int posClase = archivoClases.buscar(idClase);
         std::string nombreActividad = "(Desconocida)";
         if (posClase >= 0) {
             Clase clase = archivoClases.leerRegistro(posClase);
 
-            // De la clase saco el idActividad
+
             int idActividad = clase.getIdActividad();
 
-            // Leemos la actividad
             int posActividad = archivoActividades.buscar(idActividad);
             if (posActividad >= 0) {
                 Actividad actividad = archivoActividades.leerRegistro(posActividad);
@@ -110,7 +107,6 @@ void GestionarHorario::listarHorarios()
             }
         }
 
-        // Mostrar todo junto
         std::cout << std::left
                   << std::setw(3)  << h.getId() << " | "
                   << std::setw(10) << horario.getDiaSemana() << " | "
