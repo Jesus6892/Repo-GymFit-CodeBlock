@@ -7,6 +7,7 @@ class Alumno : public Persona
 private:
     int _id;
 
+
 public:
     // Constructores
     Alumno();
@@ -28,4 +29,6 @@ public:
 
     // Destructor
     ~Alumno();
+
+    // estado
 };

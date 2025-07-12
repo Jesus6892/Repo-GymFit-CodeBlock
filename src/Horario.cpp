@@ -79,4 +79,4 @@ void Horario::mostrar() const {
 }
 
 // destructor
-Horario::~Horario() {};
+Horario::~Horario() {}
