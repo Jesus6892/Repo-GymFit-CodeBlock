@@ -2,6 +2,7 @@
 #include "GestionarHorario.h"
 #include "ProfesArchivo.h"
 #include "Profe.h"
+#include "Validaciones.h"
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -26,6 +27,11 @@ Actividad GestionarActividad::cargarActividad()
 
     cout << "Ingrese el costo de la actividad: ";
     cin >> costo;
+
+    if (!Validaciones::esCostoValido(costo)) {
+    cout << "ERROR: El costo no puede ser negativo.\n";
+    return Actividad(-1, "", 0, 0, "");
+}
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Ingrese la descripcion de la actividad: ";
@@ -168,8 +174,8 @@ void GestionarActividad::listarActividades() {
         if (!huboActivas) {
             cout
                 << "=== LISTA DE ACTIVIDADES ACTIVAS ===\n\n"
-                << "ID | Nombre       | Descripcion           | Estado\n"
-                << "--------------------------------------------------------\n";
+                << "ID | Nombre       | Descripcion           | Costo   | Estado\n"
+                << "---------------------------------------------------------------\n";
             huboActivas = true;
         }
 
@@ -182,6 +188,7 @@ void GestionarActividad::listarActividades() {
         cout << setw(2)  << a.getId()  << " | "
              << setw(12) << nombre    << " | "
              << setw(20) << desc      << " | "
+             << "$" << setw(7)  << fixed << setprecision(2) << a.getCosto() << " | "
              << setw(6)  << "Activa"
              << "\n";
     }

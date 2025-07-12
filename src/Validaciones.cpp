@@ -23,12 +23,12 @@ bool Validaciones::esSoloLetras(const std::string& s) {
 std::string Validaciones::normalizarDNI(const std::string& dni) {
     std::string normalizado = dni;
     normalizado.erase(
-        std::remove_if(normalizado.begin(), normalizado.end(), 
+        std::remove_if(normalizado.begin(), normalizado.end(),
             [](unsigned char c) { return !std::isdigit(c); }
-        ), 
+        ),
         normalizado.end()
     );
-    
+
     return normalizado;
 }
 
@@ -78,5 +78,9 @@ bool Validaciones::esFechaNacimientoValida(int d, int m, int a) {
     if (a == hoy->tm_year+1900 && m > hoy->tm_mon+1) return false;
     if (a == hoy->tm_year+1900 && m == hoy->tm_mon+1 && d > hoy->tm_mday) return false;
     return true;
+}
+
+bool Validaciones::esCostoValido(float costo) {
+    return costo >= 0;
 }
 

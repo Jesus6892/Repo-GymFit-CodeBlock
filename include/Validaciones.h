@@ -14,6 +14,7 @@ class Validaciones
         static bool esSoloLetras(const std::string& s);
         static bool esSoloNumeros(const std::string& s);
         static bool tieneLongitud(const std::string& s, int len);
+        static bool esCostoValido(float costo);
 
 
         //Validaciones especificas
@@ -24,6 +25,7 @@ class Validaciones
         static std::string normalizarDNI(const std::string& dni);
         static bool esFormatoDniValido(const std::string& dni);
     protected:
+
 
     private:
 };
