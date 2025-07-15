@@ -1,9 +1,4 @@
 #include "GestionarPago.h"
-#include "AlumnosArchivo.h"
-#include "Utilidades.h"
-
-#include <iostream>
-using namespace std;
 
 GestionarPago::GestionarPago()
     : archivoPagos(sizeof(Pago))
@@ -38,9 +33,18 @@ Pago GestionarPago::cargarPago(int idAlumno)
     } while (idActividad < 1);
 
     // 3) Fecha y monto
-    string fechaPago;
-    cout << "Ingrese fecha de pago (YYYY-MM-DD): ";
-    cin >> fechaPago;
+    int dia, mes, anio;
+
+    cout << "-------------";
+    cout << "FECHA DE PAGO";
+    cout << "-------------";
+    cout << "Ingrese dia: ";
+    cin >> dia;
+    cout << "Ingrese mes: ";
+    cin >> mes;
+    cout << "Ingrese anio: ";
+    cin >> anio;
+
 
     float monto;
     cout << "Ingrese monto del pago: ";
@@ -48,7 +52,7 @@ Pago GestionarPago::cargarPago(int idAlumno)
 
     // 4) Generar nuevo ID y devolver Pago
     int nuevoIdPago = Utilidades::obtenerIdNuevo<PagoArchivo, Pago>(archivoPagos);
-    return Pago(nuevoIdPago, idAlumno, idActividad, fechaPago, monto, true);
+    return Pago(nuevoIdPago, idAlumno, idActividad, dia, mes, anio, monto, true);
 }
 
 

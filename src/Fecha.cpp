@@ -53,11 +53,10 @@ bool Fecha::esAnioBisiesto(int anio) const {
 
 // conversión a cadena
 std::string Fecha::toString() const {
-    auto pad = [](int v){
-        std::string s = std::to_string(v);
-        return std::string(2 - s.length(), '0') + s;
-    };
-    return pad(_dia) + "/" + pad(_mes) + "/" + std::to_string(_anio);
+                                 //--donde,-----cuántos digitos----,--------ingresa
+    return std::to_string(_dia).insert(0, 2 - std::to_string(_dia).length(), '0') + "/" +
+        std::to_string(_mes).insert(0, 2 - std::to_string(_mes).length(), '0') + "/" +
+        std::to_string(_anio);
 }
 
 // modificadores de día

@@ -8,6 +8,9 @@
 #include "GestionarAlumno.h"
 #include "GestionarActividad.h"
 #include "Utilidades.h"
+#include "AlumnosArchivo.h"
+#include "Validaciones.h"
+using namespace std;
 
 class GestionarPago {
 private:
