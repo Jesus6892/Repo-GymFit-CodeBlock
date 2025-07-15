@@ -12,9 +12,7 @@ GestionarProceso::GestionarProceso()
     : _archivoAlumnos(sizeof(Alumno)),
       _archivoClases(sizeof(Clase)),
       _archivoInscripciones(sizeof(Inscripcion)),
-      _gestorClase()
-{
-}
+      _gestorClase(){}
 
 void GestionarProceso::realizarInscripcion() {
     cout << "\n--- Proceso de Nueva Inscripcion ---" << endl;
@@ -22,13 +20,19 @@ void GestionarProceso::realizarInscripcion() {
     // 1. Validar Alumno
     string dniAlumno;
     int idAlumno = -1;
-    cout << "Ingrese el DNI del Alumno (0 para cancelar): ";
-    cin >> dniAlumno;
+        do {
+            cout << "Ingrese el DNI del Alumno (8 digitos) o 0 para cancelar: ";
+            cin >> dniAlumno;
 
-    if (dniAlumno == "0") {
-        cout << "Operacion cancelada." << endl;
-        return;
-    }
+            if (dniAlumno == "0") {
+                cout << "Operacion cancelada." << endl;
+                return;
+            }
+
+            if (!Validaciones::esDNIValido(dniAlumno)) {
+                cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+            }
+        } while (!Validaciones::esDNIValido(dniAlumno));
 
     int posAlumno = _archivoAlumnos.buscarPosPorDni(dniAlumno);
     if (posAlumno < 0) {
