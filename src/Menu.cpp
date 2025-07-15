@@ -38,6 +38,7 @@ void Menu::procesarOpcion(int opcion) {
         default:
             cout << " Opcion no valida.\n";
             system("pause");
+            system("cls");
     }
 }
 
@@ -274,7 +275,7 @@ void Menu::gestionarPago() {
             gestorPagos.altaPago();
             break;
         case 2:
-            gestorPagos.bajaPago(); 
+            gestorPagos.bajaPago();
             break;
         case 3:
             gestorPagos.listarPagos();

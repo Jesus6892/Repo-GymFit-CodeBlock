@@ -45,17 +45,19 @@ Alumno GestionarAlumno::cargarAlumno()
     } while (!Validaciones::esDNIValido(dni));
 
     // Correo electronico
-    std::cout << "Ingrese correo electronico: ";
-    std::cin >> correoElectronico;
-    while (!Validaciones::esEmailValido(correoElectronico))
+
+    do
     {
-        std::cout << "Email invalido. Formato: usuario@dominio.ext\n";
+        std::cout << "Ingrese correo electronico: ";
         std::cin >> correoElectronico;
-    }
+
+        if (!Validaciones::esEmailValido(correoElectronico))
+            std::cout << "Email invalido. El formato debe ser: usuario@dominio.ext\n";
+
+    } while (!Validaciones::esEmailValido(correoElectronico));
 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    // Telefono
+        // Telefono
     do
     {
         std::cout << "Ingrese telefono (10 digitos): ";
@@ -92,8 +94,16 @@ void GestionarAlumno::altaAlumno()
 void GestionarAlumno::bajaAlumno()
 {
     std::string dni;
-    std::cout << "Ingrese el DNI del alumno a dar de baja: ";
-    std::cin >> dni;
+    do
+    {
+        std::cout << "Ingrese el DNI del alumno a dar de baja (8 digitos): ";
+        std::cin >> dni;
+
+        if (!Validaciones::esDNIValido(dni))
+            std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+
+    } while (!Validaciones::esDNIValido(dni));
+
     int pos = archivoAlumnos.buscarPosPorDni(dni);
     if (pos >= 0)
     {
@@ -105,7 +115,9 @@ void GestionarAlumno::bajaAlumno()
             std::cout << "Error al dar de baja al alumno.\n";
     }
     else
+    {
         std::cout << "Alumno no encontrado.\n";
+    }
 }
 
 void GestionarAlumno::listarAlumnos()
