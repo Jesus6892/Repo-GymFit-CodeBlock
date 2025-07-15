@@ -121,6 +121,8 @@ void Menu::gestionarBajaDeClase() {
 
         if (idClase == 0) {
             cout << "Operacion cancelada.\n";
+            system("pause");
+            system("cls");
             break;
         }
 
@@ -132,8 +134,7 @@ void Menu::gestionarBajaDeClase() {
         }
 
     } while (!exito);
-
-    system("pause");
+    system("cls");
 }
 
 void Menu::gestionarProceso() {
