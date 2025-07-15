@@ -42,6 +42,15 @@ void Menu::procesarOpcion(int opcion) {
     }
 }
 
+void GestionarProceso::mostrarMenu() {
+    system("cls");
+    cout << "\n--- PROCESOS COMPLETOS ---" << endl;
+    cout << "1. Realizar una Inscripcion" << endl;
+    cout << "2. Dar de baja una Inscripcion" << endl;
+    cout << "0. Volver al Menu Principal" << endl;
+    cout << "Seleccione una opcion: ";
+}
+
 void GestionarProceso::iniciar() {
     int opcion;
     do {

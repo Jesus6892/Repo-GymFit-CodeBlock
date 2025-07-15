@@ -16,17 +16,6 @@ GestionarProceso::GestionarProceso()
 {
 }
 
-
-void GestionarProceso::mostrarMenu() {
-    system("cls");
-    cout << "\n--- PROCESOS COMPLETOS ---" << endl;
-    cout << "1. Realizar una Inscripcion" << endl;
-    cout << "2. Dar de baja una Inscripcion" << endl;
-    cout << "0. Volver al Menu Principal" << endl;
-    cout << "Seleccione una opcion: ";
-}
-
-
 void GestionarProceso::realizarInscripcion() {
     cout << "\n--- Proceso de Nueva Inscripcion ---" << endl;
 
