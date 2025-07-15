@@ -1,13 +1,14 @@
 #pragma once
-
+#include <cstring>
 #include <string>
+#include <iostream>
 
 class Pago {
 private:
     int _id;
     int _idAlumno;
     int _idActividad;
-    std::string _fechaPago;  // formato "YYYY-MM-DD"
+    char _fechaPago[10];  // formato "YYYY-MM-DD"
     float _monto;
     bool _estado;  // true = activo, false = anulado
 
