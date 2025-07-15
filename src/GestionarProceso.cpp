@@ -16,30 +16,6 @@ GestionarProceso::GestionarProceso()
 {
 }
 
-void GestionarProceso::iniciar() {
-    int opcion;
-    do {
-        mostrarMenu();
-        cin >> opcion;
-        switch (opcion) {
-            case 1:
-                realizarInscripcion();
-                break;
-            case 2:
-                realizarBajaInscripcion();
-                break;
-            case 0:
-                cout << "Volviendo al menu principal..." << endl;
-                break;
-            default:
-                cout << "Opcion no valida." << endl;
-                break;
-        }
-        if (opcion != 0) {
-            system("pause");
-        }
-    } while (opcion != 0);
-}
 
 void GestionarProceso::mostrarMenu() {
     system("cls");

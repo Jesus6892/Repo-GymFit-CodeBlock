@@ -42,6 +42,36 @@ void Menu::procesarOpcion(int opcion) {
     }
 }
 
+void GestionarProceso::iniciar() {
+    int opcion;
+    do {
+        mostrarMenu();
+        cin >> opcion;
+        switch (opcion) {
+            case 1:
+                realizarInscripcion();
+                break;
+            case 2:
+                realizarBajaInscripcion();
+                break;
+            case 0:
+                cout << "Volviendo al menu principal..." << endl;
+                system("pause");
+                system("cls");
+                break;
+            default:
+                cout << "Opcion no valida." << endl;
+                system("pause");
+                system("cls");
+                break;
+        }
+        if (opcion != 0) {
+            system("pause");
+            system("cls");
+        }
+    } while (opcion != 0);
+}
+
 void Menu::gestionarAdministracion() {
     int opcion;
     do {
