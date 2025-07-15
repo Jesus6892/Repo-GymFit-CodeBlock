@@ -11,7 +11,7 @@ class GestionarClase {
 public:
     GestionarClase();
     void altaClase();
-    void bajaClase(int idClase);
+    bool bajaClase(int idClase);
     void listarClases();
     //Aañadir modificarClase()
 
@@ -25,4 +25,4 @@ private:
     ProfesArchivo _archivoProfes;
 };
 
-#endif // GESTIONARCLASE_H 
+#endif // GESTIONARCLASE_H

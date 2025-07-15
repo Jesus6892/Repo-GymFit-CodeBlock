@@ -108,17 +108,31 @@ void Menu::gestionarAdministracion() {
 }
 
 void Menu::gestionarBajaDeClase() {
-    cout << "\n--- Baja de Clase ---\n";
-    gestorClase.listarClases();
-    cout << "------------------------------------------------------------\n";
     int idClase;
-    cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
-    cin >> idClase;
-    if (idClase > 0) {
-        gestorClase.bajaClase(idClase);
-    } else {
-        cout << "Operacion cancelada.\n";
-    }
+    bool exito = false;
+
+    do {
+        system("cls");
+        cout << "\n--- Baja de Clase ---\n";
+        gestorClase.listarClases();
+        cout << "------------------------------------------------------------\n";
+        cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
+        cin >> idClase;
+
+        if (idClase == 0) {
+            cout << "Operacion cancelada.\n";
+            break;
+        }
+
+        exito = gestorClase.bajaClase(idClase);
+
+        if (!exito) {
+            cout << "Intente nuevamente.\n";
+            system("pause");
+        }
+
+    } while (!exito);
+
     system("pause");
 }
 

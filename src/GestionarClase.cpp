@@ -55,7 +55,7 @@ void GestionarClase::altaClase() {
     }
 }
 
-void GestionarClase::bajaClase(int idClase) {
+bool GestionarClase::bajaClase(int idClase) {
     int pos = _archivoClases.buscar(idClase);
 
     if (pos >= 0) {
@@ -79,12 +79,15 @@ void GestionarClase::bajaClase(int idClase) {
             }
 
             cout << ">> También se dieron de baja " << cont << " horario(s) asociados a esta clase.\n";
+            return true;
 
         } else {
             cout << "Error: No se pudo modificar el registro en el archivo.\n";
+            return false;
         }
     } else {
         cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
+        return false;
     }
 }
 
