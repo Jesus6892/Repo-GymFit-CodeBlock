@@ -1131,7 +1131,7 @@
 	"HorarioPorClaseArchivo.h"
 	"Menu.h"
 
-1752535417 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\fecha.h
+1752608113 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\fecha.h
 	<iostream>
 	<string>
 	<stdexcept>
@@ -1227,7 +1227,7 @@
 	"HorarioPorClaseArchivo.h"
 	"Utilidades.h"
 
-1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarpago.h
+1752610153 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarpago.h
 	<iostream>
 	<limits>
 	<string>
@@ -1236,11 +1236,14 @@
 	"GestionarAlumno.h"
 	"GestionarActividad.h"
 	"Utilidades.h"
+	"AlumnosArchivo.h"
+	"Validaciones.h"
 
-1752542822 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pago.h
+1752606128 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pago.h
 	<cstring>
 	<string>
 	<iostream>
+	"Fecha.h"
 
 1750948397 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\pagoarchivo.h
 	"ArchivoBinario.h"
@@ -1269,13 +1272,13 @@
 1752535417 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\empleado.cpp
 	"Empleado.h"
 
-1752535417 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\fecha.cpp
+1752608604 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\fecha.cpp
 	"Fecha.h"
 
 1752535443 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horario.cpp
 	"Horario.h"
 
-1752542565 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pago.cpp
+1752608370 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\pago.cpp
 	"Pago.h"
 	<iostream>
 
@@ -1322,11 +1325,8 @@
 	<cctype>
 	<iomanip>
 
-1750948397 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarpago.cpp
+1752610612 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarpago.cpp
 	"GestionarPago.h"
-	"AlumnosArchivo.h"
-	"Utilidades.h"
-	<iostream>
 
 1752535417 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarproceso.cpp
 	"GestionarProceso.h"
@@ -1365,7 +1365,7 @@
 	"ProfesArchivo.h"
 	"Validaciones.h"
 
-1752535443 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\validaciones.cpp
+1752609400 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\validaciones.cpp
 	"Validaciones.h"
 	<cctype>
 	<regex>

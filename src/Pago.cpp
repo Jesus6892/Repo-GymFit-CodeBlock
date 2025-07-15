@@ -3,18 +3,15 @@
 
 Pago::Pago()
     : _id(-1), _idAlumno(-1), _idActividad(-1),
-      _fechaPago(""), _monto(0.0f), _estado(false) {}
+      _fechaPago(1, 1, 2001), _monto(0.0f), _estado(false) {}
 
-Pago::Pago(int id, int idAlumno, int idActividad, const std::string& fechaPago, float monto, bool estado)
-    : _id(id), _idAlumno(idAlumno), _idActividad(idActividad), _monto(monto), _estado(estado)
-      {
-          strcpy(_fechaPago, fechaPago.c_str());
-      }
+Pago::Pago(int id, int idAlumno, int idActividad, int dia, int mes, int anio, float monto, bool estado)
+    : _id(id), _idAlumno(idAlumno), _idActividad(idActividad),_fechaPago(dia, mes, anio), _monto(monto), _estado(estado){}
 
 int Pago::getId() const { return _id; }
 int Pago::getIdAlumno() const { return _idAlumno; }
 int Pago::getIdActividad() const { return _idActividad; }
-std::string Pago::getFechaPago() const { return _fechaPago; }
+std::string Pago::getFechaPago() const { return _fechaPago.toString(); }
 float Pago::getMonto() const { return _monto; }
 bool Pago::getEstado() const { return _estado; }
 
