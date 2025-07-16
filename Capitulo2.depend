@@ -1694,9 +1694,10 @@
 	<cctype>
 	<iomanip>
 
-1752627873 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarpago.cpp
+1752629077 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarpago.cpp
 	"GestionarPago.h"
 	"ActividadesArchivo.h"
+	"Validaciones.h"
 
 1752619406 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarproceso.cpp
 	"GestionarProceso.h"

@@ -1,5 +1,6 @@
 #include "GestionarPago.h"
 #include "ActividadesArchivo.h"
+#include "Validaciones.h"
 
 
 GestionarPago::GestionarPago()
@@ -63,17 +64,25 @@ Pago GestionarPago::cargarPago(int idAlumno)
 
     // 3) Fecha y monto
     int dia, mes, anio;
+    bool fechaValida = false;
 
-    cout << "-------------";
-    cout << "FECHA DE PAGO";
-    cout << "-------------" << endl;
-    cout << "Ingrese dia: ";
-    cin >> dia;
-    cout << "Ingrese mes: ";
-    cin >> mes;
-    cout << "Ingrese anio: ";
-    cin >> anio;
+    do {
+        cout << "-------------" << endl;
+        cout << "FECHA DE PAGO" << endl;
+        cout << "-------------" << endl;
+        cout << "Ingrese dia: ";
+        cin >> dia;
+        cout << "Ingrese mes: ";
+        cin >> mes;
+        cout << "Ingrese anio: ";
+        cin >> anio;
 
+        fechaValida = Validaciones::esFechaNacimientoValida(dia, mes, anio);
+        if (!fechaValida) {
+            cout << "ERROR: Fecha invalida o futura. Intente nuevamente.\n";
+            system("pause");
+        }
+    } while (!fechaValida);
 
     float monto;
     cout << "Ingrese monto del pago: ";
