@@ -27,7 +27,7 @@ std::string GestionarProfesor::solicitarDniProfesor()
 
         if (!Validaciones::esFormatoDniValido(dniNormalizado))
         {
-            cout << "Error: El DNI debe contener 7 u 8 digitos. Intente de nuevo.\n";
+            cout << "Error: El DNI debe contener 8 digitos. Intente de nuevo.\n";
             continue;
         }
         if (archivoProfesores.buscarIdPorDni(dniNormalizado) != -1)
@@ -47,7 +47,7 @@ Profe GestionarProfesor::cargarProfesor()
     string nombre, apellido, correoElectronico, observaciones;
     string telefono, CUIT;
     int idProfe;
-
+    // 1) nombre
     do {
         cout << "Ingrese el nombre del profesor: ";
         getline(cin, nombre);
@@ -56,7 +56,7 @@ Profe GestionarProfesor::cargarProfesor()
         }
     } while(!Validaciones::esSoloLetras(nombre));
 
-
+    // 2) Apellido
     do {
         cout << "Ingrese el apellido del profesor: ";
         getline(cin, apellido);
@@ -65,9 +65,10 @@ Profe GestionarProfesor::cargarProfesor()
         }
     } while(!Validaciones::esSoloLetras(apellido));
 
-
+    // 3) DNI
     string dni = solicitarDniProfesor();
 
+    // 4) EMAIL
     cout << "Ingrese el correo electronico del profesor: ";
     getline(cin, correoElectronico);
     while(!Validaciones::esEmailValido(correoElectronico)) {
@@ -76,12 +77,17 @@ Profe GestionarProfesor::cargarProfesor()
         getline(cin, correoElectronico);
     }
 
+    // 5) CUIT
 
     cout << "Ingrese el CUIT del profesor: ";
     getline(cin, CUIT);
 
+    // 6) Observaciones
+
     cout << "Ingrese cualquier observacion sobre el profesor: ";
     getline(cin, observaciones);
+
+    // 7) Telefono
 
     do {
         cout << "Ingrese el telefono del profesor: ";

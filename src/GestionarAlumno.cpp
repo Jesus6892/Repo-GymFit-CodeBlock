@@ -179,8 +179,15 @@ void GestionarAlumno::listarAlumnos()
 void GestionarAlumno::buscarAlumno()
 {
     std::string dni;
-    std::cout << "Ingrese el DNI del alumno a buscar: ";
-    std::cin >> dni;
+    do {
+        std::cout << "Ingrese el DNI del alumno a buscar (8 digitos): ";
+        std::cin >> dni;
+
+    if (!Validaciones::esDNIValido(dni)) {
+        std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+        }
+    } while (!Validaciones::esDNIValido(dni));
+
     int pos = archivoAlumnos.buscarPosPorDni(dni);
     if (pos >= 0)
         archivoAlumnos.leerRegistro(pos).mostrar();
