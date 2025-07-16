@@ -50,7 +50,6 @@ Alumno GestionarAlumno::cargarAlumno()
         int pos = archivoAlumnos.buscarPosPorDni(dni);
         if (pos >= 0) {
             std::cout << "PEDAZO DE ERROR: DNI ya registrado. Intente nuevamente.\n";
-            dni.clear();
         }
 
     } while (!Validaciones::esDNIValido(dni) || archivoAlumnos.buscarPosPorDni(dni) >= 0);
@@ -197,31 +196,36 @@ int GestionarAlumno::obtenerIdNuevo()
 void GestionarAlumno::modificarAlumno()
 {
     std::string dni;
-    std::cout << "Ingrese el DNI del alumno a modificar: ";
-    std::cin >> dni;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    do {
+        std::cout << "Ingrese el DNI del alumno a modificar (8 digitos): ";
+        std::cin >> dni;
+
+        if (!Validaciones::esDNIValido(dni)) {
+            std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+        }
+    } while (!Validaciones::esDNIValido(dni));
 
     int pos = archivoAlumnos.buscarPosPorDni(dni);
     if (pos < 0)
     {
-        std::cout << "No se encontró un alumno con ese DNI." << std::endl;
+        std::cout << "No se encontro un alumno con ese DNI.\n";
         return;
     }
 
     Alumno alumno = archivoAlumnos.leerRegistro(pos);
-    std::cout << "Datos actuales del alumno:" << std::endl;
+    std::cout << "Datos actuales del alumno:\n";
     alumno.mostrar();
 
     int opcion;
     std::string nuevoValor;
 
-    std::cout << "\n¿Qué campo desea modificar?" << std::endl;
-    std::cout << "1. Nombre" << std::endl;
-    std::cout << "2. Apellido" << std::endl;
-    std::cout << "3. Correo Electronico" << std::endl;
-    std::cout << "4. Telefono" << std::endl;
-    std::cout << "0. Cancelar" << std::endl;
-    std::cout << "Seleccione una opción: ";
+    std::cout << "\nQue campo desea modificar?\n";
+    std::cout << "1. Nombre\n";
+    std::cout << "2. Apellido\n";
+    std::cout << "3. Correo Electronico\n";
+    std::cout << "4. Telefono\n";
+    std::cout << "0. Cancelar\n";
+    std::cout << "Seleccione una opcion: ";
     std::cin >> opcion;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -249,26 +253,26 @@ void GestionarAlumno::modificarAlumno()
     case 4:
         std::cout << "Ingrese el nuevo telefono: ";
         std::getline(std::cin, nuevoValor);
-         while (!Validaciones::esTelefonoValido(nuevoValor)) {
+        while (!Validaciones::esTelefonoValido(nuevoValor)) {
             std::cout << "Telefono invalido. Ingrese nuevamente: ";
             std::getline(std::cin, nuevoValor);
         }
         alumno.setTelefono(nuevoValor);
         break;
     case 0:
-        std::cout << "Modificacion cancelada." << std::endl;
+        std::cout << "Modificacion cancelada.\n";
         return;
     default:
-        std::cout << "Opcion no valida." << std::endl;
+        std::cout << "Opcion no valida.\n";
         return;
     }
 
     if (archivoAlumnos.modificarRegistro(alumno, pos))
     {
-        std::cout << "Alumno modificado exitosamente." << std::endl;
+        std::cout << "Alumno modificado exitosamente.\n";
     }
     else
     {
-        std::cout << "Error al modificar el alumno." << std::endl;
+        std::cout << "Error al modificar el alumno.\n";
     }
 }
