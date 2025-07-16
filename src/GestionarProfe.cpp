@@ -78,17 +78,24 @@ Profe GestionarProfesor::cargarProfesor()
     }
 
     // 5) CUIT
-
-    cout << "Ingrese el CUIT del profesor: ";
-    getline(cin, CUIT);
+    do {
+        cout << "Ingrese el CUIT del profesor (11 digitos): ";
+        getline(cin, CUIT);
+        if (!Validaciones::esCUITValido(CUIT)) {
+            cout << "CUIT invalido. Debe tener 11 digitos numericos.\n";
+        }
+    } while (!Validaciones::esCUITValido(CUIT));
 
     // 6) Observaciones
-
-    cout << "Ingrese cualquier observacion sobre el profesor: ";
-    getline(cin, observaciones);
+    do {
+        cout << "Ingrese cualquier observacion sobre el profesor: ";
+        getline(cin, observaciones);
+        if (!Validaciones::esObservacionValida(observaciones)) {
+            cout << "Observacion invalida. Debe contener al menos alguna letra.\n";
+        }
+    } while (!Validaciones::esObservacionValida(observaciones));
 
     // 7) Telefono
-
     do {
         cout << "Ingrese el telefono del profesor: ";
         getline(cin, telefono);

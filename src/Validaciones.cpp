@@ -84,3 +84,23 @@ bool Validaciones::esCostoValido(float costo) {
     return costo >= 0;
 }
 
+bool Validaciones::esObservacionValida(const std::string& obs)
+{
+    //Revisar me ayudo botsito
+    if (obs.empty()) return false;
+
+    bool tieneLetra = std::any_of(obs.begin(), obs.end(), [](char c) {
+        return std::isalpha(static_cast<unsigned char>(c));
+    });
+
+    return tieneLetra;
+}
+
+bool Validaciones::esCUITValido(const std::string& cuit)
+{
+    if (cuit.length() != 11) return false;
+
+    return std::all_of(cuit.begin(), cuit.end(), ::isdigit);
+}
+
+

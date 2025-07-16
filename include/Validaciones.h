@@ -24,6 +24,8 @@ class Validaciones
         static bool esFechaNacimientoValida(int d, int m, int a);
         static std::string normalizarDNI(const std::string& dni);
         static bool esFormatoDniValido(const std::string& dni);
+        static bool esObservacionValida(const std::string& obs);
+        static bool esCUITValido(const std::string& cuit);
     protected:
 
 

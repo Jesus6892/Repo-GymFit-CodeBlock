@@ -191,6 +191,7 @@ void Menu::gestionarAlumnos() {
 void Menu::gestionarProfes() {
     int opcion;
     do {
+        system("cls");
         cout << "\n===== GESTION DE PROFESORES =====\n";
         cout << "1. Alta de Profesor\n";
         cout << "2. Baja de Profesor\n";
@@ -222,6 +223,11 @@ void Menu::gestionarProfes() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+            system("pause");
+        }
+
+        if (opcion != 0 && opcion >= 1 && opcion <= 5) {
+            system("pause");
         }
     } while (opcion != 0);
 }
