@@ -12,14 +12,23 @@ Pago GestionarPago::cargarPago(int idAlumno)
     if (idAlumno <= 0) {
         string dniAlumno;
         ArchivoAlumnos archivoAlumnos(sizeof(Alumno));
+
         do {
             cout << "Ingrese DNI del alumno (8 digitos) o 0 para cancelar: ";
             cin >> dniAlumno;
+
             if (dniAlumno == "0")
-                return Pago();
+                return Pago();  // cancelar
+
+            if (!Validaciones::esDNIValido(dniAlumno)) {
+                cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+                continue;  // vuelve a pedir
+            }
+
             idAlumno = archivoAlumnos.buscarPorDni(dniAlumno);
             if (idAlumno < 0)
                 cout << "ERROR: Alumno no encontrado.\n";
+
         } while (idAlumno < 0);
     }
 

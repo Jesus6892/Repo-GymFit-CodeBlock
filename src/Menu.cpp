@@ -336,9 +336,12 @@ void Menu::gestionarPago() {
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
+            system("pause");
+            system("cls");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+            system("cls");
         }
         if (opcion != 0) {
             system("pause");
