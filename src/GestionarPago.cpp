@@ -62,7 +62,7 @@ Pago GestionarPago::cargarPago(int idAlumno)
 
     } while (posActividad < 0);
 
-    // 3) Fecha y monto
+    // 3) Fecha
     int dia, mes, anio;
     bool fechaValida = false;
 
@@ -83,10 +83,17 @@ Pago GestionarPago::cargarPago(int idAlumno)
             system("pause");
         }
     } while (!fechaValida);
-
+    // 4) monto
     float monto;
-    cout << "Ingrese monto del pago: ";
-    cin >> monto;
+    do {
+        cout << "Ingrese monto del pago: ";
+        cin >> monto;
+
+        if (!Validaciones::esCostoValido(monto)) {
+            cout << "ERROR: Monto invalido. Debe ser mayor o igual a cero.\n";
+            system("pause");
+        }
+    } while (!Validaciones::esCostoValido(monto));
 
     // 4) Generar nuevo ID y devolver Pago
     int nuevoIdPago = Utilidades::obtenerIdNuevo<PagoArchivo, Pago>(archivoPagos);
