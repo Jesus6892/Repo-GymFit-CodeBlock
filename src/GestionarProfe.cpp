@@ -187,8 +187,15 @@ void GestionarProfesor::listarProfesores()
 void GestionarProfesor::bajaProfesor()
 {
     std::string dni;
-    cout << "Ingrese el DNI del profesor a dar de baja: ";
-    cin >> dni;
+    do
+    {
+        cout << "Ingrese el DNI del profesor a dar de baja (8 digitos): ";
+        cin >> dni;
+
+        if (!Validaciones::esDNIValido(dni))
+            cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+
+    } while (!Validaciones::esDNIValido(dni));
 
     int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos >= 0)
@@ -207,8 +214,15 @@ void GestionarProfesor::bajaProfesor()
 void GestionarProfesor::buscarProfesor()
 {
     std::string dni;
-    cout << "Ingrese el DNI del profesor a buscar: ";
-    cin >> dni;
+    do
+    {
+        cout << "Ingrese el DNI del profesor a buscar (8 digitos): ";
+        cin >> dni;
+
+        if (!Validaciones::esDNIValido(dni))
+            cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+
+    } while (!Validaciones::esDNIValido(dni));
 
     int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos >= 0)
@@ -220,9 +234,14 @@ void GestionarProfesor::buscarProfesor()
 void GestionarProfesor::modificarProfesor()
 {
     std::string dni;
-    cout << "Ingrese el DNI del profesor a modificar: ";
-    cin >> dni;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        do {
+            std::cout << "Ingrese el DNI del profesor a modificar (8 digitos): ";
+            std::cin >> dni;
+
+            if (!Validaciones::esDNIValido(dni)) {
+                std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+            }
+        } while (!Validaciones::esDNIValido(dni));
 
     int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos < 0)
