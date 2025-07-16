@@ -1,4 +1,6 @@
 #include "GestionarPago.h"
+#include "ActividadesArchivo.h"
+
 
 GestionarPago::GestionarPago()
     : archivoPagos(sizeof(Pago))
@@ -34,19 +36,37 @@ Pago GestionarPago::cargarPago(int idAlumno)
 
     // 2) Seleccionar actividad
     int idActividad;
+    ActividadesArchivo archivoActividades(sizeof(Actividad));
+    int posActividad;
+
     do {
         cout << "Ingrese ID de la actividad (>=1) o 0 para cancelar: ";
         cin >> idActividad;
+
         if (idActividad == 0)
             return Pago();
-    } while (idActividad < 1);
+
+        posActividad = archivoActividades.buscar(idActividad);
+
+        if (posActividad < 0) {
+            cout << "ERROR: No se encontro una actividad con el ID ingresado.\n";
+            continue;
+        }
+
+        Actividad act = archivoActividades.leerRegistro(posActividad);
+        if (!act.getEstado()) {
+            cout << "ERROR: La actividad existe pero está inactiva.\n";
+            posActividad = -1;
+        }
+
+    } while (posActividad < 0);
 
     // 3) Fecha y monto
     int dia, mes, anio;
 
     cout << "-------------";
     cout << "FECHA DE PAGO";
-    cout << "-------------";
+    cout << "-------------" << endl;
     cout << "Ingrese dia: ";
     cin >> dia;
     cout << "Ingrese mes: ";
