@@ -36,13 +36,24 @@ Alumno GestionarAlumno::cargarAlumno()
     } while (!Validaciones::esSoloLetras(apellido));
 
     // DNI
+    ArchivoAlumnos archivoAlumnos(sizeof(Alumno));
     do
     {
         std::cout << "Ingrese DNI (8 digitos): ";
         std::cin >> dni;
-        if (!Validaciones::esDNIValido(dni))
+
+        if (!Validaciones::esDNIValido(dni)) {
             std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
-    } while (!Validaciones::esDNIValido(dni));
+            continue;
+        }
+
+        int pos = archivoAlumnos.buscarPosPorDni(dni);
+        if (pos >= 0) {
+            std::cout << "PEDAZO DE ERROR: DNI ya registrado. Intente nuevamente.\n";
+            dni.clear();
+        }
+
+    } while (!Validaciones::esDNIValido(dni) || archivoAlumnos.buscarPosPorDni(dni) >= 0);
 
     // Correo electronico
 
