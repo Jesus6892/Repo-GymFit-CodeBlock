@@ -26,6 +26,7 @@ class Validaciones
         static bool esFormatoDniValido(const std::string& dni);
         static bool esObservacionValida(const std::string& obs);
         static bool esCUITValido(const std::string& cuit);
+        static bool estaEnBlanco(const std::string& s);
     protected:
 
 
