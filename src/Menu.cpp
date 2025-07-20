@@ -367,7 +367,7 @@ void Menu::gestionarPago() {
             cout << "Opcion no valida, intente nuevamente.\n";
             system("cls");
         }
-        if (opcion != 0) {
+        if (opcion != 0 && opcion >= 1 && opcion <= 3) {
             system("pause");
         }
     } while (opcion != 0);
