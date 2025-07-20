@@ -228,6 +228,7 @@ void Menu::gestionarActividades() {
             break;
         case 5:
             gestorActividades.listarActividades();
+            system("pause");
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
@@ -294,6 +295,7 @@ void Menu::gestionarPago() {
             break;
         case 3:
             gestorPagos.listarPagos();
+            system("pause");
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";

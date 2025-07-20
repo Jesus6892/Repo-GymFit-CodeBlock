@@ -130,3 +130,20 @@ int Validaciones::pedirEntero(const std::string& mensaje, int min, int max) {
     }
 }
 
+float Validaciones::pedirFlotante(const std::string& mensaje) {
+    float valor;
+    while (true) {
+        std::cout << mensaje;
+        std::cin >> valor;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "ERROR: Ingrese un numero valido (usa punto para decimales).\n";
+        } else {
+            std::cin.ignore(1000, '\n');
+            return valor;
+        }
+    }
+}
+

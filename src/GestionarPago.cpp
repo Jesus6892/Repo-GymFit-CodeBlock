@@ -9,6 +9,7 @@ GestionarPago::GestionarPago()
 }
 
 // --- Carga un Pago: si idAlumno<=0 pide DNI, si es >0 lo usa directamente ---
+
 Pago GestionarPago::cargarPago(int idAlumno)
 {
     // 1) Validar o pedir DNI
@@ -40,9 +41,8 @@ Pago GestionarPago::cargarPago(int idAlumno)
     ActividadesArchivo archivoActividades(sizeof(Actividad));
     int posActividad;
 
-    do {
-        cout << "Ingrese ID de la actividad (>=1) o 0 para cancelar: ";
-        cin >> idActividad;
+        do {
+        idActividad = Validaciones::pedirEntero("Ingrese ID de la actividad (>=1) o 0 para cancelar: ");
 
         if (idActividad == 0)
             return Pago();
@@ -83,12 +83,11 @@ Pago GestionarPago::cargarPago(int idAlumno)
             system("pause");
         }
     } while (!fechaValida);
+
     // 4) monto
     float monto;
     do {
-        cout << "Ingrese monto del pago: ";
-        cin >> monto;
-
+        monto = Validaciones::pedirFlotante("Ingrese monto del pago: ");
         if (!Validaciones::esCostoValido(monto)) {
             cout << "ERROR: Monto invalido. Debe ser mayor o igual a cero.\n";
             system("pause");
@@ -118,29 +117,40 @@ void GestionarPago::altaPago()
         cout << "Pago registrado con exito.\n";
     else
         cout << "ERROR: No se pudo guardar el pago.\n";
+        system("pause");
 }
 
 // --- Elimina (anula) un pago existente ---
 void GestionarPago::bajaPago()
 {
     int idPago;
-    cout << "Ingrese ID de pago para anular (o 0 para cancelar): ";
-    cin >> idPago;
-    if (idPago == 0) {
-        cout << "Operacion cancelada.\n";
-        return;
-    }
-    int pos = archivoPagos.buscar(idPago);
-    if (pos < 0) {
-        cout << "ERROR: Pago no encontrado.\n";
-        return;
-    }
+    int pos;
+
+    do {
+        idPago = Validaciones::pedirEntero("Ingrese ID de pago para anular (o 0 para cancelar): ");
+
+        if (idPago == 0) {
+            cout << "Operacion cancelada.\n";
+            system("pause");
+            return;
+        }
+
+        pos = archivoPagos.buscar(idPago);
+        if (pos < 0) {
+            cout << "ERROR: Pago no encontrado. Intente nuevamente. \n";
+        }
+
+    } while (idPago != 0 && pos < 0);
+
     Pago pago = archivoPagos.leerRegistro(pos);
     pago.anular();
+
     if (archivoPagos.modificarRegistro(pago, pos))
         cout << "Pago anulado con exito.\n";
     else
         cout << "ERROR: No se pudo anular el pago.\n";
+
+    system("pause");
 }
 
 // --- Lista todos los pagos activos ---

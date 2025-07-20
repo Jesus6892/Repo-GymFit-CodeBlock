@@ -16,6 +16,7 @@ class Validaciones
         static bool tieneLongitud(const std::string& s, int len);
         static bool esCostoValido(float costo);
         static int pedirEntero(const std::string& mensaje, int min = INT_MIN, int max = INT_MAX);
+        static float pedirFlotante(const std::string& mensaje);
 
 
         //Validaciones especificas
