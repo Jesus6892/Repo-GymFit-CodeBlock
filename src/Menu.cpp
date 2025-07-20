@@ -235,6 +235,7 @@ void Menu::gestionarProfes() {
 void Menu::gestionarActividades() {
     int opcion;
     do {
+        system("cls");
         cout << "\n===== GESTION DE ACTIVIDADES =====\n";
         cout << "1. Alta de Actividad\n";
         cout << "2. Baja de Actividad\n";
@@ -266,6 +267,10 @@ void Menu::gestionarActividades() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+            system("pause");
+        }
+                if (opcion != 0 && opcion >= 1 && opcion <= 5) {
+            system("pause");
         }
     } while (opcion != 0);
 }
