@@ -166,7 +166,7 @@ void GestionarActividad::bajaActividad()
 
         if (pos < 0)
         {
-            cout << "No se encontro ninguna actividad con ese ID.\n";
+            cout << "No se encontro ninguna actividad con ese ID. Proba otra vez.\n";
         }
 
     } while (pos < 0);
@@ -235,19 +235,39 @@ void GestionarActividad::listarActividades() {
 void GestionarActividad::buscarActividad()
 {
     int id;
-    cout << "Ingrese el ID de la actividad a buscar: ";
-    cin >> id;
+    int pos;
 
-    int pos = archivoActividades.buscar(id);
-    if (pos >= 0)
+    do
     {
-        Actividad actividad = archivoActividades.leerRegistro(pos);
-        actividad.mostrar();
-    }
-    else
-    {
-        cout << "Actividad no encontrada.\n";
-    }
+        cout << "Ingrese el ID de la actividad a buscar (0 para cancelar): ";
+        cin >> id;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+            pos = -1;
+            continue;
+        }
+
+        if (id == 0)
+        {
+            cout << "Operacion cancelada por el usuario.\n";
+            return;
+        }
+
+        pos = archivoActividades.buscar(id);
+
+        if (pos < 0)
+        {
+            cout << "No se encontro ninguna actividad con ese ID. Proba otra vez. \n";
+        }
+
+    } while (pos < 0);
+
+    Actividad actividad = archivoActividades.leerRegistro(pos);
+    actividad.mostrar();
 }
 
 int GestionarActividad::obtenerIdNuevo()
