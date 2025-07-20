@@ -140,27 +140,47 @@ void GestionarActividad::altaActividad()
 void GestionarActividad::bajaActividad()
 {
     int id;
-    cout << "Ingrese el ID de la actividad a dar de baja: ";
-    cin >> id;
+    int pos;
 
-    int pos = archivoActividades.buscar(id);
-    if (pos >= 0)
+    do
     {
-        Actividad actividad = archivoActividades.leerRegistro(pos);
-        actividad.setEstado(false);
+        cout << "Ingrese el ID de la actividad a dar de baja (0 para cancelar): ";
+        cin >> id;
 
-        if (archivoActividades.modificarRegistro(actividad, pos))
+        if (cin.fail())
         {
-            cout << "Actividad dada de baja exitosamente.\n";
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+            pos = -1; // Para que siga el ciclo
+            continue;
         }
-        else
+
+        if (id == 0)
         {
-            cout << "Error al dar de baja la actividad.\n";
+            cout << "Operacion cancelada por el usuario.\n";
+            return;
         }
+
+        pos = archivoActividades.buscar(id);
+
+        if (pos < 0)
+        {
+            cout << "No se encontro ninguna actividad con ese ID.\n";
+        }
+
+    } while (pos < 0);
+
+    Actividad actividad = archivoActividades.leerRegistro(pos);
+    actividad.setEstado(false);
+
+    if (archivoActividades.modificarRegistro(actividad, pos))
+    {
+        cout << "Actividad dada de baja exitosamente.\n";
     }
     else
     {
-        cout << "Actividad no encontrada.\n";
+        cout << "Error al dar de baja la actividad.\n";
     }
 }
 
