@@ -20,6 +20,7 @@ void GestionarProceso::realizarInscripcion() {
     // 1. Validar Alumno
     string dniAlumno;
     int idAlumno = -1;
+    int posAlumno = -1;
         do {
             cout << "Ingrese el DNI del Alumno (8 digitos) o 0 para cancelar: ";
             cin >> dniAlumno;
@@ -31,10 +32,17 @@ void GestionarProceso::realizarInscripcion() {
 
             if (!Validaciones::esDNIValido(dniAlumno)) {
                 cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+                continue;
             }
-        } while (!Validaciones::esDNIValido(dniAlumno));
 
-    int posAlumno = _archivoAlumnos.buscarPosPorDni(dniAlumno);
+            posAlumno = _archivoAlumnos.buscarPosPorDni(dniAlumno);
+            if (posAlumno < 0) {
+                cout << "Error: No se encontro un alumno con el DNI " << dniAlumno << ".\n";
+            }
+
+        } while (!Validaciones::esDNIValido(dniAlumno) || posAlumno < 0);
+
+    idAlumno = _archivoAlumnos.leerRegistro(posAlumno).getId();
     if (posAlumno < 0) {
         cout << "Error: No se encontro un alumno con el DNI " << dniAlumno << "." << endl;
         return;
@@ -43,20 +51,24 @@ void GestionarProceso::realizarInscripcion() {
 
     // 2. Seleccionar Clase
     _gestorClase.listarClases();
+
     int idClase = -1;
-    cout << "\nIngrese el ID de la Clase a la que desea inscribir (0 para cancelar): ";
-    cin >> idClase;
+    int posClase = -1;
 
-    if (idClase == 0) {
-        cout << "Operacion cancelada." << endl;
-        return;
-    }
+    do {
+        idClase = Validaciones::pedirEntero("\nIngrese el ID de la Clase a la que desea inscribir (0 para cancelar): ");
 
-    int posClase = _archivoClases.buscar(idClase);
-    if (posClase < 0) {
-        cout << "Error: No se encontro una clase con el ID " << idClase << "." << endl;
-        return;
-    }
+        if (idClase == 0) {
+            cout << "Operacion cancelada." << endl;
+            return;
+        }
+
+        posClase = _archivoClases.buscar(idClase);
+        if (posClase < 0) {
+            cout << "Error: No se encontro una clase con el ID " << idClase << "." << endl;
+        }
+
+} while (idClase != 0 && posClase < 0);
 
     // 3. Validar si ya está inscripto
     if (_archivoInscripciones.yaEstaInscripto(idAlumno, idClase)) {
