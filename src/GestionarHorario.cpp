@@ -137,54 +137,76 @@ void GestionarHorario::listarHorarios()
 void GestionarHorario::buscarHorario()
 {
     int id;
-    std::cout << "Ingrese el ID del horario a buscar: ";
-    std::cin >> id;
+    int pos;
 
-    int pos = archivoHorarioPorClase.buscar(id);
-    if (pos >= 0) {
-        HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
+    do
+    {
+        std::cout << "Ingrese el ID del horario a buscar (0 para cancelar): ";
+        std::cin >> id;
 
-        if (!h.getEstado()) {
-            std::cout << "El horario existe pero está inactivo.\n";
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+            pos = -1;
+            continue;
+        }
+
+        if (id == 0)
+        {
+            std::cout << "Operacion cancelada por el usuario.\n";
             return;
         }
 
-        // Instanciamos para buscar clase y actividad
-        ClaseArchivo archivoClases(sizeof(Clase));
-        ActividadesArchivo archivoActividades(sizeof(Actividad));
+        pos = archivoHorarioPorClase.buscar(id);
 
-        int idClase = h.getIdClase();
-        std::string nombreActividad = "(Desconocida)";
-
-        int posClase = archivoClases.buscar(idClase);
-        if (posClase >= 0) {
-            Clase clase = archivoClases.leerRegistro(posClase);
-            int idActividad = clase.getIdActividad();
-
-            int posActividad = archivoActividades.buscar(idActividad);
-            if (posActividad >= 0) {
-                Actividad actividad = archivoActividades.leerRegistro(posActividad);
-                nombreActividad = actividad.getNombreActividad();
-            }
+        if (pos < 0)
+        {
+            std::cout << "No se encontro ningun horario con ese ID. Proba otra vez.\n";
         }
 
-        Horario horario = h.getHorario();
+    } while (pos < 0);
 
-        std::cout << "\n=== DETALLE DEL HORARIO ENCONTRADO ===\n\n";
-        std::cout << "ID | Dia Semana | Hora Inicio | Hora Fin | ID Clase | Nombre Actividad\n";
-        std::cout << "--------------------------------------------------------------------------\n";
-        std::cout << std::left
-                  << std::setw(3)  << h.getId() << " | "
-                  << std::setw(10) << horario.getDiaSemana() << " | "
-                  << std::setw(11) << horario.getHoraInicio() << " | "
-                  << std::setw(8)  << horario.getHoraFin() << " | "
-                  << std::setw(8)  << idClase << " | "
-                  << nombreActividad
-                  << "\n\n";
+    HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
 
-    } else {
-        std::cout << "Horario no encontrado.\n";
+    if (!h.getEstado()) {
+        std::cout << "El horario existe pero esta inactivo.\n";
+        return;
     }
+
+    // Instanciamos para buscar clase y actividad
+    ClaseArchivo archivoClases(sizeof(Clase));
+    ActividadesArchivo archivoActividades(sizeof(Actividad));
+
+    int idClase = h.getIdClase();
+    std::string nombreActividad = "(Desconocida)";
+
+    int posClase = archivoClases.buscar(idClase);
+    if (posClase >= 0) {
+        Clase clase = archivoClases.leerRegistro(posClase);
+        int idActividad = clase.getIdActividad();
+
+        int posActividad = archivoActividades.buscar(idActividad);
+        if (posActividad >= 0) {
+            Actividad actividad = archivoActividades.leerRegistro(posActividad);
+            nombreActividad = actividad.getNombreActividad();
+        }
+    }
+
+    Horario horario = h.getHorario();
+
+    std::cout << "\n=== DETALLE DEL HORARIO ENCONTRADO ===\n\n";
+    std::cout << "ID | Dia Semana | Hora Inicio | Hora Fin | ID Clase | Nombre Actividad\n";
+    std::cout << "--------------------------------------------------------------------------\n";
+    std::cout << std::left
+              << std::setw(3)  << h.getId() << " | "
+              << std::setw(10) << horario.getDiaSemana() << " | "
+              << std::setw(11) << horario.getHoraInicio() << " | "
+              << std::setw(8)  << horario.getHoraFin() << " | "
+              << std::setw(8)  << idClase << " | "
+              << nombreActividad
+              << "\n\n";
 }
 
 // 6) Obtener nuevo ID
