@@ -90,8 +90,6 @@ Alumno GestionarAlumno::cargarAlumno()
     );
 }
 
-
-
 void GestionarAlumno::altaAlumno()
 {
     Alumno nuevoAlumno = cargarAlumno();
@@ -106,13 +104,19 @@ void GestionarAlumno::bajaAlumno()
     std::string dni;
     do
     {
-        std::cout << "Ingrese el DNI del alumno a dar de baja (8 digitos): ";
-        std::cin >> dni;
+        std::cout << "Ingrese el DNI del alumno a dar de baja (8 digitos) o 0 para cancelar: ";
+        std::getline(std::cin, dni);
+
+        if (dni == "0")
+            return;
 
         if (!Validaciones::esDNIValido(dni))
-            std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+        {
+            std::cout << "DNI invalido. Deben ser 8 digitos numericos.\n";
+        }
 
     } while (!Validaciones::esDNIValido(dni));
+
 
     int pos = archivoAlumnos.buscarPosPorDni(dni);
     if (pos >= 0)

@@ -40,7 +40,6 @@ bool Validaciones::esFormatoDniValido(const std::string& dni) {
 }
 
 
-
 bool Validaciones::esSoloNumeros(const std::string& s) {
     for (char c : s)
         if (!std::isdigit(c))
@@ -103,4 +102,7 @@ bool Validaciones::esCUITValido(const std::string& cuit)
     return std::all_of(cuit.begin(), cuit.end(), ::isdigit);
 }
 
-
+bool Validaciones::estaEnBlanco(const std::string& s){
+    return std::all_of(s.begin(), s.end(),
+        [](unsigned char c){ return std::isspace(c); });
+}
