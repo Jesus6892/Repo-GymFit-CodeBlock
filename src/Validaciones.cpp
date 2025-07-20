@@ -106,3 +106,4 @@ bool Validaciones::estaEnBlanco(const std::string& s){
     return std::all_of(s.begin(), s.end(),
         [](unsigned char c){ return std::isspace(c); });
 }
+

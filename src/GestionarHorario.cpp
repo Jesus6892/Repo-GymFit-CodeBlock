@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cctype>
 #include <iomanip>
+#include <limits>
 
 GestionarHorario::GestionarHorario()
     : archivoHorarioPorClase(sizeof(HorarioPorClase))

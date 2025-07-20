@@ -5,6 +5,7 @@
 #include "HorarioPorClaseArchivo.h"
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 using namespace std;
 

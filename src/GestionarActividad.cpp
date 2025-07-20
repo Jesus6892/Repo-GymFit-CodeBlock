@@ -69,7 +69,6 @@ Actividad GestionarActividad::cargarActividad()
         }
     } while (!Validaciones::esObservacionValida(descripcion));
 
-    // preguntar a los chicos por tema de utilidad
     int idActividad = obtenerIdNuevo();
     Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
