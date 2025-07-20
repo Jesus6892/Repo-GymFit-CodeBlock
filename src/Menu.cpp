@@ -67,12 +67,9 @@ void GestionarProceso::iniciar() {
             case 0:
                 cout << "Volviendo al menu principal..." << endl;
                 system("pause");
-                system("cls");
                 break;
             default:
                 cout << "Opcion no valida." << endl;
-                system("pause");
-                system("cls");
                 break;
         }
         if (opcion != 0) {
@@ -101,7 +98,7 @@ void Menu::gestionarAdministracion() {
             case 3: gestionarActividades(); break;
             case 4: gestionarClases(); break;
             case 5: gestionarHorarios(); break;
-            case 0: cout << "Volviendo al menu principal...\n"; break;
+            case 0: cout << "Volviendo al menu principal...\n"; system("pause"); break;
             default: cout << "Opcion no valida, intente nuevamente.\n"; system("pause");
         }
     } while (opcion != 0);
@@ -152,6 +149,7 @@ void Menu::gestionarAlumnos() {
                 break;
             case 0:
                 cout << "Volviendo al menu principal...\n";
+                system("pause");
                 break;
             default:
                 cout << "Opcion no valida, intente nuevamente.\n";
@@ -172,7 +170,6 @@ void Menu::gestionarProfes() {
         cout << "4. Buscar Profesor\n";
         cout << "5. Listar Profesores\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
         opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
@@ -193,6 +190,7 @@ void Menu::gestionarProfes() {
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
+            system("pause");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
@@ -213,7 +211,6 @@ void Menu::gestionarActividades() {
         cout << "4. Buscar Actividad\n";
         cout << "5. Listar Actividades\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
         opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
@@ -234,6 +231,7 @@ void Menu::gestionarActividades() {
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
+            system("pause");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
@@ -252,7 +250,6 @@ void Menu::gestionarClases() {
         cout << "2. Baja de Clase\n";
         cout << "3. Listar Clases\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
         opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
 
         switch (opcion) {
@@ -267,6 +264,7 @@ void Menu::gestionarClases() {
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
+            system("pause");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
@@ -285,7 +283,6 @@ void Menu::gestionarPago() {
         cout << "2. Anular Pago\n";
         cout << "3. Listar Pagos\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
         opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
 
         switch (opcion) {
@@ -301,7 +298,6 @@ void Menu::gestionarPago() {
         case 0:
             cout << "Volviendo al menu principal...\n";
             system("pause");
-            system("cls");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
@@ -322,7 +318,6 @@ void Menu::gestionarHorarios() {
         cout << "4. Buscar Horario\n";
         cout << "5. Listar Horarios\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
         opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
@@ -354,6 +349,7 @@ void Menu::gestionarHorarios() {
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
+            system("pause");
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
