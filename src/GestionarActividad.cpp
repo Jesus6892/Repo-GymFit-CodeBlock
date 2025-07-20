@@ -5,6 +5,8 @@
 #include "Validaciones.h"
 #include <iomanip>
 #include <iostream>
+#include <limits>
+
 using namespace std;
 
 GestionarActividad::GestionarActividad()
@@ -18,25 +20,56 @@ Actividad GestionarActividad::cargarActividad()
     string nombreActividad, descripcion;
     float costo;
 
-    cout << "Ingrese el nombre de la actividad: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    getline(cin, nombreActividad);
+    // nombre
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    do {
+        cout << "Ingrese el nombre de la actividad: ";
+        getline(cin, nombreActividad);
+        if (!Validaciones::esSoloLetras(nombreActividad))
+            std::cout << "Nombre de la actividad invalido. Solo letras y espacios.\n";
+    }while (!Validaciones::esSoloLetras(nombreActividad));
 
-    cout << "Ingrese la cantidad maxima de inscriptos: ";
-    cin >> cantMax;
+    // Inscriptos
+    do {
+        cout << "Ingrese la cantidad maxima de inscriptos: ";
+        cin >> cantMax;
+        if (cin.fail() || cantMax <= 0) {
+            cout << "Cantidad invalida. Debe ser un numero mayor a cero.\n";
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    } while (cantMax <= 0);
 
-    cout << "Ingrese el costo de la actividad: ";
-    cin >> costo;
+    // Costo
+    // bucle infinito , si el dato que entra esta bien joya, sino se muestra error y se repite hasta que este bien.
+     while (true) {
+            cout << "Ingrese el costo de la actividad: ";
+            cin >> costo;
 
-    if (!Validaciones::esCostoValido(costo)) {
-    cout << "ERROR: El costo no puede ser negativo.\n";
-    return Actividad(-1, "", 0, 0, "");
-}
+            if (cin.fail()) {
+                cout << "ERROR: El costo debe ser un numero valido.\n";
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            } else if (!Validaciones::esCostoValido(costo)) {
+                cout << "ERROR: El costo no puede ser negativo.\n";
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // limpiar por las dudas
+            } else {
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // limpia después de leer
+                break;
+            }
+    }
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Ingrese la descripcion de la actividad: ";
-    getline(cin, descripcion);
+    // Descripcion
+    do {
+        cout << "Ingrese la descripcion de la actividad: ";
+        getline(cin, descripcion);
 
+        if (!Validaciones::esObservacionValida(descripcion)) {
+            cout << "Descripcion invalida. Debe contener al menos una letra.\n";
+        }
+    } while (!Validaciones::esObservacionValida(descripcion));
+
+    // preguntar a los chicos por tema de utilidad
     int idActividad = obtenerIdNuevo();
     Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
