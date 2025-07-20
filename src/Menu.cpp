@@ -107,7 +107,16 @@ void Menu::gestionarAdministracion() {
     } while (opcion != 0);
 }
 
-void Menu::gestionarBajaDeClase() {
+void Menu::gestionarBajaDeClase()
+{
+    system("cls");
+    cout << "\n--- Baja de Clase ---\n";
+    gestorClase.bajaClase();
+    system("pause");
+    system("cls");
+}
+
+/*{
     int idClase;
     bool exito = false;
 
@@ -135,7 +144,7 @@ void Menu::gestionarBajaDeClase() {
 
     } while (!exito);
     system("cls");
-}
+}*/
 
 void Menu::gestionarProceso() {
     GestionarProceso proceso;
@@ -292,7 +301,9 @@ void Menu::gestionarClases() {
             gestorClase.altaClase();
             break;
         case 2:
-            {
+            gestorClase.bajaClase();
+            break;
+            /*{
                 cout << "\n--- Baja de Clase ---\n";
                 gestorClase.listarClases();
                 cout << "------------------------------------------------------------\n";
@@ -305,7 +316,7 @@ void Menu::gestionarClases() {
                     cout << "Operacion cancelada.\n";
                 }
             }
-            break;
+            break;*/
         case 3:
             gestorClase.listarClases();
             break;

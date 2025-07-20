@@ -1570,7 +1570,7 @@
 	"ActividadesArchivo.h"
 	"Utilidades.h"
 
-1752620285 c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\include\gestionarclase.h
+1753025032 c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\include\gestionarclase.h
 	"Clase.h"
 	"ClaseArchivo.h"
 	"ActividadesArchivo.h"
@@ -1662,7 +1662,7 @@
 1752618323 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\fecha.cpp
 	"Fecha.h"
 
-1753021583 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
+1753022098 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
@@ -1684,7 +1684,7 @@
 	"Utilidades.h"
 	<Validaciones.h>
 
-1752620334 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarclase.cpp
+1753025189 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarclase.cpp
 	"GestionarClase.h"
 	"GestionarActividad.h"
 	"GestionarProfe.h"
@@ -1740,7 +1740,7 @@
 1752343901 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\inscripcionarchivo.cpp
 	"InscripcionArchivo.h"
 
-1753018923 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\menu.cpp
+1753025054 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 	<limits>

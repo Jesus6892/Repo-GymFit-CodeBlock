@@ -55,38 +55,59 @@ void GestionarClase::altaClase() {
     }
 }
 
-bool GestionarClase::bajaClase(int idClase) {
-    int pos = _archivoClases.buscar(idClase);
+bool GestionarClase::bajaClase() {
+    int idClase;
+    int pos = -1;
 
-    if (pos >= 0) {
-        Clase clase = _archivoClases.leerRegistro(pos);
-        clase.setEstado(false);
+    do {
+        cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
+        cin >> idClase;
 
-        if (_archivoClases.modificarRegistro(clase, pos)) {
-            cout << "Clase con ID " << idClase << " dada de baja exitosamente.\n";
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, ingrese un numero valido.\n";
+            pos = -1; // Forzar repetición
+            continue;
+        }
 
-            HorarioPorClaseArchivo archivoHorarios(sizeof(HorarioPorClase));
-            int total = archivoHorarios.contarRegistros();
-            int cont = 0;
-
-            for (int i = 0; i < total; ++i) {
-                HorarioPorClase h = archivoHorarios.leerRegistro(i);
-                if (h.getEstado() && h.getIdClase() == idClase) {
-                    h.setEstado(false);
-                    archivoHorarios.modificarRegistro(h, i);
-                    cont++;
-                }
-            }
-
-            cout << ">> También se dieron de baja " << cont << " horario(s) asociados a esta clase.\n";
-            return true;
-
-        } else {
-            cout << "Error: No se pudo modificar el registro en el archivo.\n";
+        if (idClase == 0) {
+            cout << "Operacion cancelada.\n";
             return false;
         }
+
+        pos = _archivoClases.buscar(idClase);
+
+        if (pos < 0) {
+            cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
+        }
+
+    } while (pos < 0);
+
+    Clase clase = _archivoClases.leerRegistro(pos);
+    clase.setEstado(false);
+
+    if (_archivoClases.modificarRegistro(clase, pos)) {
+        cout << "Clase con ID " << idClase << " dada de baja exitosamente.\n";
+
+        HorarioPorClaseArchivo archivoHorarios(sizeof(HorarioPorClase));
+        int total = archivoHorarios.contarRegistros();
+        int cont = 0;
+
+        for (int i = 0; i < total; ++i) {
+            HorarioPorClase h = archivoHorarios.leerRegistro(i);
+            if (h.getEstado() && h.getIdClase() == idClase) {
+                h.setEstado(false);
+                archivoHorarios.modificarRegistro(h, i);
+                cont++;
+            }
+        }
+
+        cout << ">> También se dieron de baja " << cont << " horario(s) asociados a esta clase.\n";
+        return true;
+
     } else {
-        cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
+        cout << "Error: No se pudo modificar el registro en el archivo.\n";
         return false;
     }
 }

@@ -11,7 +11,7 @@ class GestionarClase {
 public:
     GestionarClase();
     void altaClase();
-    bool bajaClase(int idClase);
+    bool bajaClase(/*int idClase*/);
     void listarClases();
     //Aañadir modificarClase()
 
