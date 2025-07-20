@@ -2,6 +2,7 @@
 #include <cctype>
 #include <regex>
 #include <ctime>
+#include <iostream>
 
 Validaciones::Validaciones()
 {
@@ -85,7 +86,6 @@ bool Validaciones::esCostoValido(float costo) {
 
 bool Validaciones::esObservacionValida(const std::string& obs)
 {
-    //Revisar me ayudo botsito
     if (obs.empty()) return false;
 
     bool tieneLetra = std::any_of(obs.begin(), obs.end(), [](char c) {
@@ -105,5 +105,28 @@ bool Validaciones::esCUITValido(const std::string& cuit)
 bool Validaciones::estaEnBlanco(const std::string& s){
     return std::all_of(s.begin(), s.end(),
         [](unsigned char c){ return std::isspace(c); });
+}
+
+int Validaciones::pedirEntero(const std::string& mensaje, int min, int max) {
+    int valor;
+    while (true) {
+        std::cout << mensaje;
+        std::cin >> valor;
+
+        if (std::cin.fail()) {
+            std::cin.clear(); // Limpia el error
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Descarta lo que quedó
+            std::cout << "Entrada invalida. Ingrese un numero entero.\n";
+            continue;
+        }
+
+        if (valor < min || valor > max) {
+            std::cout << "El numero debe estar entre " << min << " y " << max << ".\n";
+            continue;
+        }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpia el ENTER
+        return valor;
+    }
 }
 

@@ -32,7 +32,8 @@ int main() {
             menu.procesarOpcion(opcion);
         } else {
             std::cout << "Opcion no valida. Por favor, ingrese un numero." << std::endl;
-            opcion = -1; 
+            system("pause");
+            opcion = -1;
         }
 
     } while (opcion != 0);
@@ -40,28 +41,3 @@ int main() {
     return 0;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

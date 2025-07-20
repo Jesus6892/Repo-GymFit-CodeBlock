@@ -1458,7 +1458,7 @@
 	<iostream>
 	<iomanip>
 
-1753019062 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\main.cpp
+1753034557 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\main.cpp
 	<iostream>
 	"Fecha.h"
 	"Actividad.h"
@@ -1646,7 +1646,7 @@
 	"Validaciones.h"
 	<cctype>
 
-1753019062 c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\include\validaciones.h
+1753033462 c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\include\validaciones.h
 	<string>
 
 1752343901 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\clase.cpp
@@ -1662,7 +1662,7 @@
 1752618323 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\fecha.cpp
 	"Fecha.h"
 
-1753022098 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
+1753032701 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
@@ -1742,10 +1742,11 @@
 1752343901 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\inscripcionarchivo.cpp
 	"InscripcionArchivo.h"
 
-1753030807 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\menu.cpp
+1753034848 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\menu.cpp
 	"Menu.h"
 	<iostream>
 	<limits>
+	"Validaciones.h"
 
 1752618323 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\pago.cpp
 	"Pago.h"
@@ -1767,11 +1768,12 @@
 	"ProfesArchivo.h"
 	"Validaciones.h"
 
-1753031203 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\validaciones.cpp
+1753034888 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\validaciones.cpp
 	"Validaciones.h"
 	<cctype>
 	<regex>
 	<ctime>
+	<iostream>
 
 1752855204 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarclase.h
 	"Clase.h"

@@ -1,10 +1,12 @@
 #include "Menu.h"
 #include <iostream>
 #include <limits> // Necesario para numeric_limits
+#include "Validaciones.h"
 
 using namespace std;
 
 void Menu::mostrarMenu() {
+    system("cls");
     cout << "\n========================================\n";
     cout << "            SISTEMA GYM FIT            \n";
     cout << "========================================\n";
@@ -48,14 +50,13 @@ void GestionarProceso::mostrarMenu() {
     cout << "1. Realizar una Inscripcion" << endl;
     cout << "2. Dar de baja una Inscripcion" << endl;
     cout << "0. Volver al Menu Principal" << endl;
-    cout << "Seleccione una opcion: ";
 }
 
 void GestionarProceso::iniciar() {
     int opcion;
     do {
         mostrarMenu();
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 2);
         switch (opcion) {
             case 1:
                 realizarInscripcion();
@@ -92,8 +93,7 @@ void Menu::gestionarAdministracion() {
         cout << "4. Gestionar Clases\n";
         cout << "5. Gestionar Horarios\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
             case 1: gestionarAlumnos(); break;
@@ -132,10 +132,7 @@ void Menu::gestionarAlumnos() {
         cout << "4. Buscar Alumno\n";
         cout << "5. Listar Alumnos\n";
         cout << "0. Volver al Menu Principal\n";
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
-
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
             case 1:
@@ -161,9 +158,6 @@ void Menu::gestionarAlumnos() {
                 system("pause");
         }
 
-        if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");
-        }
     } while (opcion != 0);
 }
 
@@ -179,7 +173,7 @@ void Menu::gestionarProfes() {
         cout << "5. Listar Profesores\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
         case 1:
@@ -205,9 +199,6 @@ void Menu::gestionarProfes() {
             system("pause");
         }
 
-        if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");
-        }
     } while (opcion != 0);
 }
 
@@ -223,7 +214,7 @@ void Menu::gestionarActividades() {
         cout << "5. Listar Actividades\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
         case 1:
@@ -248,9 +239,7 @@ void Menu::gestionarActividades() {
             cout << "Opcion no valida, intente nuevamente.\n";
             system("pause");
         }
-                if (opcion != 0 && opcion >= 1 && opcion <= 5) {
-            system("pause");
-        }
+
     } while (opcion != 0);
 }
 
@@ -264,7 +253,7 @@ void Menu::gestionarClases() {
         cout << "3. Listar Clases\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
 
         switch (opcion) {
         case 1:
@@ -283,9 +272,7 @@ void Menu::gestionarClases() {
             cout << "Opcion no valida, intente nuevamente.\n";
             system("pause");
         }
-                if (opcion != 0 && opcion >= 1 && opcion <= 3) {
-            system("pause");
-        }
+
     } while (opcion != 0);
 }
 
@@ -299,10 +286,7 @@ void Menu::gestionarPago() {
         cout << "3. Listar Pagos\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
-        cin >> opcion;
-
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
 
         switch (opcion) {
         case 1:
@@ -323,9 +307,7 @@ void Menu::gestionarPago() {
             cout << "Opcion no valida, intente nuevamente.\n";
             system("cls");
         }
-        if (opcion != 0 && opcion >= 1 && opcion <= 3) {
-            system("pause");
-        }
+
     } while (opcion != 0);
 }
 
@@ -341,7 +323,7 @@ void Menu::gestionarHorarios() {
         cout << "5. Listar Horarios\n";
         cout << "0. Volver al Menu Principal\n";
         cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opcion) {
         case 1:
@@ -375,9 +357,6 @@ void Menu::gestionarHorarios() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
-            system("pause");
-        }
-         if (opcion != 0 && opcion >= 1 && opcion <= 5) {
             system("pause");
         }
     } while (opcion != 0);
