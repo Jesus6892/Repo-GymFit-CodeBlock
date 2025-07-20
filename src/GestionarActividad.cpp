@@ -52,7 +52,7 @@ Actividad GestionarActividad::cargarActividad()
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             } else if (!Validaciones::esCostoValido(costo)) {
                 cout << "ERROR: El costo no puede ser negativo.\n";
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // limpiar por las dudas
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // limpia por las dudas
             } else {
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // limpia después de leer
                 break;

@@ -278,6 +278,7 @@ void Menu::gestionarActividades() {
 void Menu::gestionarClases() {
     int opcion;
     do {
+        system("cls");
         cout << "\n===== GESTION DE CLASES =====\n";
         cout << "1. Alta de Clase\n";
         cout << "2. Baja de Clase\n";
@@ -313,8 +314,9 @@ void Menu::gestionarClases() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+            system("pause");
         }
-         if (opcion != 0) {
+                if (opcion != 0 && opcion >= 1 && opcion <= 3) {
             system("pause");
         }
     } while (opcion != 0);
