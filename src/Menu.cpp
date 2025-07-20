@@ -376,6 +376,7 @@ void Menu::gestionarPago() {
 void Menu::gestionarHorarios() {
     int opcion;
     do {
+        system("cls");
         cout << "\n===== GESTION DE HORARIOS =====\n";
         cout << "1. Alta de Horario\n";
         cout << "2. Baja de Horario\n";
@@ -418,6 +419,10 @@ void Menu::gestionarHorarios() {
             break;
         default:
             cout << "Opcion no valida, intente nuevamente.\n";
+            system("pause");
+        }
+         if (opcion != 0 && opcion >= 1 && opcion <= 5) {
+            system("pause");
         }
     } while (opcion != 0);
 }
