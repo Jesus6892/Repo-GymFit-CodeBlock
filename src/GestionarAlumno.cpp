@@ -114,15 +114,16 @@ void GestionarAlumno::altaAlumno()
 {
     Alumno nuevoAlumno = cargarAlumno();
 
-    if (nuevoAlumno.getDni().empty()) {
+    if (nuevoAlumno.getId() == -1) {
         std::cout << "Alta de alumno cancelada por el usuario.\n";
         return;
     }
 
-    if (archivoAlumnos.guardar(nuevoAlumno))
+    if (archivoAlumnos.guardar(nuevoAlumno)) {
         std::cout << "Alumno agregado exitosamente.\n";
-    else
+    } else
         std::cout << "Error al guardar el alumno.\n";
+        system("pause");
 }
 
 void GestionarAlumno::bajaAlumno()
@@ -155,6 +156,7 @@ void GestionarAlumno::bajaAlumno()
             std::cout << "Alumno dado de baja exitosamente.\n";
         else
             std::cout << "Error al dar de baja al alumno.\n";
+            system("pause");
     }
     else
     {
@@ -231,6 +233,7 @@ void GestionarAlumno::buscarAlumno()
         archivoAlumnos.leerRegistro(pos).mostrar();
     else
         std::cout << "Alumno no encontrado.\n";
+        system("pause");
 }
 
 int GestionarAlumno::obtenerIdNuevo()

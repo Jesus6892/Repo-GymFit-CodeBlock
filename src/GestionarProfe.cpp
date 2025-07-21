@@ -155,15 +155,16 @@ void GestionarProfesor::altaProfesor()
 {
     Profe nuevoProfesor = cargarProfesor();
 
-    if (nuevoProfesor.getDni().empty()) {
+    if (nuevoProfesor.getId() == -1) {
         std::cout << "Alta del profesor cancelada por el usuario.\n";
         return;
     }
 
-    if (archivoProfesores.guardar(nuevoProfesor))
+    if (archivoProfesores.guardar(nuevoProfesor)) {
         cout << "Profesor agregado exitosamente.\n";
-    else
+    } else
         cout << "Error al guardar el profesor.\n";
+        system("pause");
 }
 
 void GestionarProfesor::listarProfesores()
@@ -245,6 +246,7 @@ void GestionarProfesor::bajaProfesor()
             cout << "Profesor dado de baja exitosamente.\n";
         else
             cout << "Error al dar de baja el profesor.\n";
+            system("pause");
     }
     else
         cout << "Profesor no encontrado.\n";
@@ -274,6 +276,7 @@ void GestionarProfesor::buscarProfesor()
         archivoProfesores.leerRegistro(pos).mostrar();
     else
         cout << "Profesor no encontrado.\n";
+        system("pause");
 }
 
 void GestionarProfesor::modificarProfesor()
