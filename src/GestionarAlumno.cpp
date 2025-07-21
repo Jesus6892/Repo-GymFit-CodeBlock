@@ -227,7 +227,93 @@ void GestionarAlumno::modificarAlumno()
     std::cout << "Datos actuales del alumno:\n";
     alumno.mostrar();
 
-    int opcion;
+    bool seguirModificando = true;
+    while(seguirModificando) {
+
+        std::cout << "\nQue campo desea modificar?\n";
+        std::cout << "1. Nombre\n";
+        std::cout << "2. Apellido\n";
+        std::cout << "3. Correo Electronico\n";
+        std::cout << "4. Telefono\n";
+        std::cout << "0. Cancelar\n";
+        int opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0,4);
+
+        std::string nuevoValor;
+
+        switch (opcion)
+        {
+        case 1:
+            do {
+                std::cout << "Ingrese el nuevo nombre: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esSoloLetras(nuevoValor)) {
+                    std::cout << "Nombre invalido. Solo letras y espacios.\n";
+                }
+            } while (!Validaciones::esSoloLetras(nuevoValor));
+            alumno.setNombre(nuevoValor);
+            break;
+
+        case 2:
+            do {
+                std::cout << "Ingrese el nuevo apellido: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esSoloLetras(nuevoValor)) {
+                    std::cout << "Apellido invalido. Solo letras y espacios.\n";
+                }
+            } while (!Validaciones::esSoloLetras(nuevoValor));
+            alumno.setApellido(nuevoValor);
+            break;
+
+        case 3:
+            do {
+                std::cout << "Ingrese el nuevo correo electronico: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esEmailValido(nuevoValor)) {
+                    std::cout << "Email invalido. El formato debe ser: usuario@dominio.ext\n";
+                }
+            } while (!Validaciones::esEmailValido(nuevoValor));
+            alumno.setCorreoElectronico(nuevoValor);
+            break;
+
+        case 4:
+            do {
+                std::cout << "Ingrese el nuevo telefono (10 digitos): ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esTelefonoValido(nuevoValor)) {
+                    std::cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
+                }
+            } while (!Validaciones::esTelefonoValido(nuevoValor));
+            alumno.setTelefono(nuevoValor);
+            break;
+
+        case 0:
+            std::cout << "Modificacion cancelada.\n";
+            system("pause");
+            return;
+
+        default:
+            std::cout << "Opcion no valida.\n";
+            system("pause");
+            continue;
+        }
+
+        std::cout << "Desea modificar otro campo? (1 = SI, 0 = NO): " << std::endl;
+        seguirModificando = Validaciones::pedirEntero("Seleccione una opcion: ", 0,4) == 1;
+    }
+
+    if (archivoAlumnos.modificarRegistro(alumno, pos))
+    {
+        std::cout << "Alumno modificado exitosamente.\n";
+        system("pause");
+    }
+    else
+    {
+        std::cout << "Error al modificar el alumno.\n";
+        system("pause");
+    }
+}
+
+    /*int opcion;
     std::string nuevoValor;
 
     std::cout << "\nQue campo desea modificar?\n";
@@ -236,43 +322,60 @@ void GestionarAlumno::modificarAlumno()
     std::cout << "3. Correo Electronico\n";
     std::cout << "4. Telefono\n";
     std::cout << "0. Cancelar\n";
-    std::cout << "Seleccione una opcion: ";
-    std::cin >> opcion;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0,4);
 
     switch (opcion)
     {
     case 1:
-        std::cout << "Ingrese el nuevo nombre: ";
-        std::getline(std::cin, nuevoValor);
+        do {
+            std::cout << "Ingrese el nuevo nombre: ";
+            std::getline(std::cin, nuevoValor);
+            if (!Validaciones::esSoloLetras(nuevoValor)) {
+                std::cout << "Nombre invalido. Solo letras y espacios.\n";
+            }
+        } while (!Validaciones::esSoloLetras(nuevoValor));
         alumno.setNombre(nuevoValor);
         break;
+
     case 2:
-        std::cout << "Ingrese el nuevo apellido: ";
-        std::getline(std::cin, nuevoValor);
+        do {
+            std::cout << "Ingrese el nuevo apellido: ";
+            std::getline(std::cin, nuevoValor);
+            if (!Validaciones::esSoloLetras(nuevoValor)) {
+                std::cout << "Apellido invalido. Solo letras y espacios.\n";
+            }
+        } while (!Validaciones::esSoloLetras(nuevoValor));
         alumno.setApellido(nuevoValor);
         break;
+
     case 3:
-        std::cout << "Ingrese el nuevo correo electronico: ";
-        std::getline(std::cin, nuevoValor);
-        while (!Validaciones::esEmailValido(nuevoValor)) {
-            std::cout << "Email invalido. Ingrese nuevamente: ";
+        do {
+            std::cout << "Ingrese el nuevo correo electronico: ";
             std::getline(std::cin, nuevoValor);
-        }
+            if (!Validaciones::esEmailValido(nuevoValor)) {
+                std::cout << "Email invalido. El formato debe ser: usuario@dominio.ext\n";
+            }
+        } while (!Validaciones::esEmailValido(nuevoValor));
         alumno.setCorreoElectronico(nuevoValor);
         break;
+
     case 4:
-        std::cout << "Ingrese el nuevo telefono: ";
-        std::getline(std::cin, nuevoValor);
-        while (!Validaciones::esTelefonoValido(nuevoValor)) {
-            std::cout << "Telefono invalido. Ingrese nuevamente: ";
+        do {
+            std::cout << "Ingrese el nuevo telefono (10 digitos): ";
             std::getline(std::cin, nuevoValor);
-        }
+            if (!Validaciones::esTelefonoValido(nuevoValor)) {
+                std::cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
+            }
+        } while (!Validaciones::esTelefonoValido(nuevoValor));
         alumno.setTelefono(nuevoValor);
+        system("pause");
         break;
+
     case 0:
         std::cout << "Modificacion cancelada.\n";
         return;
+
     default:
         std::cout << "Opcion no valida.\n";
         return;
@@ -285,5 +388,5 @@ void GestionarAlumno::modificarAlumno()
     else
     {
         std::cout << "Error al modificar el alumno.\n";
-    }
-}
+    }*/
+
