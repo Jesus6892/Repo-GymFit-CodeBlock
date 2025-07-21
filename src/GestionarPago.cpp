@@ -21,8 +21,11 @@ Pago GestionarPago::cargarPago(int idAlumno)
             cout << "Ingrese DNI del alumno (8 digitos) o 0 para cancelar: ";
             cin >> dniAlumno;
 
-            if (dniAlumno == "0")
-                return Pago();  // cancelar
+            if (dniAlumno == "0"){
+        cout << "Operacion cancelada por el usuario." << endl;
+        system("pause");
+        return Pago();
+    }
 
             if (!Validaciones::esDNIValido(dniAlumno)) {
                 cout << "DNI invalido. Debe ser 8 digitos numericos.\n";

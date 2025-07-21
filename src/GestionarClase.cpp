@@ -24,6 +24,7 @@ void GestionarClase::altaClase() {
 
     if (nuevaClase.getId() == 0) {
         cout << "Operacion cancelada por el usuario." << endl;
+        system("pause");
         return;
     }
 

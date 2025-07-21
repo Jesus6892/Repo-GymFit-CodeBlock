@@ -21,22 +21,29 @@ Actividad GestionarActividad::cargarActividad()
     float costo;
 
     // nombre
-    // cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     do {
-        cout << "Ingrese el nombre de la actividad: ";
+        cout << "Ingrese el nombre de la actividad (0 para cancelar): ";
         getline(cin, nombreActividad);
+        if (nombreActividad == "0"){
+            return Actividad();
+        }
         if (!Validaciones::esSoloLetras(nombreActividad))
             std::cout << "Nombre de la actividad invalido. Solo letras y espacios.\n";
     }while (!Validaciones::esSoloLetras(nombreActividad));
 
     // Inscriptos
     cantMax = Validaciones::pedirEntero("Ingrese la cantidad maxima de inscriptos: ", 1);
+    if (cantMax == 0){
+            return Actividad();
 
     // Costo
     do {
         costo = Validaciones::pedirFlotante("Ingrese el costo de la actividad: ");
 
+        if (costo == 0){
+            return Actividad();
+        }
         if (!Validaciones::esCostoValido(costo)) {
             cout << "ERROR: El costo no puede ser negativo.\n";
         } else {
@@ -49,6 +56,10 @@ Actividad GestionarActividad::cargarActividad()
         cout << "Ingrese la descripcion de la actividad: ";
         getline(cin, descripcion);
 
+        if (descripcion == "0"){
+            return Actividad();
+        }
+
         if (!Validaciones::esObservacionValida(descripcion)) {
             cout << "Descripcion invalida. Debe contener al menos una letra.\n";
         }
@@ -57,6 +68,7 @@ Actividad GestionarActividad::cargarActividad()
     int idActividad = obtenerIdNuevo();
     Actividad nuevaActividad(idActividad, nombreActividad, cantMax, costo, descripcion);
     return nuevaActividad;
+}
 }
 
 

@@ -67,7 +67,6 @@ void GestionarProceso::iniciar() {
                 break;
             case 3:
                 listarInscripciones();
-                system("pause");
                 break;
             case 0:
                 cout << "Volviendo al menu principal..." << endl;
