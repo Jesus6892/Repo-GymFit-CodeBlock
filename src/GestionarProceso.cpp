@@ -16,6 +16,7 @@ void GestionarProceso::realizarInscripcion() {
     string dniAlumno;
     int idAlumno = -1;
     int posAlumno = -1;
+
         do {
             cout << "Ingrese el DNI del Alumno (8 digitos) o 0 para cancelar: ";
             cin >> dniAlumno;
@@ -127,6 +128,7 @@ void GestionarProceso::listarInscripciones(){
 
             // Mostrar con nombres
             cout << endl;
+            cout << "Incripcion ID: " << insc.getId() << endl;
             cout << "Alumno: " << alu.getNombre() << endl;
             cout << "DNI: " << alu.getDni() << endl;
             cout << "Actividad: " << actividad.getNombreActividad() << endl;
