@@ -146,6 +146,7 @@ void Menu::gestionarAlumnos() {
                 break;
             case 5:
                 gestorAlumnos.listarAlumnos();
+                system("pause");
                 break;
             case 0:
                 cout << "Volviendo al menu principal...\n";
@@ -187,6 +188,7 @@ void Menu::gestionarProfes() {
             break;
         case 5:
             gestorProfe.listarProfesores();
+            system("pause");
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
