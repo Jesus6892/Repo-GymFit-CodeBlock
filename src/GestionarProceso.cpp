@@ -199,7 +199,7 @@ void GestionarProceso::realizarBajaInscripcion() {
     idInsc = Validaciones::pedirEntero("Ingrese el id de la inscripcion que desea dar de baja ");
 
     if (idInsc < 0 ) {
-        cout << "Opción inválida.\n";
+        cout << "Opcion invalida.\n";
         delete[] inscripciones;
         return;
     }

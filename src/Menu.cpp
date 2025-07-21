@@ -113,6 +113,7 @@ void Menu::gestionarBajaDeClase()
     system("cls");
     cout << "\n--- Baja de Clase ---\n";
     gestorClase.bajaClase();
+    system("pause");
     system("cls");
 }
 
@@ -265,6 +266,7 @@ void Menu::gestionarClases() {
             break;
         case 2:
             gestorClase.bajaClase();
+            system("pause");
             break;
         case 3:
             gestorClase.listarClases();

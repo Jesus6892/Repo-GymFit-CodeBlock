@@ -63,7 +63,6 @@ bool GestionarClase::bajaClase() {
         if (idClase == 0)
         {
             cout << "Operacion cancelada por el usuario.\n";
-            system("pause");
             return false;
         }
 
@@ -96,7 +95,7 @@ bool GestionarClase::bajaClase() {
             }
         }
 
-        cout << ">> También se dieron de baja " << cont << " horarios asociados a esta clase.\n";
+        cout << ">> Tambien se dieron de baja " << cont << " horarios asociados a esta clase.\n";
         return true;
 
     } else {
