@@ -310,9 +310,7 @@ void GestionarClase::listarAlumnosPorClase() {
 
     if (!hayAlumnos) {
         cout << "  >> No hay alumnos inscriptos en esta clase.\n";
-        system("pause");
     }
 
     cout << "------------------------------------------------------------\n";
-    system("pause");
 }
