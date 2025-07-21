@@ -224,7 +224,6 @@ void Menu::gestionarActividades() {
             break;
         case 3:
             gestorActividades.modificarActividad();
-            system("pause");
             break;
         case 4:
             gestorActividades.buscarActividad();
