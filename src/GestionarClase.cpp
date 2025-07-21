@@ -3,6 +3,7 @@
 #include "GestionarProfe.h"
 #include "GestionarHorario.h"
 #include "HorarioPorClaseArchivo.h"
+#include "Validaciones.h"
 #include <iostream>
 #include <iomanip>
 #include <limits>
@@ -27,59 +28,46 @@ void GestionarClase::altaClase() {
     if (_archivoClases.guardar(nuevaClase)) {
         cout << "\n>> Clase creada exitosamente (ID: " << nuevaClase.getId() << ")." << endl;
 
-        char continuar;
+        GestionarHorario gestorHorario;
 
-        cout << "\nDesea agregar un horario para esta clase? (S/N): ";
-        cin >> continuar;
+        int continuar = Validaciones::pedirEntero("\nDesea agregar un horario para esta clase? (1 = SI, 0 = NO): ", 0, 1);
 
-        if (toupper(continuar) == 'S') {
-            GestionarHorario gestorHorario;
+        while (continuar == 1) {
             gestorHorario.altaHorarioParaClase(nuevaClase.getId());
 
-            do {
-                cout << "\n+----------------------------------------------+\n"
-                     << "| Horario agregado exitosamente a la clase.    |\n"
-                     << "+----------------------------------------------+\n\n";
-                cout << "¿Desea agregar otro horario para esta clase? (S/N): ";
-                cin >> continuar;
+            cout << "\n+----------------------------------------------+\n"
+                 << "| Horario agregado exitosamente a la clase.    |\n"
+                 << "+----------------------------------------------+\n\n";
 
-                if (toupper(continuar) == 'S') {
-                    gestorHorario.altaHorarioParaClase(nuevaClase.getId());
-                }
-
-            } while (toupper(continuar) == 'S');
+            continuar = Validaciones::pedirEntero("Desea agregar otro horario para esta clase? (1 = SI, 0 = NO): ", 0, 1);
         }
 
         cout << "\nProceso de alta de clase finalizado." << endl;
+        system("pause");
     } else {
         cout << "ERROR: No se pudo guardar la clase." << endl;
+        system("pause");
     }
 }
 
 bool GestionarClase::bajaClase() {
     int idClase;
-    int pos = -1;
+    int pos;
 
     do {
-        cout << "Ingrese el ID de la clase que desea dar de baja (0 para cancelar): ";
-        cin >> idClase;
+        idClase = Validaciones::pedirEntero("Ingrese el ID de la actividad a dar de baja (0 para cancelar): ", 0);
 
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << "Entrada invalida. Por favor, ingrese un numero valido.\n";
-            pos = -1; // Forzar repetición
-            continue;
-        }
-
-        if (idClase == 0) {
-            cout << "Operacion cancelada.\n";
+        if (idClase == 0)
+        {
+            cout << "Operacion cancelada por el usuario.\n";
+            system("pause");
             return false;
         }
 
         pos = _archivoClases.buscar(idClase);
 
-        if (pos < 0) {
+        if (pos < 0)
+        {
             cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
         }
 
@@ -104,11 +92,13 @@ bool GestionarClase::bajaClase() {
             }
         }
 
-        cout << ">> También se dieron de baja " << cont << " horario(s) asociados a esta clase.\n";
+        cout << ">> También se dieron de baja " << cont << " horarios asociados a esta clase.\n";
+        system("pause");
         return true;
 
     } else {
         cout << "Error: No se pudo modificar el registro en el archivo.\n";
+        system("pause");
         return false;
     }
 }
@@ -183,44 +173,64 @@ Clase GestionarClase::cargarClase() {
 
     int idActividad = -1;
     while (true) {
-        cout << "Ingrese el ID de la actividad para la clase (0 para cancelar): ";
-        cin >> idActividad;
-        if (idActividad == 0) return Clase();
+        idActividad = Validaciones::pedirEntero("Ingrese el ID de la actividad para la clase (0 para cancelar): ", 0);
+
+        if (idActividad == 0) {
+            std::cout << "Operacion cancelada por el usuario.\n";
+            system("pause");
+            return Clase();
+        }
+
 
         int pos = _archivoActividades.buscar(idActividad);
         if (pos >= 0) {
             Actividad act = _archivoActividades.leerRegistro(pos);
             if (act.getEstado()) {
                 break;
+            } else {
+                cout << "La actividad esta inactiva. Intente con otra." << endl;
+                system("pause");
             }
+        } else {
+            cout << "ID de actividad no valido. Intente de nuevo." << endl;
+            system("pause");
         }
-        cout << "ID de actividad no valido o inactivo. Intente de nuevo." << endl;
     }
 
     cout << "\n--- Seleccion de Profesor ---" << endl;
     GestionarProfesor gestorProfes;
     gestorProfes.listarProfesores();
 
-    int idProfe = -1;
     string dniProfe;
+    int posProfe = -1;
     while (true) {
         cout << "Ingrese el DNI del profesor para la clase (0 para cancelar): ";
-        cin >> dniProfe;
+        getline(cin, dniProfe);
+
         if (dniProfe == "0") return Clase();
 
-        int pos = _archivoProfes.buscarPosPorDni(dniProfe);
-        if (pos >= 0) {
-            Profe profe = _archivoProfes.leerRegistro(pos);
-            if (profe.getEstado()) {
-                idProfe = profe.getId();
-                break;
-            }
+        if (!Validaciones::esDNIValido(dniProfe)) {
+            std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+            continue;
         }
-        cout << "DNI de profesor no valido o inactivo. Intente de nuevo." << endl;
+
+        posProfe = _archivoProfes.buscarPosPorDni(dniProfe);
+        if (posProfe >= 0) {
+            Profe profe = _archivoProfes.leerRegistro(posProfe);
+            if (profe.getEstado()) {
+                break;
+            } else {
+                cout << "El profesor esta inactivo. Intente con otro DNI." << endl;
+                system("pause");
+            }
+        } else {
+            cout << "DNI de profesor no valido o no encontrado. Intente de nuevo." << endl;
+            system("pause");
+        }
     }
 
     int nuevoIdClase = obtenerIdNuevo();
-    return Clase(nuevoIdClase, idActividad, idProfe, true);
+    return Clase(nuevoIdClase, idActividad, _archivoProfes.leerRegistro(posProfe).getId(), true);
 }
 
 int GestionarClase::obtenerIdNuevo() {

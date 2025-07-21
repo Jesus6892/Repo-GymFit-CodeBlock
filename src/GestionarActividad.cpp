@@ -131,7 +131,7 @@ void GestionarActividad::bajaActividad()
 
     do
     {
-        id = Validaciones::pedirEntero("Ingrese el ID de la actividad a dar de baja (0 para cancelar): ");
+        id = Validaciones::pedirEntero("Ingrese el ID de la actividad a dar de baja (0 para cancelar): ", 0);
 
         if (id == 0)
         {
