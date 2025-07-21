@@ -13,6 +13,7 @@ public:
     void altaClase();
     bool bajaClase();
     void listarClases();
+    void listarAlumnosPorClase();
     //Aañadir modificarClase()
 
 private:
