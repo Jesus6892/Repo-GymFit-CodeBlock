@@ -2,6 +2,7 @@
 #include "GestionarHorario.h"
 #include "ClaseArchivo.h"
 #include "ActividadesArchivo.h"
+#include "Validaciones.h"
 #include <iostream>
 #include <cctype>
 #include <iomanip>
@@ -15,17 +16,33 @@ GestionarHorario::GestionarHorario()
 HorarioPorClase GestionarHorario::cargarHorario(int idClase)
 {
     std::string diaSemana;
-    std::cout << "Ingrese dia de la semana (lunes, martes...): ";
-    std::cin >> diaSemana;
 
-    int horaInicio, horaFin;
-    std::cout << "Ingrese hora inicio (24h, sin minutos): ";
-    std::cin >> horaInicio;
-    std::cout << "Ingrese hora fin   (24h, sin minutos): ";
-    std::cin >> horaFin;
+    do {
+        std::cout << "Ingrese dia de la semana (lunes, martes...): ";
+        std::getline(std::cin, diaSemana);
+
+        if (!Validaciones::esSoloLetras(diaSemana)) {
+            std::cout << "Día inválido. Solo se permiten letras y espacios.\n";
+            system("pause");
+        } else {
+            break;
+        }
+    } while (true);
+
+    int horaInicio = Validaciones::pedirEntero("Ingrese hora inicio (0-23): ", 0, 23);
+
+    int horaFin;
+    do {
+        horaFin = Validaciones::pedirEntero("Ingrese hora fin (0-23): ", 0, 23);
+        if (horaFin <= horaInicio) {
+            std::cout << "La hora fin debe ser mayor que la hora inicio. Intente de nuevo.\n";
+            system("pause");
+        } else {
+            break;
+        }
+    } while (true);
 
     int idHorario = obtenerIdNuevo();
-
 
     return HorarioPorClase(
         idHorario,
@@ -40,21 +57,22 @@ HorarioPorClase GestionarHorario::cargarHorario(int idClase)
 void GestionarHorario::altaHorarioParaClase(int idClase)
 {
     HorarioPorClase nuevo = cargarHorario(idClase);
-    if (archivoHorarioPorClase.guardar(nuevo))
+    if (archivoHorarioPorClase.guardar(nuevo)) {
         std::cout << ">> Horario guardado correctamente.\n";
-    else
+        system("pause");
+    }else
         std::cout << "ERROR: No se pudo guardar el horario.\n";
+        system("pause");
 }
 
 // 3) Baja lógica de horario
 void GestionarHorario::bajaHorario()
 {
-    int id;
-    std::cout << "Ingrese el ID del horario a dar de baja (0 para cancelar): ";
-    std::cin >> id;
+    int id = Validaciones::pedirEntero("Ingrese el ID del horario a dar de baja (0 para cancelar): ", 0);
 
     if (id == 0) {
         std::cout << "Operacion cancelada por el usuario.\n";
+        system("pause");
         return;
     }
 
@@ -62,12 +80,16 @@ void GestionarHorario::bajaHorario()
     if (pos >= 0) {
         HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
         h.setEstado(false);
-        if (archivoHorarioPorClase.modificarRegistro(h, pos))
+        if (archivoHorarioPorClase.modificarRegistro(h, pos)) {
             std::cout << "Horario dado de baja exitosamente.\n";
-        else
+            system("pause");
+        } else {
             std::cout << "Error al dar de baja el horario.\n";
+            system("pause");
+        }
     } else {
         std::cout << "Horario no encontrado.\n";
+        system("pause");
     }
 }
 
@@ -142,37 +164,27 @@ void GestionarHorario::buscarHorario()
 
     do
     {
-        std::cout << "Ingrese el ID del horario a buscar (0 para cancelar): ";
-        std::cin >> id;
+         id = Validaciones::pedirEntero("Ingrese el ID del horario a buscar (0 para cancelar): ", 0);
 
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Entrada invalida. Por favor, ingrese un numero.\n";
-            pos = -1;
-            continue;
-        }
-
-        if (id == 0)
-        {
+        if (id == 0) {
             std::cout << "Operacion cancelada por el usuario.\n";
+            system("pause");
             return;
         }
 
-        pos = archivoHorarioPorClase.buscar(id);
+       pos = archivoHorarioPorClase.buscar(id);
 
-        if (pos < 0)
-        {
+        if (pos < 0) {
             std::cout << "No se encontro ningun horario con ese ID. Proba otra vez.\n";
+            system("pause");
         }
-
     } while (pos < 0);
 
     HorarioPorClase h = archivoHorarioPorClase.leerRegistro(pos);
 
     if (!h.getEstado()) {
         std::cout << "El horario existe pero esta inactivo.\n";
+        system("pause");
         return;
     }
 
