@@ -264,6 +264,7 @@ void Menu::gestionarClases() {
             break;
         case 3:
             gestorClase.listarClases();
+            system("pause");
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
@@ -350,6 +351,7 @@ void Menu::gestionarHorarios() {
             break;
         case 5:
             gestorHorarios.listarHorarios();
+            system("pause");
             break;
         case 0:
             cout << "Volviendo al menu principal...\n";
