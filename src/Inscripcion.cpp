@@ -24,9 +24,9 @@ void Inscripcion::setEstado(bool estado) { _estado = estado; }
 
 // Interfaz
 void Inscripcion::mostrar() const {
-    std::cout << "--- Inscripcion #" << _id << " ---" << std::endl;
+    std::cout << "--- Inscripcion ID #" << _id << " ---" << std::endl;
     std::cout << "ID Alumno: " << _idAlumno << std::endl;
     std::cout << "ID Clase:  " << _idClase << std::endl;
     std::cout << "Fecha:     " << _fechaInscripcion.toString() << std::endl;
     std::cout << "Estado:    " << (_estado ? "Activa" : "Anulada") << std::endl;
-} 
+}

@@ -128,6 +128,7 @@ void GestionarProceso::listarInscripciones(){
             // Mostrar con nombres
             cout << endl;
             cout << "Alumno: " << alu.getNombre() << endl;
+            cout << "DNI: " << alu.getDni() << endl;
             cout << "Actividad: " << actividad.getNombreActividad() << endl;
             cout << "Profesor: " << profesor.getNombre() << endl;
             cout << "Fecha: " << insc.getFechaInscripcion() << endl;
@@ -141,5 +142,81 @@ void GestionarProceso::listarInscripciones(){
 // IMPLEMENTAR BAJA DE INSCRIPCION
 
 void GestionarProceso::realizarBajaInscripcion() {
-    cout << "Esta funcion aun no ha sido implementada." << endl;
+
+    std::string dni;
+
+    do
+    {
+        std::cout << "Ingrese el DNI del alumno, o 0 para cancelar: ";
+        std::getline(std::cin, dni);
+
+        if (dni == "0") {
+            std::cout << "Operacion cancelada. Volviendo al menu.... \n";
+            system("pause");
+            return;
+    }
+        if (!Validaciones::esDNIValido(dni))
+        {
+            std::cout << "DNI invalido. Deben ser 8 digitos numericos.\n";
+        }
+
+    } while (!Validaciones::esDNIValido(dni));
+
+    // FILTRO ALUMNO POR CLASE
+    int id = _archivoAlumnos.buscarPorDni(dni);
+    int cantidadInscripciones = _archivoInscripciones.contarRegistros();
+    int cantidadAlumno = 0;
+
+    for (int i = 0; i < cantidadInscripciones; ++i) {
+        Inscripcion insc = _archivoInscripciones.leerRegistro(i);
+        if (insc.getIdAlumno() == id && insc.getEstado()) {
+            cantidadAlumno++;
+        }
+    }
+
+    if(cantidadAlumno <= 0){
+        cout << "no hay inscripciones registradas con ese DNI." << endl;
+        return;
+    }
+
+    Inscripcion* inscripciones = new Inscripcion[cantidadAlumno];
+
+    int j = 0;
+    for (int i = 0; i < cantidadInscripciones; ++i) {
+        Inscripcion insc = _archivoInscripciones.leerRegistro(i);
+        if (insc.getIdAlumno() == id && insc.getEstado()) {
+            inscripciones[j] = insc;
+            j++;
+        }
+    }
+
+    for(int k = 0; k < cantidadAlumno; k++){
+        inscripciones[k].mostrar();
+    }
+
+    int idInsc;
+    idInsc = Validaciones::pedirEntero("Ingrese el id de la inscripcion que desea dar de baja ");
+
+    if (idInsc < 0 ) {
+        cout << "Opción inválida.\n";
+        delete[] inscripciones;
+        return;
+    }
+
+    int total = _archivoInscripciones.contarRegistros();
+
+    for (int i = 0; i < total; ++i) {
+        Inscripcion insc = _archivoInscripciones.leerRegistro(i);
+        if (insc.getId() == idInsc && insc.getEstado()) {
+                insc.setEstado(false);
+                if (_archivoInscripciones.modificarRegistro(insc, i)) {
+                    cout << "Inscripción dada de baja con éxito.\n";
+                } else {
+                    cout << "Error al modificar el archivo.\n";
+            }
+            break;
+        }
+    }
+
+    delete[] inscripciones;
 }

@@ -1286,7 +1286,7 @@
 	"ArchivoBinario.h"
 	"Pago.h"
 
-1753116977 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
+1753119704 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
 	<iostream>
 	<limits>
 	<string>
@@ -1397,7 +1397,7 @@
 
 1751315731 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioarchivo.cpp
 
-1753064246 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
+1753117272 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
 	"Menu.h"
 	<iostream>
 	<limits>
@@ -1442,7 +1442,7 @@
 1752612675 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioporclasearchivo.cpp
 	"HorarioPorClaseArchivo.h"
 
-1752612675 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioporclase.cpp
+1753128962 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioporclase.cpp
 	"HorarioPorClase.h"
 	<iostream>
 
@@ -1854,7 +1854,7 @@
 	<iomanip>
 	<limits>
 
-1752612675 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\inscripcion.cpp
+1753128962 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\inscripcion.cpp
 	"Inscripcion.h"
 	<iostream>
 
