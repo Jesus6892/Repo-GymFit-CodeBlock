@@ -327,11 +327,10 @@ void Menu::gestionarHorarios() {
         cout << "\n===== GESTION DE HORARIOS =====\n";
         cout << "1. Alta de Horario\n";
         cout << "2. Baja de Horario\n";
-        cout << "3. Modificar Horario\n";
-        cout << "4. Buscar Horario\n";
-        cout << "5. Listar Horarios\n";
+        cout << "3. Buscar Horario\n";
+        cout << "4. Listar Horarios\n";
         cout << "0. Volver al Menu Principal\n";
-        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 4);
 
         switch (opcion) {
         case 1:
@@ -341,6 +340,11 @@ void Menu::gestionarHorarios() {
                 int idClase;
                 cout << "\nIngrese el ID de la clase para agregar el horario (0 para cancelar): ";
                 cin >> idClase;
+                if (idClase == 0) {
+                    std::cout << "\nCarga de Horario cancelada exitosamente.\n";
+                    system("pause");
+                    break;
+                }
                 if (idClase > 0) {
                     gestorHorarios.altaHorarioParaClase(idClase);
                 } else {
@@ -352,12 +356,9 @@ void Menu::gestionarHorarios() {
             gestorHorarios.bajaHorario();
             break;
         case 3:
-            cout << "No implementado\n";
-            break;
-        case 4:
             gestorHorarios.buscarHorario();
             break;
-        case 5:
+        case 4:
             gestorHorarios.listarHorarios();
             system("pause");
             break;

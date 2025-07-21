@@ -179,8 +179,6 @@ Clase GestionarClase::cargarClase() {
         idActividad = Validaciones::pedirEntero("Ingrese el ID de la actividad para la clase (0 para cancelar): ", 0);
 
         if (idActividad == 0) {
-            std::cout << "Operacion cancelada por el usuario.\n";
-            system("pause");
             return Clase();
         }
 
@@ -253,7 +251,6 @@ void GestionarClase::listarAlumnosPorClase() {
 
     if (idClase == 0) {
         std::cout << "Operacion cancelada por el usuario.\n";
-        system("pause");
         return;
     }
 
