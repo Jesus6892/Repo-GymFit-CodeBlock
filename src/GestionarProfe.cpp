@@ -42,15 +42,18 @@ std::string GestionarProfesor::solicitarDniProfesor()
 // Métodos Principales
 Profe GestionarProfesor::cargarProfesor()
 {
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
     string nombre, apellido, correoElectronico, observaciones;
     string telefono, CUIT;
     int idProfe;
     // 1) nombre
     do {
-        cout << "Ingrese el nombre del profesor: ";
+        cout << "Ingrese el nombre del profesor (0 para cancelar): ";
         getline(cin, nombre);
+            if (nombre == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
         if (!Validaciones::esSoloLetras(nombre)) {
             cout << "Nombre invalido. Solo letras y espacios.\n";
         }
@@ -58,8 +61,13 @@ Profe GestionarProfesor::cargarProfesor()
 
     // 2) Apellido
     do {
-        cout << "Ingrese el apellido del profesor: ";
+        cout << "Ingrese el apellido del profesor (0 para cancelar): ";
         getline(cin, apellido);
+            if (apellido == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
         if (!Validaciones::esSoloLetras(apellido)) {
             cout << "Apellido invalido. Solo letras y espacios.\n";
         }
@@ -69,8 +77,13 @@ Profe GestionarProfesor::cargarProfesor()
     string dni = solicitarDniProfesor();
 
     // 4) EMAIL
-    cout << "Ingrese el correo electronico del profesor: ";
+    cout << "Ingrese el correo electronico del profesor (0 para cancelar): ";
     getline(cin, correoElectronico);
+             if (correoElectronico == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
     while(!Validaciones::esEmailValido(correoElectronico)) {
         cout << "Email invalido. Formato: usuario@dominio.ext\n";
         cout << "Ingrese nuevamente: ";
@@ -79,8 +92,13 @@ Profe GestionarProfesor::cargarProfesor()
 
     // 5) CUIT
     do {
-        cout << "Ingrese el CUIT del profesor (11 digitos): ";
+        cout << "Ingrese el CUIT del profesor (11 digitos) (0 para cancelar): ";
         getline(cin, CUIT);
+            if (CUIT == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
         if (!Validaciones::esCUITValido(CUIT)) {
             cout << "CUIT invalido. Debe tener 11 digitos numericos.\n";
         }
@@ -88,8 +106,13 @@ Profe GestionarProfesor::cargarProfesor()
 
     // 6) Observaciones
     do {
-        cout << "Ingrese cualquier observacion sobre el profesor: ";
+        cout << "Ingrese cualquier observacion sobre el profesor (0 para cancelar): ";
         getline(cin, observaciones);
+            if (observaciones == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
         if (!Validaciones::esObservacionValida(observaciones)) {
             cout << "Observacion invalida. Debe contener al menos alguna letra.\n";
         }
@@ -97,8 +120,13 @@ Profe GestionarProfesor::cargarProfesor()
 
     // 7) Telefono
     do {
-        cout << "Ingrese el telefono del profesor: ";
+        cout << "Ingrese el telefono del profesor (0 para cancelar): ";
         getline(cin, telefono);
+             if (telefono == "0") {
+                std::cout << "\nCarga del profesor cancelada exitosamente.\n";
+                system("pause");
+                return Profe();
+        }
         if (!Validaciones::esTelefonoValido(telefono)) {
             cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
         }
@@ -126,6 +154,11 @@ Profe GestionarProfesor::cargarProfesor()
 void GestionarProfesor::altaProfesor()
 {
     Profe nuevoProfesor = cargarProfesor();
+
+    if (nuevoProfesor.getDni().empty()) {
+        std::cout << "Alta del profesor cancelada por el usuario.\n";
+        return;
+    }
 
     if (archivoProfesores.guardar(nuevoProfesor))
         cout << "Profesor agregado exitosamente.\n";
@@ -189,8 +222,14 @@ void GestionarProfesor::bajaProfesor()
     std::string dni;
     do
     {
-        cout << "Ingrese el DNI del profesor a dar de baja (8 digitos): ";
+        cout << "Ingrese el DNI del profesor a dar de baja (8 digitos) o (0 para cancelar): ";
         cin >> dni;
+
+        if (dni == "0") {
+            std::cout << "Baja del profesor cancelada exitosamente.\n";
+            system("pause");
+            return;
+    }
 
         if (!Validaciones::esDNIValido(dni))
             cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
@@ -216,8 +255,14 @@ void GestionarProfesor::buscarProfesor()
     std::string dni;
     do
     {
-        cout << "Ingrese el DNI del profesor a buscar (8 digitos): ";
+        cout << "Ingrese el DNI del profesor a buscar (8 digitos) o (0 para cancelar): ";
         cin >> dni;
+
+        if (dni == "0") {
+            std::cout << "Busqueda del profesor cancelada exitosamente.\n";
+            system("pause");
+            return;
+    }
 
         if (!Validaciones::esDNIValido(dni))
             cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
@@ -235,8 +280,14 @@ void GestionarProfesor::modificarProfesor()
 {
     std::string dni;
     do {
-        std::cout << "Ingrese el DNI del profesor a modificar (8 digitos): ";
+        std::cout << "Ingrese el DNI del profesor a modificar (8 digitos) o (0 para cancelar): ";
         std::cin >> dni;
+
+        if (dni == "0") {
+        std::cout << "Modificacion del profesor cancelada exitosamente.\n";
+        system("pause");
+        return;
+    }
 
         if (!Validaciones::esDNIValido(dni)) {
             std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";

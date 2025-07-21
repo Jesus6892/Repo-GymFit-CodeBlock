@@ -133,9 +133,11 @@ void GestionarAlumno::bajaAlumno()
         std::cout << "Ingrese el DNI del alumno a dar de baja (8 digitos) o 0 para cancelar: ";
         std::getline(std::cin, dni);
 
-        if (dni == "0")
+        if (dni == "0") {
+            std::cout << "Baja de alumno cancelada exitosamente.\n";
+            system("pause");
             return;
-
+    }
         if (!Validaciones::esDNIValido(dni))
         {
             std::cout << "DNI invalido. Deben ser 8 digitos numericos.\n";
@@ -214,7 +216,7 @@ void GestionarAlumno::buscarAlumno()
         std::cin >> dni;
 
         if (dni == "0") {
-            std::cout << "Modificacion de alumno cancelada exitosamente.\n";
+            std::cout << "Busqueda del alumno cancelada exitosamente.\n";
             system("pause");
             return;
     }
