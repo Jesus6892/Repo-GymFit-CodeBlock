@@ -22,7 +22,7 @@ HorarioPorClase GestionarHorario::cargarHorario(int idClase)
         std::getline(std::cin, diaSemana);
 
         if (!Validaciones::esSoloLetras(diaSemana)) {
-            std::cout << "Día inválido. Solo se permiten letras y espacios.\n";
+            std::cout << "Dia invalido. Solo se permiten letras y espacios.\n";
             system("pause");
         } else {
             break;
@@ -59,7 +59,6 @@ void GestionarHorario::altaHorarioParaClase(int idClase)
     HorarioPorClase nuevo = cargarHorario(idClase);
     if (archivoHorarioPorClase.guardar(nuevo)) {
         std::cout << ">> Horario guardado correctamente.\n";
-        system("pause");
     }else
         std::cout << "ERROR: No se pudo guardar el horario.\n";
         system("pause");
