@@ -234,91 +234,123 @@ void GestionarProfesor::buscarProfesor()
 void GestionarProfesor::modificarProfesor()
 {
     std::string dni;
-        do {
-            std::cout << "Ingrese el DNI del profesor a modificar (8 digitos): ";
-            std::cin >> dni;
+    do {
+        std::cout << "Ingrese el DNI del profesor a modificar (8 digitos): ";
+        std::cin >> dni;
 
-            if (!Validaciones::esDNIValido(dni)) {
-                std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
-            }
-        } while (!Validaciones::esDNIValido(dni));
+        if (!Validaciones::esDNIValido(dni)) {
+            std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
+        }
+    } while (!Validaciones::esDNIValido(dni));
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     int pos = archivoProfesores.buscarPosPorDni(dni);
     if (pos < 0)
     {
-        cout << "No se encontro un profesor con ese DNI." << endl;
+        std::cout << "No se encontro un profesor con ese DNI.\n";
+        system("pause");
         return;
     }
 
     Profe profe = archivoProfesores.leerRegistro(pos);
-    cout << "Datos actuales del profesor:" << endl;
+    std::cout << "Datos actuales del profesor:\n";
     profe.mostrar();
 
-    int opcion;
-    std::string nuevoValor;
+    bool seguirModificando;
+    do {
+        std::cout << "\nQue campo desea modificar?\n";
+        std::cout << "1. Nombre\n";
+        std::cout << "2. Apellido\n";
+        std::cout << "3. Correo Electronico\n";
+        std::cout << "4. Telefono\n";
+        std::cout << "5. CUIT\n";
+        std::cout << "0. Cancelar\n";
+        int opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
-    cout << "\nQue campo desea modificar?" << endl;
-    cout << "1. Nombre" << endl;
-    cout << "2. Apellido" << endl;
-    cout << "3. Correo Electronico" << endl;
-    cout << "4. Telefono" << endl;
-    cout << "5. CUIT" << endl;
-    cout << "0. Cancelar" << endl;
-    cout << "Seleccione una opcion: ";
-    cin >> opcion;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        std::string nuevoValor;
 
-    switch (opcion)
-    {
-    case 1:
-        cout << "Ingrese el nuevo nombre: ";
-        getline(cin, nuevoValor);
-        profe.setNombre(nuevoValor);
-        break;
-    case 2:
-        cout << "Ingrese el nuevo apellido: ";
-        getline(cin, nuevoValor);
-        profe.setApellido(nuevoValor);
-        break;
-    case 3:
-        cout << "Ingrese el nuevo correo electronico: ";
-        getline(cin, nuevoValor);
-        while (!Validaciones::esEmailValido(nuevoValor)) {
-            cout << "Email invalido. Ingrese nuevamente: ";
-            getline(cin, nuevoValor);
+        switch (opcion)
+        {
+        case 1:
+            do {
+                std::cout << "Ingrese el nuevo nombre: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esSoloLetras(nuevoValor)) {
+                    std::cout << "Nombre invalido. Solo letras y espacios.\n";
+                }
+            } while (!Validaciones::esSoloLetras(nuevoValor));
+            profe.setNombre(nuevoValor);
+            break;
+
+        case 2:
+            do {
+                std::cout << "Ingrese el nuevo apellido: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esSoloLetras(nuevoValor)) {
+                    std::cout << "Apellido invalido. Solo letras y espacios.\n";
+                }
+            } while (!Validaciones::esSoloLetras(nuevoValor));
+            profe.setApellido(nuevoValor);
+            break;
+
+        case 3:
+            do {
+                std::cout << "Ingrese el nuevo correo electronico: ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esEmailValido(nuevoValor)) {
+                    std::cout << "Email invalido. El formato debe ser: usuario@dominio.ext\n";
+                }
+            } while (!Validaciones::esEmailValido(nuevoValor));
+            profe.setCorreoElectronico(nuevoValor);
+            break;
+
+        case 4:
+            do {
+                std::cout << "Ingrese el nuevo telefono (10 digitos): ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esTelefonoValido(nuevoValor)) {
+                    std::cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
+                }
+            } while (!Validaciones::esTelefonoValido(nuevoValor));
+            profe.setTelefono(nuevoValor);
+            break;
+
+        case 5:
+            do {
+                std::cout << "Ingrese el nuevo CUIT (11 digitos): ";
+                std::getline(std::cin, nuevoValor);
+                if (!Validaciones::esCUITValido(nuevoValor)) {
+                    std::cout << "CUIT invalido. Debe ser 11 digitos numericos.\n";
+                }
+            } while (!Validaciones::esCUITValido(nuevoValor));
+            profe.setCUIT(nuevoValor);
+            break;
+
+        case 0:
+            std::cout << "Modificacion cancelada.\n";
+            system("pause");
+            return;
+
+        default:
+            std::cout << "Opcion no valida.\n";
+            system("pause");
+            continue;
         }
-        profe.setCorreoElectronico(nuevoValor);
-        break;
-    case 4:
-        cout << "Ingrese el nuevo telefono: ";
-        getline(cin, nuevoValor);
-         while (!Validaciones::esTelefonoValido(nuevoValor)) {
-            cout << "Telefono invalido. Ingrese nuevamente: ";
-            getline(cin, nuevoValor);
-        }
-        profe.setTelefono(nuevoValor);
-        break;
-    case 5:
-        cout << "Ingrese el nuevo CUIT: ";
-        getline(cin, nuevoValor);
-        profe.setCUIT(nuevoValor);
-        break;
-    case 0:
-        cout << "Modificacion cancelada." << endl;
-        return;
-    default:
-        cout << "Opcion no valida." << endl;
-        return;
-    }
+
+        seguirModificando = Validaciones::pedirEntero("Desea modificar otro campo? (1 = SI, 0 = NO): ", 0, 1) == 1;
+
+    } while (seguirModificando);
 
     if (archivoProfesores.modificarRegistro(profe, pos))
     {
-        cout << "Profesor modificado exitosamente." << endl;
+        std::cout << "Modificacion realizada exitosamente.\n";
     }
     else
     {
-        cout << "Error al modificar el profesor." << endl;
+        std::cout << "Error al modificar el profesor.\n";
     }
+
+    system("pause");
 }
 
 int GestionarProfesor::obtenerIdNuevo()

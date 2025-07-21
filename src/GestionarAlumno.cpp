@@ -220,6 +220,7 @@ void GestionarAlumno::modificarAlumno()
     if (pos < 0)
     {
         std::cout << "No se encontro un alumno con ese DNI.\n";
+        system("pause");
         return;
     }
 
