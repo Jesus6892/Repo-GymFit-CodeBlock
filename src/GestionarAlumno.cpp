@@ -18,29 +18,42 @@ Alumno GestionarAlumno::cargarAlumno()
     bool estado = true;
 
     // Nombre
-    do
-    {
-        std::cout << "Ingrese nombre: ";
+    do {
+        std::cout << "Ingrese nombre (0 para cancelar): ";
         std::getline(std::cin, nombre);
+        if (nombre == "0") {
+            std::cout << "\nCarga de alumno cancelada exitosamente.\n";
+            system("pause");
+            return Alumno();
+        }
         if (!Validaciones::esSoloLetras(nombre))
             std::cout << "Nombre invalido. Solo letras y espacios.\n";
     } while (!Validaciones::esSoloLetras(nombre));
 
     // Apellido
-    do
-    {
-        std::cout << "Ingrese apellido: ";
+    do {
+        std::cout << "Ingrese apellido (0 para cancelar): ";
         std::getline(std::cin, apellido);
+        if (apellido == "0"){
+            std::cout << "\nCarga de alumno cancelada exitosamente.\n";
+            system("pause");
+            return Alumno();
+        }
+
         if (!Validaciones::esSoloLetras(apellido))
             std::cout << "Apellido invalido. Solo letras y espacios.\n";
     } while (!Validaciones::esSoloLetras(apellido));
 
     // DNI
     ArchivoAlumnos archivoAlumnos(sizeof(Alumno));
-    do
-    {
-        std::cout << "Ingrese DNI (8 digitos): ";
+    do {
+        std::cout << "Ingrese DNI (8 digitos, 0 para cancelar): ";
         std::cin >> dni;
+        if (dni == "0"){
+            std::cout << "\nCarga de alumno cancelada exitosamente.\n";
+            system("pause");
+            return Alumno();
+        }
 
         if (!Validaciones::esDNIValido(dni)) {
             std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
@@ -54,12 +67,15 @@ Alumno GestionarAlumno::cargarAlumno()
 
     } while (!Validaciones::esDNIValido(dni) || archivoAlumnos.buscarPosPorDni(dni) >= 0);
 
-    // Correo electronico
-
-    do
-    {
-        std::cout << "Ingrese correo electronico: ";
+    // Correo electrónico
+    do {
+        std::cout << "Ingrese correo electronico (0 para cancelar): ";
         std::cin >> correoElectronico;
+        if (correoElectronico == "0"){
+            std::cout << "\nCarga de alumno cancelada exitosamente.\n";
+            system("pause");
+            return Alumno();
+        }
 
         if (!Validaciones::esEmailValido(correoElectronico))
             std::cout << "Email invalido. El formato debe ser: usuario@dominio.ext\n";
@@ -67,11 +83,17 @@ Alumno GestionarAlumno::cargarAlumno()
     } while (!Validaciones::esEmailValido(correoElectronico));
 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        // Telefono
-    do
-    {
-        std::cout << "Ingrese telefono (10 digitos): ";
+
+    // Teléfono
+    do {
+        std::cout << "Ingrese telefono (10 digitos, 0 para cancelar): ";
         std::cin >> telefono;
+        if (telefono == "0"){
+            std::cout << "\nCarga de alumno cancelada exitosamente.\n";
+            system("pause");
+            return Alumno();
+        }
+
         if (!Validaciones::esTelefonoValido(telefono))
             std::cout << "Telefono invalido. Debe ser 10 digitos numericos.\n";
     } while (!Validaciones::esTelefonoValido(telefono));
@@ -80,19 +102,23 @@ Alumno GestionarAlumno::cargarAlumno()
 
     int idAlumno = obtenerIdNuevo();
 
-    return Alumno(
-        nombre,
-        apellido,
-        dni,
-        correoElectronico,
-        telefono,
-        idAlumno
-    );
+    return Alumno(nombre,
+                  apellido,
+                  dni,
+                  correoElectronico,
+                  telefono,
+                  idAlumno);
 }
 
 void GestionarAlumno::altaAlumno()
 {
     Alumno nuevoAlumno = cargarAlumno();
+
+    if (nuevoAlumno.getDni().empty()) {
+        std::cout << "Alta de alumno cancelada por el usuario.\n";
+        return;
+    }
+
     if (archivoAlumnos.guardar(nuevoAlumno))
         std::cout << "Alumno agregado exitosamente.\n";
     else
@@ -184,8 +210,14 @@ void GestionarAlumno::buscarAlumno()
 {
     std::string dni;
     do {
-        std::cout << "Ingrese el DNI del alumno a buscar (8 digitos): ";
+        std::cout << "Ingrese el DNI del alumno a buscar (8 digitos) o 0 para cancelar: ";
         std::cin >> dni;
+
+        if (dni == "0") {
+            std::cout << "Modificacion de alumno cancelada exitosamente.\n";
+            system("pause");
+            return;
+    }
 
     if (!Validaciones::esDNIValido(dni)) {
         std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
@@ -208,8 +240,14 @@ void GestionarAlumno::modificarAlumno()
 {
     std::string dni;
     do {
-        std::cout << "Ingrese el DNI del alumno a modificar (8 digitos): ";
+        std::cout << "Ingrese el DNI del alumno a modificar (8 digitos) o 0 para cancelar: ";
         std::cin >> dni;
+
+        if (dni == "0") {
+        std::cout << "Modificacion de alumno cancelada exitosamente.\n";
+        system("pause");
+        return;
+    }
 
         if (!Validaciones::esDNIValido(dni)) {
             std::cout << "DNI invalido. Debe ser 8 digitos numericos.\n";
