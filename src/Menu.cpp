@@ -257,8 +257,9 @@ void Menu::gestionarClases() {
         cout << "1. Alta de Clase\n";
         cout << "2. Baja de Clase\n";
         cout << "3. Listar Clases\n";
+        cout << "4. Listar Alumnos por Clase\n";
         cout << "0. Volver al Menu Principal\n";
-        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 4);
 
         switch (opcion) {
         case 1:
@@ -269,6 +270,10 @@ void Menu::gestionarClases() {
             break;
         case 3:
             gestorClase.listarClases();
+            system("pause");
+            break;
+        case 4:
+            gestorClase.listarAlumnosPorClase();
             system("pause");
             break;
         case 0:

@@ -3,6 +3,8 @@
 #include "GestionarProfe.h"
 #include "GestionarHorario.h"
 #include "HorarioPorClaseArchivo.h"
+#include "InscripcionArchivo.h"
+#include "AlumnosArchivo.h"
 #include "Validaciones.h"
 #include <iostream>
 #include <iomanip>
@@ -243,4 +245,74 @@ void GestionarClase::mostrarEncabezadoListado() const {
          << setw(20) << "Profesor"
          << endl;
     cout << "------------------------------------------------------------" << endl;
+}
+
+void GestionarClase::listarAlumnosPorClase() {
+    int idClase = Validaciones::pedirEntero("\nIngrese el ID de la clase (0 para cancelar): ", 0);
+
+    if (idClase == 0) {
+        std::cout << "Operacion cancelada por el usuario.\n";
+        system("pause");
+        return;
+    }
+
+    int posClase = _archivoClases.buscar(idClase);
+    if (posClase < 0) {
+        std::cout << "No se encontró una clase con ese ID.\n";
+        system("pause");
+        return;
+    }
+
+    Clase clase = _archivoClases.leerRegistro(posClase);
+    if (!clase.getEstado()) {
+        std::cout << "La clase está dada de baja.\n";
+        system("pause");
+        return;
+    }
+
+    string nombreActividad = "Desconocida";
+    int posAct = _archivoActividades.buscar(clase.getIdActividad());
+    if (posAct >= 0) {
+        nombreActividad = _archivoActividades.leerRegistro(posAct).getNombreActividad();
+    }
+
+    string nombreProfe = "Desconocido";
+    int posProfe = _archivoProfes.buscar(clase.getIdProfe());
+    if (posProfe >= 0) {
+        Profe p = _archivoProfes.leerRegistro(posProfe);
+        nombreProfe = p.getNombre() + " " + p.getApellido();
+    }
+
+    cout << "\n------------------------------------------------------------\n";
+    cout << "Clase ID: " << clase.getId() << endl;
+    cout << "Actividad: " << nombreActividad << endl;
+    cout << "Profesor: " << nombreProfe << endl;
+    cout << "Alumnos:\n";
+
+    InscripcionArchivo archivoInscripciones;
+    ArchivoAlumnos archivoAlumnos;
+    int totalInsc = archivoInscripciones.contarRegistros();
+    bool hayAlumnos = false;
+
+    for (int i = 0; i < totalInsc; ++i) {
+        Inscripcion insc = archivoInscripciones.leerRegistro(i);
+        if (insc.getEstado() && insc.getIdClase() == idClase) {
+            int idAlumno = insc.getIdAlumno();
+            int posAlumno = archivoAlumnos.buscar(idAlumno);
+            if (posAlumno >= 0) {
+                Alumno a = archivoAlumnos.leerRegistro(posAlumno);
+                cout << "  - " << a.getNombre() << " " << a.getApellido()
+                     << " (DNI: " << a.getDni() << ")" << endl;
+                hayAlumnos = true;
+            }
+        }
+    }
+
+    if (!hayAlumnos) {
+        cout << "  >> No hay alumnos inscriptos en esta clase.\n";
+        system("pause");
+    }
+
+    cout << "------------------------------------------------------------\n";
+    system("pause");
 }
