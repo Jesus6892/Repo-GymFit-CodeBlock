@@ -1734,12 +1734,14 @@
 	"Utilidades.h"
 	<Validaciones.h>
 
-1753111710 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarclase.cpp
+1753123656 source:c:\users\matia\desktop\archivos para pasar a la carpeta de mama dsps\tpi final 2025 prog ii\github tpi final\repo-gymfit-codeblock\src\gestionarclase.cpp
 	"GestionarClase.h"
 	"GestionarActividad.h"
 	"GestionarProfe.h"
 	"GestionarHorario.h"
 	"HorarioPorClaseArchivo.h"
+	"InscripcionArchivo.h"
+	"AlumnosArchivo.h"
 	"Validaciones.h"
 	<iostream>
 	<iomanip>

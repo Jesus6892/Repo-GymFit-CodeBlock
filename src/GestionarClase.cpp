@@ -71,6 +71,7 @@ bool GestionarClase::bajaClase() {
         if (pos < 0)
         {
             cout << "Error: No se encontro ninguna clase con el ID " << idClase << ".\n";
+            system("pause");
         }
 
     } while (pos < 0);
@@ -95,7 +96,6 @@ bool GestionarClase::bajaClase() {
         }
 
         cout << ">> También se dieron de baja " << cont << " horarios asociados a esta clase.\n";
-        system("pause");
         return true;
 
     } else {
