@@ -17,7 +17,6 @@
 *.layout.save
 
 # --- Archivos de configuración de proyecto ---
-*.cbp
 *.workspace
 
 # --- Archivos de sistema ---
