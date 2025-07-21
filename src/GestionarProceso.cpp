@@ -154,7 +154,6 @@ void GestionarProceso::realizarBajaInscripcion() {
 
         if (dni == "0") {
             std::cout << "Operacion cancelada. Volviendo al menu.... \n";
-            system("pause");
             return;
     }
         if (!Validaciones::esDNIValido(dni))
