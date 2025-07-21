@@ -183,6 +183,109 @@ void GestionarActividad::bajaActividad()
     }
 }
 
+void GestionarActividad::modificarActividad(){
+    int id;
+    int pos;
+
+    do
+    {
+        cout << "Ingrese el ID de la actividad que desea modificar, (0 para cancelar): ";
+        cin >> id;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+            pos = -1;
+            continue;
+        }
+
+        if (id == 0)
+        {
+            cout << "Operacion cancelada por el usuario.\n";
+            system("pause");
+            return;
+        }
+
+        pos = archivoActividades.buscar(id);
+
+        if (pos < 0)
+        {
+            cout << "No se encontro ninguna actividad con ese ID. Proba otra vez. \n";
+            system("pause");
+        }
+    } while (pos < 0);
+
+    Actividad actividad = archivoActividades.leerRegistro(pos);
+
+    std::cout << "Datos actuales de la actividad:\n";
+    actividad.mostrar();
+
+    int opcion;
+    std::string nuevoValor;
+
+    std::cout << "\nQue campo desea modificar?\n";
+    std::cout << "1. Nombre\n";
+    std::cout << "2. Descripcion\n";
+    std::cout << "3. Costo\n";
+    std::cout << "0. Cancelar\n";
+    std::cout << "Seleccione una opcion: ";
+    std::cin >> opcion;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    switch (opcion)
+    {
+    case 1:
+        std::cout << "Ingrese el nuevo nombre: ";
+        std::getline(std::cin, nuevoValor);
+        actividad.setNombreActividad(nuevoValor);
+        break;
+    case 2:
+        std::cout << "Ingrese la descripcion: ";
+        std::getline(std::cin, nuevoValor);
+        actividad.setDescripcion(nuevoValor);
+        break;
+    case 3:
+        float nuevoPrecio;
+
+        do{
+            std::cout << "Ingrese el nuevo costo de actividad: ";
+            std::cin >> nuevoPrecio;
+
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+                pos = -1;
+                continue;
+            }
+
+            if (nuevoPrecio <= 0) {
+                std::cout << "Costo invalido, debe ser mayor a 0. Ingrese nuevamente: ";
+            }
+        } while(nuevoPrecio <= 0);
+
+        actividad.setCosto(nuevoPrecio);
+        break;
+    case 0:
+        std::cout << "Modificacion cancelada.\n";
+        return;
+    default:
+        std::cout << "Opcion no valida.\n";
+        return;
+    }
+
+    if (archivoActividades.modificarRegistro(actividad, pos))
+    {
+        std::cout << "Actividad modificada exitosamente.\n";
+    }
+    else
+    {
+        std::cout << "Error al modificar  la actividad.\n";
+    }
+}
 
 void GestionarActividad::listarActividades() {
     int total = archivoActividades.contarRegistros();
@@ -246,6 +349,7 @@ void GestionarActividad::buscarActividad()
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, ingrese un numero.\n";
+            system("pause");
             pos = -1;
             continue;
         }
@@ -253,6 +357,7 @@ void GestionarActividad::buscarActividad()
         if (id == 0)
         {
             cout << "Operacion cancelada por el usuario.\n";
+            system("pause");
             return;
         }
 
@@ -261,6 +366,7 @@ void GestionarActividad::buscarActividad()
         if (pos < 0)
         {
             cout << "No se encontro ninguna actividad con ese ID. Proba otra vez. \n";
+            system("pause");
         }
 
     } while (pos < 0);

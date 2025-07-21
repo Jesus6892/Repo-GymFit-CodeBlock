@@ -8,7 +8,8 @@
 #include "ClaseArchivo.h"
 #include "InscripcionArchivo.h"
 #include "GestionarClase.h"
-#include "Utilidades.h"
+#include "GestionarAlumno.h"
+
 
 class GestionarProceso {
 public:
@@ -24,4 +25,5 @@ private:
     ClaseArchivo _archivoClases;
     InscripcionArchivo _archivoInscripciones;
     GestionarClase _gestorClase;
+    GestionarAlumno _gestorAlumno; 
 };

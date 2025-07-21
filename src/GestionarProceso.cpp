@@ -5,14 +5,15 @@
 #include <limits>
 #include <string>
 #include "Validaciones.h"
-
+#include "GestionarAlumno.h" 
 using namespace std;
 
 GestionarProceso::GestionarProceso()
     : _archivoAlumnos(sizeof(Alumno)),
       _archivoClases(sizeof(Clase)),
       _archivoInscripciones(sizeof(Inscripcion)),
-      _gestorClase(){}
+      _gestorClase(),
+      _gestorAlumno() {} // Inicializar el nuevo miembro
 
 void GestionarProceso::realizarInscripcion() {
     cout << "\n--- Proceso de Nueva Inscripcion ---" << endl;
@@ -38,6 +39,18 @@ void GestionarProceso::realizarInscripcion() {
             posAlumno = _archivoAlumnos.buscarPosPorDni(dniAlumno);
             if (posAlumno < 0) {
                 cout << "Error: No se encontro un alumno con el DNI " << dniAlumno << ".\n";
+                char opcion;
+                cout << "Desea registrar a este nuevo alumno? (S/N): ";
+                cin >> opcion;
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+                if (opcion == 'S' || opcion == 's') {
+                    _gestorAlumno.altaAlumno();
+                    // Busco el alumno que cree recien para continuar la inscripcion
+                    posAlumno = _archivoAlumnos.buscarPosPorDni(dniAlumno);
+                } else {
+                    cout << "Operacion cancelada. No se puede continuar sin un alumno valido." << endl;
+                    return; // Cancela si no se crea el alumno
+                }
             }
 
         } while (!Validaciones::esDNIValido(dniAlumno) || posAlumno < 0);
