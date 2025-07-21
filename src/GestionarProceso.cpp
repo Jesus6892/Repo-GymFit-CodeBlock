@@ -1,11 +1,5 @@
 #include "GestionarProceso.h"
-#include "Inscripcion.h"
-#include "Fecha.h"
-#include <iostream>
-#include <limits>
-#include <string>
-#include "Validaciones.h"
-#include "GestionarAlumno.h" 
+
 using namespace std;
 
 GestionarProceso::GestionarProceso()
@@ -42,7 +36,7 @@ void GestionarProceso::realizarInscripcion() {
                 char opcion;
                 cout << "Desea registrar a este nuevo alumno? (S/N): ";
                 cin >> opcion;
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 if (opcion == 'S' || opcion == 's') {
                     _gestorAlumno.altaAlumno();
                     // Busco el alumno que cree recien para continuar la inscripcion
@@ -102,6 +96,49 @@ void GestionarProceso::realizarInscripcion() {
     }
 }
 
+// IMPLEMENTAR LISTAR INSCRIPCION
+void GestionarProceso::listarInscripciones(){
+    int total = _archivoInscripciones.contarRegistros();
+    bool seMostro = false;
+    for (int i = 0; i < total; ++i) {
+        Inscripcion insc = _archivoInscripciones.leerRegistro(i);
+        if (insc.getEstado()) {
+            if (!seMostro) {
+                cout << "\n--- Listado de Inscripciones Activas ---\n";
+                seMostro = true;
+            }
+
+            // Obtener nombre de alumno
+            int idAlu = insc.getIdAlumno();
+            int posAlu = _archivoAlumnos.buscar(idAlu);
+            Alumno alu = _archivoAlumnos.leerRegistro(posAlu);
+
+            int idClase = insc.getIdClase();
+            int posClase = _archivoClases.buscar(idClase);
+            Clase clase = _archivoClases.leerRegistro(posClase);
+            // Obtener nombre de la Actividad
+            int idActividad = clase.getIdActividad();
+            int posAct = _archivoActividades.buscar(idActividad);
+            Actividad actividad = _archivoActividades.leerRegistro(posAct);
+            // Obtener nombre del Profesor
+            int idProfesor = clase.getIdProfe();
+            int posProfe = _archivoProfesores.buscar(idProfesor);
+            Profe profesor = _archivoProfesores.leerRegistro(posProfe);
+
+            // Mostrar con nombres
+            cout << endl;
+            cout << "Alumno: " << alu.getNombre() << endl;
+            cout << "Actividad: " << actividad.getNombreActividad() << endl;
+            cout << "Profesor: " << profesor.getNombre() << endl;
+            cout << "Fecha: " << insc.getFechaInscripcion() << endl;
+            cout << endl;
+            cout << " ---------------------------"<< endl;
+        }
+    }
+    if (!seMostro)
+        cout << "No hay Inscripciones Activas registradas.\n";
+}
+// IMPLEMENTAR BAJA DE INSCRIPCION
 
 void GestionarProceso::realizarBajaInscripcion() {
     cout << "Esta funcion aun no ha sido implementada." << endl;
