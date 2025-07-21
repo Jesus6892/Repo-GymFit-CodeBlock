@@ -49,7 +49,6 @@ void GestionarProceso::mostrarMenu() {
     cout << "\n--- PROCESOS COMPLETOS ---" << endl;
     cout << "1. Realizar una Inscripcion" << endl;
     cout << "2. Dar de baja una Inscripcion" << endl;
-    cout << "3. Ver listado de Inscripciones Activas" << endl;
     cout << "0. Volver al Menu Principal" << endl;
 }
 
@@ -57,17 +56,13 @@ void GestionarProceso::iniciar() {
     int opcion;
     do {
         mostrarMenu();
-        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 2);
         switch (opcion) {
             case 1:
                 realizarInscripcion();
                 break;
             case 2:
                 realizarBajaInscripcion();
-                break;
-            case 3:
-                listarInscripciones();
-                system("pause");
                 break;
             case 0:
                 cout << "Volviendo al menu principal..." << endl;
