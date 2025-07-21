@@ -67,7 +67,6 @@ void GestionarProceso::iniciar() {
                 break;
             case 3:
                 listarInscripciones();
-                system("pause");
                 break;
             case 0:
                 cout << "Volviendo al menu principal..." << endl;
@@ -114,7 +113,6 @@ void Menu::gestionarBajaDeClase()
     system("cls");
     cout << "\n--- Baja de Clase ---\n";
     gestorClase.bajaClase();
-    system("pause");
     system("cls");
 }
 
@@ -257,8 +255,9 @@ void Menu::gestionarClases() {
         cout << "1. Alta de Clase\n";
         cout << "2. Baja de Clase\n";
         cout << "3. Listar Clases\n";
+        cout << "4. Listar Alumnos por Clase\n";
         cout << "0. Volver al Menu Principal\n";
-        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 3);
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 4);
 
         switch (opcion) {
         case 1:
@@ -269,6 +268,10 @@ void Menu::gestionarClases() {
             break;
         case 3:
             gestorClase.listarClases();
+            system("pause");
+            break;
+        case 4:
+            gestorClase.listarAlumnosPorClase();
             system("pause");
             break;
         case 0:
@@ -324,11 +327,10 @@ void Menu::gestionarHorarios() {
         cout << "\n===== GESTION DE HORARIOS =====\n";
         cout << "1. Alta de Horario\n";
         cout << "2. Baja de Horario\n";
-        cout << "3. Modificar Horario\n";
-        cout << "4. Buscar Horario\n";
-        cout << "5. Listar Horarios\n";
+        cout << "3. Buscar Horario\n";
+        cout << "4. Listar Horarios\n";
         cout << "0. Volver al Menu Principal\n";
-        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
+        opcion = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 4);
 
         switch (opcion) {
         case 1:
@@ -338,6 +340,11 @@ void Menu::gestionarHorarios() {
                 int idClase;
                 cout << "\nIngrese el ID de la clase para agregar el horario (0 para cancelar): ";
                 cin >> idClase;
+                if (idClase == 0) {
+                    std::cout << "\nCarga de Horario cancelada exitosamente.\n";
+                    system("pause");
+                    break;
+                }
                 if (idClase > 0) {
                     gestorHorarios.altaHorarioParaClase(idClase);
                 } else {
@@ -349,12 +356,9 @@ void Menu::gestionarHorarios() {
             gestorHorarios.bajaHorario();
             break;
         case 3:
-            cout << "No implementado\n";
-            break;
-        case 4:
             gestorHorarios.buscarHorario();
             break;
-        case 5:
+        case 4:
             gestorHorarios.listarHorarios();
             system("pause");
             break;
