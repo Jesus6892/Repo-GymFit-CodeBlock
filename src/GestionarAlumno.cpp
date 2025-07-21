@@ -62,7 +62,7 @@ Alumno GestionarAlumno::cargarAlumno()
 
         int pos = archivoAlumnos.buscarPosPorDni(dni);
         if (pos >= 0) {
-            std::cout << "PEDAZO DE ERROR: DNI ya registrado. Intente nuevamente.\n";
+            std::cout << "ERROR: DNI ya registrado. Intente nuevamente.\n";
         }
 
     } while (!Validaciones::esDNIValido(dni) || archivoAlumnos.buscarPosPorDni(dni) >= 0);

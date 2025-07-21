@@ -8,13 +8,13 @@ class GestionarActividad
 public:
     GestionarActividad();
 
-    
     Actividad cargarActividad();
     void altaActividad();
     void bajaActividad();
     void listarActividades();
     void buscarActividad();
     void listarActividadesSinHorarios();
+    void modificarActividad();
 
 private:
     ActividadesArchivo archivoActividades;

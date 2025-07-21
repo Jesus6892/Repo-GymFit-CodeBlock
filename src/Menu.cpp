@@ -223,7 +223,8 @@ void Menu::gestionarActividades() {
             gestorActividades.bajaActividad();
             break;
         case 3:
-            cout << "No implementado\n";
+            gestorActividades.modificarActividad();
+            system("pause");
             break;
         case 4:
             gestorActividades.buscarActividad();
