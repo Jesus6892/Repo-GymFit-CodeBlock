@@ -1253,7 +1253,7 @@
 	<algorithm>
 	<iostream>
 
-1753063880 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionaractividad.h
+1753070305 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionaractividad.h
 	"Actividad.h"
 	"ActividadesArchivo.h"
 	"Utilidades.h"
@@ -1286,7 +1286,7 @@
 	"ArchivoBinario.h"
 	"Pago.h"
 
-1752612675 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
+1753113157 c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\include\gestionarproceso.h
 	<iostream>
 	<limits>
 	<string>
@@ -1294,7 +1294,11 @@
 	"ClaseArchivo.h"
 	"InscripcionArchivo.h"
 	"GestionarClase.h"
-	"Utilidades.h"
+	"GestionarAlumno.h"
+	"ActividadesArchivo.h"
+	"Actividad.h"
+	"ProfesArchivo.h"
+	"Profe.h"
 
 1752612675 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\actividad.cpp
 	<cstring>
@@ -1330,7 +1334,7 @@
 	"Validaciones.h"
 	<cctype>
 
-1753069867 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaractividad.cpp
+1753070305 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaractividad.cpp
 	"GestionarActividad.h"
 	"GestionarHorario.h"
 	"ProfesArchivo.h"
@@ -1340,7 +1344,7 @@
 	<iostream>
 	<limits>
 
-1753065184 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
+1753070305 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionaralumno.cpp
 	"GestionarAlumno.h"
 	"AlumnosArchivo.h"
 	<iostream>
@@ -1369,7 +1373,7 @@
 	"ActividadesArchivo.h"
 	"Validaciones.h"
 
-1753063762 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarproceso.cpp
+1753113457 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarproceso.cpp
 	"GestionarProceso.h"
 	"Inscripcion.h"
 	"Fecha.h"
@@ -1377,8 +1381,9 @@
 	<limits>
 	<string>
 	"Validaciones.h"
+	"GestionarAlumno.h"
 
-1752855204 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarprofe.cpp
+1753070305 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarprofe.cpp
 	"GestionarProfe.h"
 	<iostream>
 	<iomanip>
@@ -1391,7 +1396,7 @@
 
 1751315731 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\horarioarchivo.cpp
 
-1753064246 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
+1753110881 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\menu.cpp
 	"Menu.h"
 	<iostream>
 	<limits>
@@ -1835,7 +1840,7 @@
 1752612675 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\clasearchivo.cpp
 	"ClaseArchivo.h"
 
-1753063762 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarclase.cpp
+1753107461 source:c:\users\el jom\desktop\prog ii\repo-gymfit-codeblock-main\repo-gymfit-codeblock-main\src\gestionarclase.cpp
 	"GestionarClase.h"
 	"GestionarActividad.h"
 	"GestionarProfe.h"

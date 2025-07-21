@@ -38,8 +38,8 @@ void GestionarClase::altaClase() {
 
             do {
                 cout << "\n+----------------------------------------------+\n"
-                     << "| Horario agregado exitosamente a la clase.    |\n"
-                     << "+----------------------------------------------+\n\n";
+                     << "| Horario agregado exitosamente a la clase.      |\n"
+                     << "+------------------------------------------------+\n\n";
                 cout << "¿Desea agregar otro horario para esta clase? (S/N): ";
                 cin >> continuar;
 
